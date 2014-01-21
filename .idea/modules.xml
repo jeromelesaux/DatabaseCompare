@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DatabaseCompare.iml" filepath="$PROJECT_DIR$/DatabaseCompare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jar/database_common_lib/database-compare-common-lib.iml" filepath="$PROJECT_DIR$/jar/database_common_lib/database-compare-common-lib.iml" />
+    </modules>
+  </component>
+</project>
+
