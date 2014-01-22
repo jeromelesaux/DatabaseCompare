@@ -1,18 +1,18 @@
-package fr.axione.dbcompare.common.dbitem;
+package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Report;
 
 /**
  * Created by jlesaux on 20/01/14.
  */
-public class View extends Report {
+public class Trigger extends Report {
     String name;
     String codeSql;
 
-    public View() {
+
+    public Trigger() {
 
     }
-
 
     public String getName() {
         return name;

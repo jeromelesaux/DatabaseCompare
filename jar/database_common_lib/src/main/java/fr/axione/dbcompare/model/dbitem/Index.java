@@ -1,12 +1,13 @@
-package fr.axione.dbcompare.common.dbitem;
+package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.model.common.ConstraintType;
 
 import java.util.Set;
 
-import static fr.axione.dbcompare.common.StringUtils.stringValueForBoolean;
+import static fr.axione.dbcompare.model.StringUtils.stringValueForBoolean;
 
 /**
  * Created by jlesaux on 20/01/14.
@@ -14,7 +15,7 @@ import static fr.axione.dbcompare.common.StringUtils.stringValueForBoolean;
 public class Index extends Report {
     String name;
     Set<Column> columns;
-    Boolean unique;
+    ConstraintType  type;
     Schema schema;
 
     public Index() {
@@ -40,12 +41,12 @@ public class Index extends Report {
         this.columns = columns;
     }
 
-    public Boolean getUnique() {
-        return unique;
+    public ConstraintType getType() {
+        return type;
     }
 
-    public void setUnique(Boolean unique) {
-        this.unique = unique;
+    public void setType(ConstraintType type) {
+        this.type = type;
     }
 
     @Override
@@ -65,15 +66,15 @@ public class Index extends Report {
             return false;
         }
 
-        Boolean rightIsUnique = ((Index)obj).getUnique();
-        if (this.unique != null && ! this.unique.equals(rightIsUnique)) {
+        ConstraintType rightIsUnique = ((Index)obj).getType();
+        if (this.type != null && ! this.type.equals(rightIsUnique)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
                     obj,
                     this,
                     Direction.plus,
                     this.getClass().getName(),
-                    objType +" : has a different unique attribut (" + stringValueForBoolean(this.unique) +","+ stringValueForBoolean(rightIsUnique) + ")."
+                    objType +" : has a different constraint type attribut (" + String.valueOf(this.type) +","+ String.valueOf(rightIsUnique) + ")."
             );
             getErrors().add(report);
             areEquals = false;

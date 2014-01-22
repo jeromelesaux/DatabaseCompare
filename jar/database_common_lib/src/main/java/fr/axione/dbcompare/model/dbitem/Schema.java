@@ -1,4 +1,4 @@
-package fr.axione.dbcompare.common.dbitem;
+package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
@@ -15,13 +15,13 @@ public class Schema extends Report {
     HashMap<String, Table> tables;
     HashMap<String, Trigger> triggers;
     HashMap<String, View> views;
-    HashMap<String, Constraint> constraints;
+    //HashMap<String, Constraint> constraints;
 
     public Schema() {
         tables = new HashMap<String, Table>();
         triggers = new HashMap<String, Trigger>();
         views = new HashMap<String, View>();
-        constraints = new HashMap<String, Constraint>();
+       // constraints = new HashMap<String, Constraint>();
 
     }
 
@@ -57,13 +57,13 @@ public class Schema extends Report {
         this.views = views;
     }
 
-    public HashMap<String, Constraint> getConstraints() {
-        return constraints;
-    }
-
-    public void setConstraints(HashMap<String, Constraint> constraints) {
-        this.constraints = constraints;
-    }
+//    public HashMap<String, Constraint> getConstraints() {
+//        return constraints;
+//    }
+//
+//    public void setConstraints(HashMap<String, Constraint> constraints) {
+//        this.constraints = constraints;
+//    }
 
     @Override
     public boolean equals(Object obj) {

@@ -1,6 +1,8 @@
 package fr.axione.dbcompare.parser.database;
 
-import fr.axione.dbcompare.common.dbitem.*;
+import fr.axione.dbcompare.model.common.ColumnType;
+import fr.axione.dbcompare.model.common.ConstraintType;
+import fr.axione.dbcompare.model.dbitem.*;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -66,16 +68,24 @@ public class DatabaseStructure {
                 Table fkTable = table.getSchema().getTables().get(fkTableName);
                 if (fkTable.getColumns().containsKey(fkColumnName)) {
                     Column fkColumn = fkTable.getColumns().get(fkColumnName);
+
                     fkColumn.setIsForeignKey(true);
-                    Constraint constraint = new Constraint(table.getSchema());
-                    constraint.setName(fkName);
-                    constraint.setForeignColumn(fkColumn);
+                    Index index = new Index(table.getSchema());
+                    index.setName(fkName);
+                    index.getColumns().add(fkColumn);
+                    index.setType(ConstraintType.FOREIGN_KEY);
+//                    Constraint constraint = new Constraint(table.getSchema());
+//                    constraint.setName(fkName);
+//                    constraint.setForeignColumn(fkColumn);
                     if  (table.getName().equals(pkTableName) && table.getColumns().containsKey(pkColumnName)) {
-                        constraint.setPrimaryColumn(table.getColumns().get(pkColumnName));
+//                        constraint.setPrimaryColumn(table.getColumns().get(pkColumnName));
+                        index.getColumns().add(table.getColumns().get(pkColumnName));
                     }
-                    fkTable.getConstraints().put(constraint.getName(),constraint);
-                    table.getConstraints().put(constraint.getName(),constraint);
-                    table.getSchema().getConstraints().put(constraint.getName(),constraint);
+                    fkTable.getIndexes().put(index.getName(),index);
+                    table.getIndexes().put(index.getName(),index);
+//                    fkTable.getConstraints().put(constraint.getName(),constraint);
+//                    table.getConstraints().put(constraint.getName(),constraint);
+//                    table.getSchema().getConstraints().put(constraint.getName(),constraint);
                 }
             }
 

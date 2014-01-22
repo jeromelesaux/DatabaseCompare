@@ -1,6 +1,6 @@
 package fr.axione.dbcompare.analyse;
 
-import fr.axione.dbcompare.common.dbitem.Schema;
+import fr.axione.dbcompare.model.dbitem.Schema;
 
 import java.util.ArrayList;
 import java.util.List;

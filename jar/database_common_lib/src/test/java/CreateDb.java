@@ -1,7 +1,7 @@
-import fr.axione.dbcompare.common.dbitem.Column;
-import fr.axione.dbcompare.common.dbitem.ColumnType;
-import fr.axione.dbcompare.common.dbitem.Schema;
-import fr.axione.dbcompare.common.dbitem.Table;
+import fr.axione.dbcompare.model.dbitem.Column;
+import fr.axione.dbcompare.model.common.ColumnType;
+import fr.axione.dbcompare.model.dbitem.Schema;
+import fr.axione.dbcompare.model.dbitem.Table;
 
 /**
  * Created by jls on 20/01/2014.

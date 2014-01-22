@@ -1,4 +1,4 @@
-package fr.axione.dbcompare.common.dbitem;
+package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
@@ -16,7 +16,7 @@ public class Table extends Report{
     HashMap<String,Column> primariesKeys;
     HashMap<String,Index>  indexes;
     HashMap<String,Column> foreignKeys;
-    HashMap<String,Constraint> constraints;
+   // HashMap<String,Constraint> constraints;
 
 
     public Table() {
@@ -24,7 +24,7 @@ public class Table extends Report{
         primariesKeys = new HashMap<String, Column>();
         indexes = new HashMap<String, Index>();
         foreignKeys = new HashMap<String, Column>();
-        constraints = new HashMap<String, Constraint>();
+//        constraints = new HashMap<String, Constraint>();
     }
 
     public Table(String tableName, Schema schema) {
@@ -78,13 +78,13 @@ public class Table extends Report{
         this.foreignKeys = foreignKeys;
     }
 
-    public HashMap<String,Constraint> getConstraints() {
-        return constraints;
-    }
-
-    public void setConstraints(HashMap<String,Constraint> constraints) {
-        this.constraints = constraints;
-    }
+//    public HashMap<String,Constraint> getConstraints() {
+//        return constraints;
+//    }
+//
+//    public void setConstraints(HashMap<String,Constraint> constraints) {
+//        this.constraints = constraints;
+//    }
 
     public Schema getSchema() {
         return schema;
@@ -247,34 +247,34 @@ public class Table extends Report{
         }
 
 
-        for (String columnName : this.constraints.keySet()) {
-            if (! rightTable.getConstraints().containsKey(columnName)) {
-                ReportItem report = new ReportItem().fillWithInformations(
-                        objType,
-                        obj,
-                        this,
-                        Direction.plus,
-                        this.getClass().getName(),
-                        objType + " : right foreignColumn is not in a constraint  "+ this.constraints.get(columnName).getName() +"(" + columnName +",null)."
-                );
-                getErrors().add(report);
-                areEquals = false;
-            }
-        }
-        for (String columnName : rightTable.getConstraints().keySet()) {
-            if (! this.getConstraints().containsKey(columnName)) {
-                ReportItem report = new ReportItem().fillWithInformations(
-                        objType,
-                        obj,
-                        this,
-                        Direction.minus,
-                        this.getClass().getName(),
-                        objType + " : left foreignColumn is not a foreign key  "+ rightTable.getConstraints().get(columnName).getName() +"(null," + columnName +")."
-                );
-                getErrors().add(report);
-                areEquals = false;
-            }
-        }
+//        for (String columnName : this.constraints.keySet()) {
+//            if (! rightTable.getConstraints().containsKey(columnName)) {
+//                ReportItem report = new ReportItem().fillWithInformations(
+//                        objType,
+//                        obj,
+//                        this,
+//                        Direction.plus,
+//                        this.getClass().getName(),
+//                        objType + " : right foreignColumn is not in a constraint  "+ this.constraints.get(columnName).getName() +"(" + columnName +",null)."
+//                );
+//                getErrors().add(report);
+//                areEquals = false;
+//            }
+//        }
+//        for (String columnName : rightTable.getConstraints().keySet()) {
+//            if (! this.getConstraints().containsKey(columnName)) {
+//                ReportItem report = new ReportItem().fillWithInformations(
+//                        objType,
+//                        obj,
+//                        this,
+//                        Direction.minus,
+//                        this.getClass().getName(),
+//                        objType + " : left foreignColumn is not a foreign key  "+ rightTable.getConstraints().get(columnName).getName() +"(null," + columnName +")."
+//                );
+//                getErrors().add(report);
+//                areEquals = false;
+//            }
+//        }
 
         return areEquals;
     }

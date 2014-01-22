@@ -1,0 +1,196 @@
+oracle rel/A3690BA6-C55982EBC2C8/table/seg_0/
+logicalDataType	OracleSqlType
+LOGDT024		VARCHAR2
+LOGDT019		NUMBER
+LOGDT007		DATE
+
+dataType		OracleSqlType
+CHAR			CHAR
+VARCHAR2		VARCHAR2
+NUMBER			NUMBER
+
+
+DMD_SEQUENCE/rel/SEQUENCE/Objects.local contient toutes les références aux tables / vues / 
+avec seqName ="seg_0" 
+Ex : objectType == "Table" == description de la table.
+objectType == "View" == decription de la vue
+
+
+Version de datamodeler utilisée : 3.2.20.09
+
+Description de la structure des dossiers DMD d'Oracle
+([a-Z-\s]+).dmd
+([a-Z-\s]+)/
+            businessinfo/
+            ChangeRequests.local
+            datatypes/
+            dl_settings.xml
+            logical/
+            mapping/
+            pm/
+            rdbms/
+            rel/
+               ([a-Z-\s]+).xml
+               ([a-Z-\s]+)/
+                          DDLSelection.local
+                          Diagrams.local
+                          foreignkey/        #contient les clefs étrangères du schéma (5*)
+                          Objects.local      #contient les liens vers tous les objets de la base description plus complète (1*)
+                          phys/
+                          schema/
+                          subviews/ 
+                          table/             #contient toutes les descriptions sur les tables (2*)
+                          view/              #contient toutes les descritpions sur les vues (3*)
+            
+
+
+(1*) fichier Objects.local (fichier xml)
+La structure globale du fichier est relativement simple et elle est la suivante :
+
+<object objectType="Table" objectID="00728E51-6EDC-87E8-2AA1-520968869A96" name="T_FDSL_HISTO_RECAP_FACTURE" seqName="seg_0"/>
+
+objectType définit le type d'objet de la base (Table, View, FKIndexAssociation, SchemaObject)
+objectID   définit le nom du fichier xml contenant les informations de l'objet de la base 
+name       définit le nom de l'objet de la base 
+seqName    définit le nom du répertoire ou trouvé l'objet
+
+Pour retrouver le fichier de l'objet le path suit ce pattern : 
+rel/(valeur de objectType en minuscule)/(valeur de seqName en minuscule)/(valeur de objectID en majuscule).xml
+Ce pattern fonctionne pour les vues, tables et les clefs étrangers (pour ce dernier cas ce n'est pas la valeur de objectType ex FKIndexAssociation mais foreignKey) .
+
+(2*) fichier du répertoire table (fichier .xml)
+les noms des fichiers xml de ce répertoire sont référencés dans le fichier Objects.local dans l'attribut objectID.
+Structure du fichier :
+1ere partie contenant des informations liées aux préférences de l'IHM (noeud FontObject).
+2eme partie contient les structures décrivant les colonnes (à partir du noeud <columns>:
+3eme partie contient les structures décrivant les indexes de la table (à partir du noeud <indexes> )
+
+------------------------------------------------
+       <Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_DTI" id="61185CE8-A470-74F8-5A3B-13A631F43DA2">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>T_FAE_CONFIG_FAI_DTI</sourceObjSchema>
+            <sourceObjName>ID_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <useDomainConstraints>false</useDomainConstraints>
+            <use>1</use>
+            <logicalDatatype>LOGDT019</logicalDatatype>
+            <dataTypeSize>22</dataTypeSize>
+            <delegate>E19C475F-13F9-5D78-DD98-411397D832E2</delegate>
+            <autoIncrementCycle>false</autoIncrementCycle>
+            <associations>
+                <colAssociation fkAssociation="0742A400-367A-CD1F-961E-66A1EF2F9C3F" referredColumn="E19C475F-13F9-5D78-DD98-411397D832E2"/>
+            </associations>
+        </Column>
+------------------------------------------------
+sourceObjSchema représente le nom de la table
+sourceObjName représente le nom du champs
+createdBy représente le nom de la personne qui a créé la colonne
+createdTime représente la date de la création de la colonne
+ownerDesignName représente la valeur du répertoire racine dmd 
+nullsAllowed représente si la colonne accepte les valeurs null
+useDomainConstraints ?
+use ?
+logicalDatatype représente le type de la colonne tableau récapitulatif plus bas (4*)
+dataTypeSize représente la taille du type de la colonne, généralement exprimée en bytes
+autoIncrementCycle représente le fait que cette colonne est une clef primaire ou non 
+associations représente les liens vers les autres colonnes d'autres tables (clefs étrangères)
+colAssociation représente le lien vers la colonne référencé (clef primaire) avec comme valeurs : attribut fkAssociation représente le nom du fichier dans le répertoire foreignKey, referredColumn représente la colonne de la clef primaire. 
+
+
+
+------------------------------------------------
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="2239AE98-8DA1-0A38-28B7-44E341754D4D" name="UNI_FAE_CONFIG_FAI_DTI">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+            <sourceObjName>UNI_FAE_CONFIG_FAI_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <indexState>Unique Constraint</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="61185CE8-A470-74F8-5A3B-13A631F43DA2"/>
+                <colUsage columnID="9F57CCED-D202-FA4E-3584-9472E4FFB9BD"/>
+                <colUsage columnID="DA60BB08-47F8-0436-0D4D-C558681BEB14"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+------------------------------------------------
+sourceObjSchema représente le nom de la table
+sourceObjName représente le nom du champs
+createdBy représente le nom de la personne qui a créé la colonne
+createdTime représente la date de la création de la colonne
+ownerDesignName représente la valeur du répertoire racine dmd
+indexState représente le type d'indexe, les possibilités sont Primary Constraint,Unique Constraint,Unique Plain Index, Foreign Key
+indexColumnUsage représente la liste des colonnes impliquées dans l'indexe
+colUsage représente la valeur de l'objet id de la colonne impliquée dans l'indexe dans le même fichier
+
+
+(3*) fichier du répertoire view (fichier .xml)
+Comme les fichiers du répertoire table, les noms des fichiers xml de ce répertoire sont référencés dans le fichier Objects.local dans l'attribut objectID.
+Structure du fichier :
+1ere partie contenant des informations liées aux préférences de l'IHM (noeud FontObject).
+2eme partie contient les structures décrivant les colonnes utilisées dans la vue (à partir du noeud <viewElements>)
+
+
+------------------------------------------------
+        <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SOCIETE" id="4D8DA574-D00D-6A1C-88F6-A7E062D9FD12">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>V_FAE</sourceObjSchema>
+            <sourceObjName>SOCIETE</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:35 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <nullsAllowed>true</nullsAllowed>
+            <alias>SOCIETE</alias>
+            <dataType>VARCHAR2 (50)</dataType>
+            <reference>false</reference>
+            <viewID>233CB739-ADDE-955F-07E4-4CD805AD99C6</viewID>
+        </viewElement>
+------------------------------------------------
+sourceObjSchema représente le nom de la vue
+sourceObjName représente le nom de l'alias de la colonne
+dataType représente le type du champs ainsi que sa taille entre parenthèse exprimée en bytes.
+
+(4*) tableau récapitulatif du mapping logicalDatatype versus type sql 
+logicalDataType	OracleSqlType
+LOGDT024		VARCHAR2
+LOGDT019		NUMBER
+LOGDT007		DATE
+
+(5*) clefs étrangères dossier foreignKey (fichier .xml)
+
+------------------------------------------------
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" id="0742A400-367A-CD1F-961E-66A1EF2F9C3F" directorySegmentName="seg_0" name="FK_FAE_CONFIG_DTI">
+    <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+    <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+    <sourceObjName>FK_FAE_CONFIG_DTI</sourceObjName>
+    <createdBy>R.WATH</createdBy>
+    <createdTime>2013-12-13 10:35:35 UTC</createdTime>
+    <generatorID>Généré par l&apos;utilisateur</generatorID>
+    <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+    <containerWithKeyObject>F099DFF4-D7D4-F46F-1524-56FA2C35DE83</containerWithKeyObject>
+    <deleteRule>CASCADE</deleteRule>
+    <localFKIndex>A2347A41-3A75-3E80-F348-80C710133B37</localFKIndex>
+    <keyObject>55A31508-68FD-BD22-A76B-96783B02E17F</keyObject>
+    <mandatory>true</mandatory>
+    <transferable>true</transferable>
+</FKIndexAssociation>
+------------------------------------------------
+
+sourceObjSchema représente le nom de la table
+sourceObjName représente le nom du champs
+createdBy représente le nom de la personne qui a créé la colonne
+createdTime représente la date de la création de la colonne
+ownerDesignName représente la valeur du répertoire racine dmd 
+containerWithKeyObject représente la valeur du nom de fichier et de l'objet table référençant la clef primaire
+deleteRule règle à appliquer lors de la suppression de la clef primaire
+localFKIndex représente la valeur de l'objet id de l'indexe de la clef étrangère du fichier table
+keyObject représente la valeur de l'objet id de l'indexe de la clef primaire du fichier table
+mandatory représente si cette clef est obligatoire 
+transferable ? 
+
+=== fin du document ===

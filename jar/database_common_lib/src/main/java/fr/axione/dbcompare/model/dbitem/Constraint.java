@@ -1,16 +1,22 @@
-package fr.axione.dbcompare.common.dbitem;
+package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.model.common.ConstraintType;
 
 /**
  * Created by jlesaux on 20/01/14.
  */
 public class Constraint extends Report {
     String name;
+
     Column foreignColumn;
     Column primaryColumn;
+    ConstraintType constraintType;
+
+
+
     Schema schema;
 
 
@@ -19,6 +25,7 @@ public class Constraint extends Report {
     }
 
     public Constraint(Schema schema){
+        this();
         this.schema = schema;
     }
 
@@ -52,6 +59,14 @@ public class Constraint extends Report {
 
     public void setForeignColumn(Column foreignColumn) {
         this.foreignColumn = foreignColumn;
+    }
+
+    public ConstraintType getConstraintType() {
+        return constraintType;
+    }
+
+    public void setConstraintType(ConstraintType constraintType) {
+        this.constraintType = constraintType;
     }
 
     @Override

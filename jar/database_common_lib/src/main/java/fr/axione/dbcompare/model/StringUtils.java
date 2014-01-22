@@ -1,4 +1,4 @@
-package fr.axione.dbcompare.common;
+package fr.axione.dbcompare.model;
 
 /**
  * Created by jlesaux on 20/01/14.

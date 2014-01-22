@@ -1,10 +1,11 @@
-package fr.axione.dbcompare.common.dbitem;
+package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.model.common.ColumnType;
 
-import static fr.axione.dbcompare.common.StringUtils.*;
+import static fr.axione.dbcompare.model.StringUtils.*;
 
 /**
  * Created by jlesaux on 17/01/14.
