@@ -8,5 +8,6 @@ public enum ConstraintType {
     UNIQUE_CONSTRAINT,
     UNIQUE_PLAIN_INDEX,
     FOREIGN_KEY,
+    NOT_NULL,
     UNKNOWN
     }

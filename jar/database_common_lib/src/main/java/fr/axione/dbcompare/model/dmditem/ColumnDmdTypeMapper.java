@@ -12,7 +12,7 @@ public class ColumnDmdTypeMapper {
             new HashMap<String, ColumnType>() {{
                 put("LOGDT024",ColumnType.VARCHAR2);
                 put("LOGDT019",ColumnType.NUMBER);
-                put("LOGDT007", ColumnType.DATE);
+                put("LOGDT007",ColumnType.DATE);
             }}
     );
 
