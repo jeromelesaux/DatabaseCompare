@@ -1,6 +1,7 @@
 package fr.axione.dbcompare.model.dmditem;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FilenameFilter;
 
 
@@ -19,21 +20,22 @@ public class DmdProjectConstants {
     public DmdProjectConstants(String rootXmlFilePath) throws Exception {
         this();
         rootPatternXmlFile=rootXmlFilePath;
-        File relDirectory = new File(rootPatternXmlFile.replace(".xml","") + File.pathSeparator + "rel" );
-        String[] filesInRelDirectory  = relDirectory.list(new FilenameFilter() {
+        File relDirectory = new File(rootPatternXmlFile.replace(".xml","") + File.separator + "rel" + File.separator);
+        File[] filesInRelDirectory  = relDirectory.listFiles(new FileFilter() {
             @Override
-            public boolean accept(File dir, String name) {
-                if (dir.isDirectory()) {
+            public boolean accept(File pathname) {
+                if (pathname.isDirectory()) {
                     return true;
                 }
                 return false;
             }
-        });
+        }
+        );
         if (filesInRelDirectory.length == 0 ) {
             throw new Exception("No directory found in directory " + relDirectory.getPath());
         }
 
-        relDirectoryPath = filesInRelDirectory[0];
+        relDirectoryPath = filesInRelDirectory[0].getPath();
         objectsLocalFilePath = relDirectoryPath + OBJECTLOCALNAME;
 
 

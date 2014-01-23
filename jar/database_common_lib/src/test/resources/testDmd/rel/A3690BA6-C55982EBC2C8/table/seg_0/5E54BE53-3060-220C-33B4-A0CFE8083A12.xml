@@ -1,0 +1,303 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" id="5E54BE53-3060-220C-33B4-A0CFE8083A12" directorySegmentName="seg_0" name="T_FDSL_CORRESPONDANCE">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>T_FDSL_CORRESPONDANCE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<pkName>T_FDSL_CORRESPONDANCE_PK</pkName>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Titre</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Colonne</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Type de données</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elément de clé primaire</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elément de clé étrangère</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elément de clé unique</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Non NULL</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Clé</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_FDSL_CORRESPONDANCE" id="1F52B696-CF6E-E554-B08F-1FD01A8EB004">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>ID_FDSL_CORRESPONDANCE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CODE_NEUFC" id="9C86006D-4A42-5314-866D-4B0A0AC107B5">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>CODE_NEUFC</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CODE_AXIONE_FAS" id="FD9AB63D-6D04-21B1-8315-FC54579B1CB4">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>CODE_AXIONE_FAS</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CODE_AXIONE_DEBIT" id="9D6E035D-4F98-FB1B-0E35-02F27A143A52">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>CODE_AXIONE_DEBIT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CODE_AXIONE_PAIRE" id="0767424B-2BF5-85E8-A0DC-5AA5C517A2F9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>CODE_AXIONE_PAIRE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CODE_AXIONE_SLA" id="E4B432D0-864D-A5CD-23FB-14290D53DFE4">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>CODE_AXIONE_SLA</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_FDSL_PAIRE" id="B8806DF1-1639-3971-ED84-A99AFBB406A6">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>ID_FDSL_PAIRE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATE_DEBUT" id="5D959FFC-2057-AD38-75AC-39040B701ECC">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>DATE_DEBUT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATE_FIN" id="EBF9AAB2-621F-3039-7844-8F134F3F0CA6">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>DATE_FIN</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="STATUT" id="42B7A891-CD33-7765-888F-E114D432BDCB">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>STATUT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="USER_CREATION" id="BA4CAA7B-0AFA-664F-F79D-63BB669DB7C9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>USER_CREATION</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATE_CREATION" id="3D4FC201-F462-3F40-EB44-F92BF53D005E">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>DATE_CREATION</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="USER_MODIF" id="3E918CE3-6E49-BF07-25FD-BE44575D2348">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>USER_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATE_MODIF" id="8561AF20-8C67-07AF-92F1-747D211EDE85">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>DATE_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="NOM" id="27361B6C-5F3C-C696-058A-67B40A245266">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FDSL_CORRESPONDANCE</sourceObjSchema>
+<sourceObjName>NOM</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="4F545CA1-F306-24F7-7D1C-8E44B86B8F55" name="T_FDSL_CORRESPONDANCE_PK">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>T_FDSL_CORRESPONDANCE_PK</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="1F52B696-CF6E-E554-B08F-1FD01A8EB004"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="B3D62D39-E1A7-0566-5D69-57EDC41E2598" name="T_FDSL_CORRESPONDANCE_PK">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>T_FDSL_CORRESPONDANCE_PK</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<indexState>Unique Plain Index</indexState>
+<indexColumnUsage>
+<colUsage columnID="1F52B696-CF6E-E554-B08F-1FD01A8EB004"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

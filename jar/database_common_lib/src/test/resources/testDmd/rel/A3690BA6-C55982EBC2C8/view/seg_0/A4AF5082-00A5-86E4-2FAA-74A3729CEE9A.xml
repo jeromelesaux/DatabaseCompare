@@ -1,0 +1,814 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" id="A4AF5082-00A5-86E4-2FAA-74A3729CEE9A" directorySegmentName="seg_0" name="V_FDSL_DETAIL_FACTURE">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>V_FDSL_DETAIL_FACTURE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW V_FDSL_DETAIL_FACTURE&lt;br/&gt;AS &lt;br/&gt;SELECT ABONNE                ,&lt;br/&gt;       ANALYSE               ,&lt;br/&gt;       ANNEE                 ,&lt;br/&gt;       COMMANDE              ,&lt;br/&gt;       COMMENTAIRE           ,&lt;br/&gt;       CONSOMMATION          ,&lt;br/&gt;       DATE_CALC_FACTU       ,&lt;br/&gt;       DATE_CREATION         ,&lt;br/&gt;       DATE_DEB_FACTU        ,&lt;br/&gt;       DATE_DE_MODIF         ,&lt;br/&gt;       DATE_FIN_ENGAGEMENT   ,&lt;br/&gt;       DATE_MES_EFFECTIVE    ,&lt;br/&gt;       DATE_MODIF            ,&lt;br/&gt;       DATE_RESIL            ,&lt;br/&gt;       DATE_SAISIE_MES       ,&lt;br/&gt;       DATE_SAISIE_MODIF     ,&lt;br/&gt;       DATE_SAISIE_RESIL     ,&lt;br/&gt;       DETAIL_ANALYSE        ,&lt;br/&gt;       DSP                   ,&lt;br/&gt;       DUREE_ENGAGEMENT      ,&lt;br/&gt;       FAI                   ,&lt;br/&gt;       FREQUENCE_FACTU       ,&lt;br/&gt;       ID_FDSL_DETAIL_FACTURE,&lt;br/&gt;       ID_SALESFORCE         ,&lt;br/&gt;       ID_SERVICE            ,&lt;br/&gt;       LIBELLE               ,&lt;br/&gt;       LIB_PERIODE_DEB       ,&lt;br/&gt;       LIB_PERIODE_FIN       ,&lt;br/&gt;       LIB_TYPE_PRESTA       ,&lt;br/&gt;       MAIL_CC               ,&lt;br/&gt;       MAIL_DEST             ,&lt;br/&gt;       MODE_FACTU            ,&lt;br/&gt;       MOIS                  ,&lt;br/&gt;       MONTANT               ,&lt;br/&gt;       MOTIF_MODIF           ,&lt;br/&gt;       MOTIF_RESIL           ,&lt;br/&gt;       NDI                   ,&lt;br/&gt;       NOM_PROJET            ,&lt;br/&gt;       PRODUITS_COMMANDES    ,&lt;br/&gt;       REF_CLIENT            ,&lt;br/&gt;       SDFC                  ,&lt;br/&gt;       SEUIL                 ,&lt;br/&gt;       STATUT                ,&lt;br/&gt;       TARIF_DEPASSEMENT     ,&lt;br/&gt;       TARIF_FORFAIT         ,&lt;br/&gt;       TECHNO                ,&lt;br/&gt;       TERME_FACTU           ,&lt;br/&gt;       TYPE_FACTU            ,&lt;br/&gt;       USER_CREATION         ,&lt;br/&gt;       USER_MODIF            ,&lt;br/&gt;       VIA_DGT               ,&lt;br/&gt;       VIA_GTR               ,&lt;br/&gt;       VILLE                 ,&lt;br/&gt;       PROFIL                ,&lt;br/&gt;       CP                    ,&lt;br/&gt;       ADRESSE_1&lt;br/&gt;FROM T_FDSL_DETAIL_FACTURE</userDefinedSQL>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Titre</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Colonne</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Type de données</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+</fonts>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ABONNE" id="29AA1ED3-62CB-C4C7-E8AF-332B0F5A3236">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ABONNE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ABONNE</alias>
+<dataType>VARCHAR2 (255)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ANALYSE" id="B85D5900-C7E5-F414-35BA-C26408E0A8FD">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ANALYSE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ANALYSE</alias>
+<dataType>VARCHAR2 (5)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ANNEE" id="DA8063F9-1470-D9E8-8A60-B1290E0E48F7">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ANNEE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ANNEE</alias>
+<dataType>NUMBER (4)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COMMANDE" id="ACC77F19-7D15-839A-F05F-B5569F3B88A0">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>COMMANDE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>COMMANDE</alias>
+<dataType>VARCHAR2 (50)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COMMENTAIRE" id="AC3BAF2C-4B9F-BF4A-3472-481F8CCC7A27">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>COMMENTAIRE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>COMMENTAIRE</alias>
+<dataType>VARCHAR2 (1000)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CONSOMMATION" id="759543B2-689D-FC15-EE73-0BE146BE6EB9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>CONSOMMATION</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>CONSOMMATION</alias>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_CALC_FACTU" id="7558EF89-A46B-F940-532C-2757696E3CCC">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_CALC_FACTU</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_CALC_FACTU</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_CREATION" id="9D700D42-09BB-508F-CDF2-BA4F98772FF9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_CREATION</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_CREATION</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_DEB_FACTU" id="C73C2551-523B-C1D0-576D-7D0FA58700BA">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_DEB_FACTU</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_DEB_FACTU</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_DE_MODIF" id="1DB9C480-BC55-2D4F-E2C5-9E77909C7A43">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_DE_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_DE_MODIF</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_FIN_ENGAGEMENT" id="883DC240-AD15-3AF3-4C8D-4EF4A1F5E426">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_FIN_ENGAGEMENT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_FIN_ENGAGEMENT</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_MES_EFFECTIVE" id="4CF05113-903A-5DFF-3C3A-95BC7E0836A9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_MES_EFFECTIVE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_MES_EFFECTIVE</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_MODIF" id="33553EF2-50BD-FE56-A868-948188B914C2">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_MODIF</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_RESIL" id="BCCB01C3-04EA-318A-CF41-DC445B39D432">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_RESIL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_RESIL</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_SAISIE_MES" id="5645C918-A899-8B14-C071-DDC23D774C98">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_SAISIE_MES</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_SAISIE_MES</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_SAISIE_MODIF" id="803B5613-E995-39F8-737E-4E62F82D6F86">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_SAISIE_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_SAISIE_MODIF</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DATE_SAISIE_RESIL" id="CDB94C06-47C2-85DB-FFD5-84E5AB815A6A">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DATE_SAISIE_RESIL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DATE_SAISIE_RESIL</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DETAIL_ANALYSE" id="121181BA-F1CA-2B91-5EDA-39B09ADA0759">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DETAIL_ANALYSE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DETAIL_ANALYSE</alias>
+<dataType>VARCHAR2 (1500)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DSP" id="1F9F3D3F-1C8F-FE15-2C65-16D6A76129D9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DSP</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DSP</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DUREE_ENGAGEMENT" id="01EBCE6B-841F-75ED-B007-6AA7E047CA88">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>DUREE_ENGAGEMENT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>DUREE_ENGAGEMENT</alias>
+<dataType>NUMBER (3)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FAI" id="0B8330C8-22D1-DF99-356A-A726DC34D8C9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>FAI</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>FAI</alias>
+<dataType>VARCHAR2 (255)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FREQUENCE_FACTU" id="A6CCBF68-5E02-13A1-096B-E54C042A2B5B">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>FREQUENCE_FACTU</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>FREQUENCE_FACTU</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID_FDSL_DETAIL_FACTURE" id="DAF4A087-B61D-13C6-AD89-A47E33DB8901">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ID_FDSL_DETAIL_FACTURE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ID_FDSL_DETAIL_FACTURE</alias>
+<dataType>NUMBER</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID_SALESFORCE" id="C94C7DB7-4A6F-635A-83E9-64C7BF84FCE0">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ID_SALESFORCE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ID_SALESFORCE</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID_SERVICE" id="3B859895-BBDE-F505-3E4D-6EDB31626EC6">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ID_SERVICE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ID_SERVICE</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LIBELLE" id="1B0DB63E-4BFB-AA71-4648-6C6999FC6D62">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>LIBELLE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>LIBELLE</alias>
+<dataType>VARCHAR2 (1000)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LIB_PERIODE_DEB" id="BDE74707-46CD-17E7-7E9B-C7DAF3F8275F">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>LIB_PERIODE_DEB</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>LIB_PERIODE_DEB</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LIB_PERIODE_FIN" id="B7BC34CD-8BBC-901C-6D66-D26E74DC6700">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>LIB_PERIODE_FIN</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>LIB_PERIODE_FIN</alias>
+<dataType>DATE (7)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="LIB_TYPE_PRESTA" id="4E53FD76-13B9-2007-759A-A4712DA6D265">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>LIB_TYPE_PRESTA</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>LIB_TYPE_PRESTA</alias>
+<dataType>VARCHAR2 (500)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MAIL_CC" id="4E1DBC63-EB4D-E3AE-693F-391E99C4E2C9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MAIL_CC</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MAIL_CC</alias>
+<dataType>VARCHAR2 (1500)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MAIL_DEST" id="8F607F5D-7940-68AB-FB7C-AAD3BE983158">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MAIL_DEST</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MAIL_DEST</alias>
+<dataType>VARCHAR2 (1500)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODE_FACTU" id="FDBA3705-26D3-67A1-F40D-6E5F8D6E5F90">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MODE_FACTU</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MODE_FACTU</alias>
+<dataType>VARCHAR2 (255)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MOIS" id="078D6E5B-0B0B-1D19-DBE3-914709FA67A7">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MOIS</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MOIS</alias>
+<dataType>NUMBER (2)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MONTANT" id="A6D6E04C-4CAE-9DC5-B947-7DB99AA1CE90">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MONTANT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MONTANT</alias>
+<dataType>NUMBER (10, 2)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MOTIF_MODIF" id="03A9D0E2-916A-64A6-249B-27DBBF82087D">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MOTIF_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MOTIF_MODIF</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MOTIF_RESIL" id="4BF5F85D-3E2B-3D78-F13E-BD28AC1E0207">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>MOTIF_RESIL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>MOTIF_RESIL</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="NDI" id="0C89548F-BCD4-5C4E-F1D9-E029FF1CE217">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>NDI</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>NDI</alias>
+<dataType>VARCHAR2 (21)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="NOM_PROJET" id="E5879814-D98A-C159-E981-23DFFEEF303B">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>NOM_PROJET</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>NOM_PROJET</alias>
+<dataType>VARCHAR2 (150)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PRODUITS_COMMANDES" id="54DF2E62-4B58-2F4A-7121-2975239FA2FA">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>PRODUITS_COMMANDES</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>PRODUITS_COMMANDES</alias>
+<dataType>VARCHAR2 (1500)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="REF_CLIENT" id="F58257EB-B8EC-9C77-BC39-56300F133F29">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>REF_CLIENT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>REF_CLIENT</alias>
+<dataType>VARCHAR2 (150)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SDFC" id="7FD24CB9-BA86-F6F5-A0F0-947BFC89A565">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>SDFC</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>SDFC</alias>
+<dataType>VARCHAR2 (50)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SEUIL" id="F49D444D-AFE7-0C1C-E639-0D50CA411D60">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>SEUIL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>SEUIL</alias>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="STATUT" id="CB29883C-FD0C-B94E-021A-01B5F3EE7E97">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>STATUT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>STATUT</alias>
+<dataType>VARCHAR2 (15)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TARIF_DEPASSEMENT" id="8465441C-9D55-C836-0C3E-C809CDB7F43E">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>TARIF_DEPASSEMENT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>TARIF_DEPASSEMENT</alias>
+<dataType>NUMBER (10, 2)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TARIF_FORFAIT" id="547AF58B-6E91-75FD-9AF0-2BB7FEAA0EA9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>TARIF_FORFAIT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>TARIF_FORFAIT</alias>
+<dataType>NUMBER (10, 2)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TECHNO" id="F73CDE60-1251-15DA-A7DC-F6713561486D">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>TECHNO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>TECHNO</alias>
+<dataType>VARCHAR2 (255)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TERME_FACTU" id="5EF92843-258A-8385-B7D1-CE47D39E5091">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>TERME_FACTU</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>TERME_FACTU</alias>
+<dataType>VARCHAR2 (255)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TYPE_FACTU" id="21EA3A47-1B7B-2ABB-2840-BB4B1F6449FE">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>TYPE_FACTU</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>TYPE_FACTU</alias>
+<dataType>VARCHAR2 (50)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="USER_CREATION" id="A1AB6313-C9A7-DAEF-9ACA-D2D298D8A284">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>USER_CREATION</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>USER_CREATION</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="USER_MODIF" id="7B2EADD5-312F-7276-2B34-9B8E55BC547D">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>USER_MODIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>USER_MODIF</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="VIA_DGT" id="4229B541-F34B-3242-8963-127EF073E5BD">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>VIA_DGT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>VIA_DGT</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="VIA_GTR" id="BE416BA5-10C7-0A66-44C1-36AB2B42C029">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>VIA_GTR</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>VIA_GTR</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="VILLE" id="1588E14D-AF40-4F64-8B0B-7BA2AA56D23B">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>VILLE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>VILLE</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PROFIL" id="F83A44A9-D47A-692F-B6E0-FA39039E0E8C">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>PROFIL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>PROFIL</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CP" id="B1C4972F-A98A-2183-76EA-C451D620CFF9">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>CP</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>CP</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ADRESSE_1" id="B9783D04-62B4-0F7F-772F-767A1D29DB5C">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_FDSL_DETAIL_FACTURE</sourceObjSchema>
+<sourceObjName>ADRESSE_1</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ADRESSE_1</alias>
+<dataType>VARCHAR2 (100)</dataType>
+<reference>false</reference>
+<viewID>A4AF5082-00A5-86E4-2FAA-74A3729CEE9A</viewID>
+</viewElement>
+</viewElements>
+</TableView>

@@ -7,6 +7,7 @@ import java.util.HashMap;
 /**
  * Created by jlesaux on 22/01/14.
  */
+// find mapping at https://code.google.com/p/oracle-11gr2-foss/source/browse/trunk/db-designs/vanzari/types.xml?r=62
 public class ColumnDmdTypeMapper {
     final static HashMap<String,ColumnType> COLUMNDMDTYPEMAP = (HashMap<String, ColumnType>) Collections.unmodifiableMap(
             new HashMap<String, ColumnType>() {{

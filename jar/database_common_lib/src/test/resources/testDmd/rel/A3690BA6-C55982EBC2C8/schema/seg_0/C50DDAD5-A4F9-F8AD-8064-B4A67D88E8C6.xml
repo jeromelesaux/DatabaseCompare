@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_FACTU" id="C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6" directorySegmentName="seg_0">
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:30 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>DMDSdslPro</ownerDesignName>
+<importedID>A2DC12C2-2473-1088-FCAC-F6F64F21035B</importedID>
+</SchemaObject>

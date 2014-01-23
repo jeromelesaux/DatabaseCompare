@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="ELIG_FTTH" id="56C12250-D94C-FDA5-426B-7559D4BBD145" directorySegmentName="seg_0">
+<createdBy>AN.LEFEBVRE</createdBy>
+<createdTime>2013-01-29 13:47:48 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-3 MCD-FACTUPRO V3.0</ownerDesignName>
+<importedID>5C172778-B274-B04A-831D-A9D75DF73833</importedID>
+</SchemaObject>

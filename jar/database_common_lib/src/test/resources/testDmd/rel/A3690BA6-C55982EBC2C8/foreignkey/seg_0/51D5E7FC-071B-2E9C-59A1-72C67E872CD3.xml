@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" id="51D5E7FC-071B-2E9C-59A1-72C67E872CD3" directorySegmentName="seg_0" name="T_FDSL_FACTURATION_T_FDSL_FK1">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>T_FDSL_FACTURATION_T_FDSL_FK1</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<containerWithKeyObject>90C4F7F2-9719-AECC-9D06-1E97CC5BC5E6</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>CEA2A97E-E89A-AA36-6DB8-2252CE1CCE9A</localFKIndex>
+<keyObject>E6D92784-E35A-C697-413C-8581B66D9E78</keyObject>
+<mandatory>false</mandatory>
+<transferable>true</transferable>
+</FKIndexAssociation>

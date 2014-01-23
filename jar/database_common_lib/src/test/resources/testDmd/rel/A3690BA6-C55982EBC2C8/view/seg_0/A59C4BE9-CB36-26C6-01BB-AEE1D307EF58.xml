@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" id="A59C4BE9-CB36-26C6-01BB-AEE1D307EF58" directorySegmentName="seg_0" name="V_COM_SITE_RACCORDEMENT">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>V_COM_SITE_RACCORDEMENT</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<userDefined>true</userDefined>
+<userDefinedSQL>CREATE OR REPLACE VIEW V_COM_SITE_RACCORDEMENT&lt;br/&gt;AS &lt;br/&gt;SELECT S_COM_SITE_RACCORDEMENT.ID,&lt;br/&gt;    S_COM_SITE_RACCORDEMENT.ID_DSP,&lt;br/&gt;    S_COM_SITE_RACCORDEMENT.CODE_SITE,&lt;br/&gt;    S_SDSL_DATE_OUVERTURE_NRA.ZONE_DENSITE&lt;br/&gt;  FROM S_SDSL_DATE_OUVERTURE_NRA,&lt;br/&gt;    s_sdsl_nra,&lt;br/&gt;    S_COM_SITE_RACCORDEMENT&lt;br/&gt;  WHERE s_sdsl_date_ouverture_nra.id_nra=s_sdsl_nra.id_nra and s_sdsl_date_ouverture_nra.id_fai = &apos;161&apos; &lt;br/&gt;  and s_sdsl_date_ouverture_nra.ID_TECHNOLOGIE = 1&lt;br/&gt;  AND s_com_site_raccordement.code_site =s_sdsl_nra.CODE_INSEE&lt;br/&gt;    ||NOM_NRA_ABREGE</userDefinedSQL>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Titre</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Colonne</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Type de données</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+</fonts>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID" id="15D86CD0-B5FB-18CB-BFAE-D79FE6B19B26">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ID</alias>
+<dataType>NUMBER</dataType>
+<reference>false</reference>
+<viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID_DSP" id="93F9A072-0CE2-1A96-83B7-494017934D7E">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
+<sourceObjName>ID_DSP</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ID_DSP</alias>
+<dataType>NUMBER</dataType>
+<reference>false</reference>
+<viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CODE_SITE" id="2EF0BFC6-2B5F-7947-8111-7C44CF0AC148">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
+<sourceObjName>CODE_SITE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>CODE_SITE</alias>
+<dataType>VARCHAR2 (50)</dataType>
+<reference>false</reference>
+<viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ZONE_DENSITE" id="C95B15CF-01F9-E551-AA58-F6001597EDC5">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
+<sourceObjName>ZONE_DENSITE</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<alias>ZONE_DENSITE</alias>
+<dataType>VARCHAR2 (20)</dataType>
+<reference>false</reference>
+<viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
+</viewElement>
+</viewElements>
+</TableView>
