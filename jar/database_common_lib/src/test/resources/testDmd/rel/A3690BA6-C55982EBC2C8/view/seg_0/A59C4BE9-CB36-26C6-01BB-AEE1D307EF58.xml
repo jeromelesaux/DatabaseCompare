@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TableView class="oracle.dbtools.crest.model.design.relational.TableView" id="A59C4BE9-CB36-26C6-01BB-AEE1D307EF58" directorySegmentName="seg_0" name="V_COM_SITE_RACCORDEMENT">
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" objectId="A59C4BE9-CB36-26C6-01BB-AEE1D307EF58" directorySegmentName="seg_0" name="V_COM_SITE_RACCORDEMENT">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
 <sourceObjName>V_COM_SITE_RACCORDEMENT</sourceObjName>
@@ -26,7 +26,7 @@
 </FontObject>
 </fonts>
 <viewElements>
-<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID" id="15D86CD0-B5FB-18CB-BFAE-D79FE6B19B26">
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID" objectId="15D86CD0-B5FB-18CB-BFAE-D79FE6B19B26">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
 <sourceObjName>ID</sourceObjName>
@@ -40,7 +40,7 @@
 <reference>false</reference>
 <viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
 </viewElement>
-<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID_DSP" id="93F9A072-0CE2-1A96-83B7-494017934D7E">
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ID_DSP" objectId="93F9A072-0CE2-1A96-83B7-494017934D7E">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
 <sourceObjName>ID_DSP</sourceObjName>
@@ -54,7 +54,7 @@
 <reference>false</reference>
 <viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
 </viewElement>
-<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CODE_SITE" id="2EF0BFC6-2B5F-7947-8111-7C44CF0AC148">
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CODE_SITE" objectId="2EF0BFC6-2B5F-7947-8111-7C44CF0AC148">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
 <sourceObjName>CODE_SITE</sourceObjName>
@@ -68,7 +68,7 @@
 <reference>false</reference>
 <viewID>A59C4BE9-CB36-26C6-01BB-AEE1D307EF58</viewID>
 </viewElement>
-<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ZONE_DENSITE" id="C95B15CF-01F9-E551-AA58-F6001597EDC5">
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ZONE_DENSITE" objectId="C95B15CF-01F9-E551-AA58-F6001597EDC5">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>V_COM_SITE_RACCORDEMENT</sourceObjSchema>
 <sourceObjName>ZONE_DENSITE</sourceObjName>

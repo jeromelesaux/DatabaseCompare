@@ -2,6 +2,7 @@ package fr.axione.dbcompare.model.dmditem;
 
 import fr.axione.dbcompare.model.common.ConstraintType;
 
+import java.io.File;
 import java.util.Set;
 
 /**
@@ -12,7 +13,9 @@ public class Index {
     Set<Column> columns;
     ConstraintType type;
     Schema schema;
-    String id;
+    String objectId;
+    String seqName;
+    String xmlFilePath;
 
 
     public Index() {
@@ -46,11 +49,38 @@ public class Index {
         this.type = type;
     }
 
-    public String getId() {
-        return id;
+    public String getObjectId() {
+        return objectId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public Schema getSchema() {
+        return schema;
+    }
+
+    public void setSchema(Schema schema) {
+        this.schema = schema;
+    }
+
+    public String getSeqName() {
+        return seqName;
+    }
+
+    public void setSeqName(String seqName) {
+        this.seqName = seqName;
+    }
+
+    public String getXmlFilePath() {
+        if (xmlFilePath == null) {
+            if (objectId != null) {
+                if (seqName != null ) {
+                    xmlFilePath = "foreignKey" + File.separator + seqName + File.separator + objectId + ".xml";
+                }
+            }
+        }
+        return xmlFilePath;
     }
 }

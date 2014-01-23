@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" id="E9820C93-C250-840F-28A1-32522E2EB113" directorySegmentName="seg_0" name="T_FDSL_CONF_MOTIFS_MODIF">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" objectId="E9820C93-C250-840F-28A1-32522E2EB113" directorySegmentName="seg_0" name="T_FDSL_CONF_MOTIFS_MODIF">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
 <sourceObjName>T_FDSL_CONF_MOTIFS_MODIF</sourceObjName>
@@ -44,7 +44,7 @@
 </FontObject>
 </fonts>
 <columns>
-<Column class="oracle.dbtools.crest.model.design.relational.Column" name="MOTIF_MODIF__C" id="662E14E6-8EF3-1185-6A52-DFAFAF0B62F2">
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="MOTIF_MODIF__C" objectId="662E14E6-8EF3-1185-6A52-DFAFAF0B62F2">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>T_FDSL_CONF_MOTIFS_MODIF</sourceObjSchema>
 <sourceObjName>MOTIF_MODIF__C</sourceObjName>

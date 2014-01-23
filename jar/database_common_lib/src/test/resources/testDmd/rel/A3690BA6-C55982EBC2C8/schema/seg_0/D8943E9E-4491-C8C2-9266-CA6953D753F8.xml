@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_ACTIV" id="D8943E9E-4491-C8C2-9266-CA6953D753F8" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_ACTIV" objectId="D8943E9E-4491-C8C2-9266-CA6953D753F8" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>AXIONEUSER_ACTIV</sourceObjName>
 <createdBy>R.WATH</createdBy>

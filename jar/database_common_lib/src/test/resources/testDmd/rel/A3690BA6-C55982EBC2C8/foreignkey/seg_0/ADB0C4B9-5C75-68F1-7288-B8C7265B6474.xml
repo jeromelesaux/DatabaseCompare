@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" id="ADB0C4B9-5C75-68F1-7288-B8C7265B6474" directorySegmentName="seg_0" name="FK_FAE_CONFIG_FAI_DTI">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" objectId="ADB0C4B9-5C75-68F1-7288-B8C7265B6474" directorySegmentName="seg_0" name="FK_FAE_CONFIG_FAI_DTI">
 <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
 <sourceObjName>FK_FAE_CONFIG_FAI_DTI</sourceObjName>

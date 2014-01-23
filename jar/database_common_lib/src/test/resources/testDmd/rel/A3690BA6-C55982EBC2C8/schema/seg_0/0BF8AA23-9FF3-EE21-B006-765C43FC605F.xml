@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="XDB" id="0BF8AA23-9FF3-EE21-B006-765C43FC605F" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="XDB" objectId="0BF8AA23-9FF3-EE21-B006-765C43FC605F" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>XDB</sourceObjName>
 <createdBy>R.WATH</createdBy>

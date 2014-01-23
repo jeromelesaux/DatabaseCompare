@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="FLOWS_FILES" id="48B1A3A3-96E8-586F-3F70-BA1E29B4A35D" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="FLOWS_FILES" objectId="48B1A3A3-96E8-586F-3F70-BA1E29B4A35D" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>FLOWS_FILES</sourceObjName>
 <createdBy>R.WATH</createdBy>

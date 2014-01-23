@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="ELIG_FTTH" id="56C12250-D94C-FDA5-426B-7559D4BBD145" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="ELIG_FTTH" objectId="56C12250-D94C-FDA5-426B-7559D4BBD145" directorySegmentName="seg_0">
 <createdBy>AN.LEFEBVRE</createdBy>
 <createdTime>2013-01-29 13:47:48 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>

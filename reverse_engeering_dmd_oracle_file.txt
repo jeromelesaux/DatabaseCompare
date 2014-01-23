@@ -66,7 +66,7 @@ Structure du fichier :
 3eme partie contient les structures décrivant les indexes de la table (à partir du noeud <indexes> )
 
 ------------------------------------------------
-       <Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_DTI" id="61185CE8-A470-74F8-5A3B-13A631F43DA2">
+       <Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_DTI" objectId="61185CE8-A470-74F8-5A3B-13A631F43DA2">
             <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
             <sourceObjSchema>T_FAE_CONFIG_FAI_DTI</sourceObjSchema>
             <sourceObjName>ID_DTI</sourceObjName>
@@ -102,7 +102,7 @@ colAssociation représente le lien vers la colonne référencé (clef primaire) 
 
 
 ------------------------------------------------
-        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="2239AE98-8DA1-0A38-28B7-44E341754D4D" name="UNI_FAE_CONFIG_FAI_DTI">
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="2239AE98-8DA1-0A38-28B7-44E341754D4D" name="UNI_FAE_CONFIG_FAI_DTI">
             <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
             <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
             <sourceObjName>UNI_FAE_CONFIG_FAI_DTI</sourceObjName>
@@ -125,7 +125,7 @@ createdTime représente la date de la création de la colonne
 ownerDesignName représente la valeur du répertoire racine dmd
 indexState représente le type d'indexe, les possibilités sont Primary Constraint,Unique Constraint,Unique Plain Index, Foreign Key
 indexColumnUsage représente la liste des colonnes impliquées dans l'indexe
-colUsage représente la valeur de l'objet id de la colonne impliquée dans l'indexe dans le même fichier
+colUsage représente la valeur de l'objet objectId de la colonne impliquée dans l'indexe dans le même fichier
 
 
 (3*) fichier du répertoire view (fichier .xml)
@@ -136,7 +136,7 @@ Structure du fichier :
 
 
 ------------------------------------------------
-        <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SOCIETE" id="4D8DA574-D00D-6A1C-88F6-A7E062D9FD12">
+        <viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SOCIETE" objectId="4D8DA574-D00D-6A1C-88F6-A7E062D9FD12">
             <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
             <sourceObjSchema>V_FAE</sourceObjSchema>
             <sourceObjName>SOCIETE</sourceObjName>
@@ -164,7 +164,7 @@ LOGDT007		DATE
 (5*) clefs étrangères dossier foreignKey (fichier .xml)
 
 ------------------------------------------------
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" id="0742A400-367A-CD1F-961E-66A1EF2F9C3F" directorySegmentName="seg_0" name="FK_FAE_CONFIG_DTI">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" objectId="0742A400-367A-CD1F-961E-66A1EF2F9C3F" directorySegmentName="seg_0" name="FK_FAE_CONFIG_DTI">
     <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
     <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
     <sourceObjName>FK_FAE_CONFIG_DTI</sourceObjName>
@@ -188,8 +188,8 @@ createdTime représente la date de la création de la colonne
 ownerDesignName représente la valeur du répertoire racine dmd 
 containerWithKeyObject représente la valeur du nom de fichier et de l'objet table référençant la clef primaire
 deleteRule règle à appliquer lors de la suppression de la clef primaire
-localFKIndex représente la valeur de l'objet id de l'indexe de la clef étrangère du fichier table
-keyObject représente la valeur de l'objet id de l'indexe de la clef primaire du fichier table
+localFKIndex représente la valeur de l'objet objectId de l'indexe de la clef étrangère du fichier table
+keyObject représente la valeur de l'objet objectId de l'indexe de la clef primaire du fichier table
 mandatory représente si cette clef est obligatoire 
 transferable ? 
 

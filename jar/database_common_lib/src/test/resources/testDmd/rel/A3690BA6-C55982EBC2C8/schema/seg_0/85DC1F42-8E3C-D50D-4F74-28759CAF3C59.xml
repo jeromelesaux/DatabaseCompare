@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_REFCOM" id="85DC1F42-8E3C-D50D-4F74-28759CAF3C59" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_REFCOM" objectId="85DC1F42-8E3C-D50D-4F74-28759CAF3C59" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>AXIONEUSER_REFCOM</sourceObjName>
 <createdBy>R.WATH</createdBy>

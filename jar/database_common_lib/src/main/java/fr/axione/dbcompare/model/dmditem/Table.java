@@ -64,7 +64,7 @@ public class Table {
         if (xmlFilePath == null) {
             if (objectId != null) {
                 if (seqName != null ) {
-                    xmlFilePath = "Table" + File.separator + seqName + File.separator + objectId + ".xml";
+                    xmlFilePath = "table" + File.separator + seqName + File.separator + objectId + ".xml";
                 }
             }
         }

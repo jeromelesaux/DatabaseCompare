@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="SPATIAL_CSW_ADMIN_USR" id="BCDB71DF-7D05-4174-A094-5D8B0BFE2CCD" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="SPATIAL_CSW_ADMIN_USR" objectId="BCDB71DF-7D05-4174-A094-5D8B0BFE2CCD" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>SPATIAL_CSW_ADMIN_USR</sourceObjName>
 <createdBy>R.WATH</createdBy>

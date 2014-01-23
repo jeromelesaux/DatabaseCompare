@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="DBSNMP" id="51AB155C-DA5B-C4EA-F8A2-408BB97E9D12" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="DBSNMP" objectId="51AB155C-DA5B-C4EA-F8A2-408BB97E9D12" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>DBSNMP</sourceObjName>
 <createdBy>R.WATH</createdBy>

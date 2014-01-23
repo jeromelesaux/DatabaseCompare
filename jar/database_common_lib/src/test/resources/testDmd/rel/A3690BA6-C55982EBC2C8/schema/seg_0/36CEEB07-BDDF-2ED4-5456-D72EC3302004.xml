@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="WKSYS" id="36CEEB07-BDDF-2ED4-5456-D72EC3302004" directorySegmentName="seg_0">
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="WKSYS" objectId="36CEEB07-BDDF-2ED4-5456-D72EC3302004" directorySegmentName="seg_0">
 <sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
 <sourceObjName>WKSYS</sourceObjName>
 <createdBy>R.WATH</createdBy>

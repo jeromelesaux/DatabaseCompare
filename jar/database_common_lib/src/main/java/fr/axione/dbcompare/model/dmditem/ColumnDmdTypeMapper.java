@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 // find mapping at https://code.google.com/p/oracle-11gr2-foss/source/browse/trunk/db-designs/vanzari/types.xml?r=62
 public class ColumnDmdTypeMapper {
-    final static HashMap<String,ColumnType> COLUMNDMDTYPEMAP = (HashMap<String, ColumnType>) Collections.unmodifiableMap(
+    final static HashMap<String,ColumnType> COLUMNDMDTYPEMAP = (HashMap<String, ColumnType>)(
             new HashMap<String, ColumnType>() {{
                 put("LOGDT024",ColumnType.VARCHAR2);
                 put("LOGDT019",ColumnType.NUMBER);

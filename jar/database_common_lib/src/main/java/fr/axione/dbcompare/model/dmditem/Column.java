@@ -13,7 +13,7 @@ public class Column {
     Boolean isForeignKey;
     ColumnType type;
     Table table;
-    String id;
+    String objectId;
 
 
     public Column() {
@@ -94,11 +94,11 @@ public class Column {
         this.type = type;
     }
 
-    public String getId() {
-        return id;
+    public String getObjectId() {
+        return objectId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }
