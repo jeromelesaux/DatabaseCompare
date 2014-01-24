@@ -5,6 +5,7 @@ import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 import fr.axione.dbcompare.model.common.ConstraintType;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static fr.axione.dbcompare.model.StringUtils.stringValueForBoolean;
@@ -19,9 +20,10 @@ public class Index extends Report {
     Schema schema;
 
     public Index() {
-
+      columns = new HashSet<Column>();
     }
     public Index(Schema schema){
+        this();
         this.schema = schema;
     }
 

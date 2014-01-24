@@ -54,4 +54,33 @@ public class Schema {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Index getIndexByObjectId(String objectId) {
+        for (String name : this.indexes.keySet()) {
+            if ( indexes.get(name).getObjectId().equals(objectId)) {
+                return indexes.get(name);
+            }
+        }
+        return null;
+    }
+
+
+    public Table getTableByObjectId(String objectId) {
+        for (String name : this.tables.keySet()) {
+            if ( tables.get(name).getObjectId().equals(objectId)) {
+                return tables.get(name);
+            }
+        }
+        return null;
+    }
+    public Column getColumnByObjectId(String objectId) {
+        Column column;
+        for (String tableName : this.tables.keySet()) {
+            column = this.tables.get(tableName).getColumnByObjectId(objectId);
+            if (column != null) {
+                return column;
+            }
+        }
+        return null;
+    }
 }

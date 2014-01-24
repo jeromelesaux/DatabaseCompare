@@ -84,7 +84,7 @@ public class Index {
         if (xmlFilePath == null) {
             if (objectId != null) {
                 if (seqName != null ) {
-                    xmlFilePath = "foreignKey" + File.separator + seqName + File.separator + objectId + ".xml";
+                    xmlFilePath = "foreignkey" + File.separator + seqName + File.separator + objectId + ".xml";
                 }
             }
         }

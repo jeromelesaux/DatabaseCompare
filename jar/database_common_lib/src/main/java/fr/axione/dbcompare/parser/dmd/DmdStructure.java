@@ -80,14 +80,51 @@ public class DmdStructure {
 
 
         schema = getTables(schema);
-        schema = getIndex(schema);
+//        schema = getForeignKey(schema);
 
         return schema;
     }
 
 
-    protected Schema getIndex(Schema schema) {
+    protected Schema getForeignKey(Schema schema) throws ParserConfigurationException, IOException, SAXException {
+             for (String key : schema.getIndexes().keySet()){
+                 Index index = schema.getIndexes().get(key);
+                 if (index.getType() == ConstraintType.FOREIGN_KEY) {
+                     String filePath = dmdConstants.getRelDirectoryPath() + File.separator + index.getXmlFilePath();
+                     Document document = null;
+                     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+                     DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+                     document = documentBuilder.parse(filePath);
+                     document.getDocumentElement().normalize();
+                     Element rootElement = document.getDocumentElement();
+                     NodeList childNodes= rootElement.getChildNodes();
+                     for (int i=0; i<childNodes.getLength(); i++){
+                         if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                             Element element = (Element)childNodes.item(i);
+                             String tableObjectId = null;
+                             if (element.getNodeName().equals("containerWithKeyObject")) {
+                                 tableObjectId = element.getFirstChild().getTextContent();
+                                 Table table = schema.getTableByObjectId(tableObjectId);
+                                 System.out.println(tableObjectId);
+                             }
+                             else if (element.getNodeName().equals("keyObject"))  {
+                                 String indexPk = element.getFirstChild().getTextContent();
+                                 Index pkIndex = schema.getIndexByObjectId(indexPk);
+                                 if (pkIndex != null) {
 
+                                 }
+                             }
+                             else if (element.getNodeName().equals("localFKIndex")) {
+                                 String indexFk = element.getFirstChild().getTextContent();
+                                 Index fkIndex = schema.getIndexByObjectId(indexFk);
+                                 if (fkIndex != null) {
+
+                                 }
+                             }
+                         }
+                     }
+                 }
+             }
         return schema;
     }
 

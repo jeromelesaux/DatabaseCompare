@@ -4,10 +4,7 @@ import fr.axione.dbcompare.model.common.ColumnType;
 import fr.axione.dbcompare.model.common.ConstraintType;
 import fr.axione.dbcompare.model.dbitem.*;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by jlesaux on 21/01/14.
@@ -94,22 +91,29 @@ public class DatabaseStructure {
     }
 
     protected Table getColumns(Table table) throws SQLException {
+        try  {
+            Statement statement = meta.getConnection().createStatement();
+            ResultSet columnResults = meta.getColumns(null,table.getSchema().getName(),table.getName(),"%");
+            Statement s = columnResults.getStatement();
+            while (columnResults.next()) {
+                String colName = columnResults.getString("COLUMN_NAME");
+                String colType = columnResults.getString("TYPE_NAME");
+                int  colSize = columnResults.getInt("COLUMN_SIZE");
+                int nullable = columnResults.getInt("NULLABLE");
 
-        ResultSet columnResults = meta.getColumns(null,null,table.getName(),null);
-        while (columnResults.next()) {
-            String colName = columnResults.getString("COLUMN_NAME");
-            String colType = columnResults.getString("TYPE_NAME");
-            int  colSize = columnResults.getInt("COLUMN_SIZE");
-            int nullable = columnResults.getInt("NULLABLE");
+                Column column = new Column(colName,table);
+                column.setSize(Integer.valueOf(colSize));
+                column.setType(getType(colType));
+                column.setNullable(nullable ==DatabaseMetaData.columnNullable ? true : false);
+                table.getColumns().put(colName,column);
+            }
 
-            Column column = new Column(colName,table);
-            column.setSize(Integer.valueOf(colSize));
-            column.setType(getType(colType));
-            column.setNullable(nullable ==DatabaseMetaData.columnNullable ? true : false);
-            table.getColumns().put(colName,column);
+            columnResults.close();
+            s.close();
+            statement.close();
+        }  catch (SQLException e) {
+            throw e;
         }
-
-        columnResults.close();
         table = setPrimaryKeys(table);
         table = setForeignKeys(table);
         return table;
@@ -118,10 +122,18 @@ public class DatabaseStructure {
     protected Schema getTables(Schema schema) throws SQLException {
 
         //String[] TABLE_TYPES = {"TABLE"};
-        ResultSet tablesResults = meta.getTables(null,null,"%",null);
+        ResultSet tablesResults = meta.getTables(null,null,"%",new String[] {"TABLE"});
         while (tablesResults.next()){
             Table table = new Table(tablesResults.getString(3),schema);
-            schema.getTables().put(table.getName(),table);
+//            ResultSet indexesResults = meta.getIndexInfo(null,null,table.getName(),false,true);
+//            while (indexesResults.next()) {
+//                int type = indexesResults.getShort("TYPE");
+//                String indexName = indexesResults.getString("INDEX_NAME");
+//                boolean isUniq = indexesResults.getBoolean("NON_UNIQUE");
+//                String columnName = indexesResults.getString("COLUMN_NAME");
+//                System.out.println(columnName);
+//            }
+            schema.getTables().put(table.getName(), table);
         }
 
         tablesResults.close();
