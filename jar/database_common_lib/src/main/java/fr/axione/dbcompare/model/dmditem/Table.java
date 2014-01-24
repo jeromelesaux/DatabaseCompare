@@ -114,4 +114,13 @@ public class Table {
     public void setSchema(Schema schema) {
         this.schema = schema;
     }
+
+    public Column getColumnByObjectId(String columnObjectId){
+        for (String columnName : this.columns.keySet()) {
+            if ( this.columns.get(columnName).getObjectId().equals(columnObjectId) ) {
+                return this.columns.get(columnName);
+            }
+        }
+        return null;
+    }
 }

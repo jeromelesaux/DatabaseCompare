@@ -3,6 +3,7 @@ package fr.axione.dbcompare.model.dmditem;
 import fr.axione.dbcompare.model.common.ConstraintType;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,10 +20,16 @@ public class Index {
 
 
     public Index() {
-
+       columns = new HashSet<Column>();
+        type = ConstraintType.UNKNOWN;
     }
     public Index(Schema schema){
+        this();
         this.schema = schema;
+    }
+    public Index(String name, Schema schema) {
+        this(schema);
+        this.name = name;
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 package fr.axione.dbcompare.parser.dmd;
 
-import fr.axione.dbcompare.model.common.ColumnType;
+
+import fr.axione.dbcompare.model.common.ConstraintType;
 import fr.axione.dbcompare.model.dmditem.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -69,6 +70,7 @@ public class DmdStructure {
                         index.setName(name);
                         index.setObjectId(objectID);
                         index.setSeqName(seqName);
+                        index.setType(ConstraintType.FOREIGN_KEY);
                         schema.getIndexes().put(index.getName(),index);
                     }
 //                    System.out.println(element.getNodeName() + " " + objectType + " " + objectID + " " + name + " " + seqName);
@@ -129,6 +131,14 @@ public class DmdStructure {
                                             String size = item.getFirstChild().getTextContent();
                                             column.setSize(Integer.valueOf(size.replace(" BYTE","")));
                                         }
+                                        else if ( item.getNodeName().equals("nullsAllowed")) {
+                                            String isNullable = item.getFirstChild().getTextContent();
+                                            column.setNullable(Boolean.valueOf(isNullable));
+                                        }
+                                        else if ( item.getNodeName().equals("pk")) {
+                                            String isPrimaryKey = item.getFirstChild().getTextContent();
+                                            column.setIsPrimaryKey(Boolean.valueOf(isPrimaryKey));
+                                        }
                                     }
                                 }
                                 table.getColumns().put(column.getName(),column);
@@ -137,7 +147,66 @@ public class DmdStructure {
                     }
                 }
                 else if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals("indexes")) {
+                    NodeList indexElement = childNodes.item(i).getChildNodes();
+                    for (int j=0;j<indexElement.getLength();j++){
+                        Element columnElement = null;
+                        if (indexElement.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                            columnElement = (Element)indexElement.item(j);
+                            if (columnElement.getNodeName().equals("ind_PK_UK")) {
+                                String name = columnElement.getAttribute("name");
+                                String objectID = columnElement.getAttribute("objectId");
+                                Index index;
+                                if ( schema.getIndexes().containsKey(name)) {
+                                    index = schema.getIndexes().get(name);
+                                }
+                                else {
+                                    index = new Index(name,schema);
+                                    index.setObjectId(objectID);
+                                    schema.getIndexes().put(index.getName(),index);
+                                }
 
+                                NodeList columnsAttribute = columnElement.getChildNodes();
+                                String isPrimaryKey=null;
+                                for (int h=0; h<columnsAttribute.getLength(); h++) {
+                                    Node item = columnsAttribute.item(h);
+                                    if (item.getNodeType() == Node.ELEMENT_NODE) {
+                                        if (item.getNodeName().equals("pk")) {
+                                             isPrimaryKey = item.getFirstChild().getTextContent();
+                                        }
+                                        else if (item.getNodeName().equals("indexState")) {
+                                            String indexType =  item.getFirstChild().getTextContent();
+                                           // System.out.println(table.getObjectId() + " " + table.getName() +" " +  index.getName() + " " + indexType);
+                                            ConstraintType type = ConstraintType.valueOf(indexType.toUpperCase().replaceAll(" ","_"));
+                                            index.setType(type != null ? type : ConstraintType.UNKNOWN);
+                                        }
+                                        else if (item.getNodeName().equals("indexColumnUsage")) {
+                                            NodeList childIndexNodes = item.getChildNodes();
+                                            for (int k =0 ; k < childIndexNodes.getLength(); k++) {
+                                               Element indexColumnElement = null;
+                                                if (childIndexNodes.item(k).getNodeType() == Node.ELEMENT_NODE) {
+                                                    Element colUsageElement = (Element)childIndexNodes.item(k);
+                                                    if (colUsageElement.getNodeName().equals("colUsage")) {
+                                                        String columnObjectId = colUsageElement.getAttribute("columnID");
+                                                        Column column = table.getColumnByObjectId(columnObjectId);
+                                                        if ( column != null) {
+                                                            if ( isPrimaryKey != null) {
+                                                                column.setIsPrimaryKey(Boolean.valueOf(isPrimaryKey));
+                                                                index.setType(ConstraintType.PRIMARY_CONSTRAINT);
+                                                            }
+                                                            if (!index.getColumns().contains(column)) {
+                                                                index.getColumns().add(column);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                 }
 
             }
