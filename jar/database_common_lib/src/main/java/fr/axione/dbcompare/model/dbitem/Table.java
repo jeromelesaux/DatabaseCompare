@@ -16,7 +16,7 @@ public class Table extends Report{
     HashMap<String,Column> primariesKeys;
     HashMap<String,Index>  indexes;
     HashMap<String,Column> foreignKeys;
-   // HashMap<String,Constraint> constraints;
+
 
 
     public Table() {
@@ -24,7 +24,6 @@ public class Table extends Report{
         primariesKeys = new HashMap<String, Column>();
         indexes = new HashMap<String, Index>();
         foreignKeys = new HashMap<String, Column>();
-//        constraints = new HashMap<String, Constraint>();
     }
 
     public Table(String tableName, Schema schema) {
@@ -78,13 +77,6 @@ public class Table extends Report{
         this.foreignKeys = foreignKeys;
     }
 
-//    public HashMap<String,Constraint> getConstraints() {
-//        return constraints;
-//    }
-//
-//    public void setConstraints(HashMap<String,Constraint> constraints) {
-//        this.constraints = constraints;
-//    }
 
     public Schema getSchema() {
         return schema;

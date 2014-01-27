@@ -5,7 +5,9 @@ import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 import fr.axione.dbcompare.model.common.ConstraintType;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static fr.axione.dbcompare.model.StringUtils.stringValueForBoolean;
@@ -16,11 +18,12 @@ import static fr.axione.dbcompare.model.StringUtils.stringValueForBoolean;
 public class Index extends Report {
     String name;
     Set<Column> columns;
-    ConstraintType  type;
+    List<ConstraintType> types;
     Schema schema;
 
     public Index() {
       columns = new HashSet<Column>();
+        types = new ArrayList<ConstraintType>();
     }
     public Index(Schema schema){
         this();
@@ -43,12 +46,12 @@ public class Index extends Report {
         this.columns = columns;
     }
 
-    public ConstraintType getType() {
-        return type;
+    public List<ConstraintType> getTypes() {
+        return types;
     }
 
-    public void setType(ConstraintType type) {
-        this.type = type;
+    public void setTypes(List<ConstraintType> types) {
+        this.types = types;
     }
 
     @Override
@@ -68,18 +71,20 @@ public class Index extends Report {
             return false;
         }
 
-        ConstraintType rightIsUnique = ((Index)obj).getType();
-        if (this.type != null && ! this.type.equals(rightIsUnique)) {
+        List<ConstraintType> types  = ((Index)obj).getTypes();
+        for (ConstraintType type : types) {
+            if (!this.types.contains(type)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
                     obj,
                     this,
                     Direction.plus,
                     this.getClass().getName(),
-                    objType +" : has a different constraint type attribut (" + String.valueOf(this.type) +","+ String.valueOf(rightIsUnique) + ")."
+                    objType +" : has no constraint type attribut (" + String.valueOf(type) +",null)."
             );
             getErrors().add(report);
             areEquals = false;
+        }
         }
         return areEquals;
     }

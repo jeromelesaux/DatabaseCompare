@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Schema extends Report {
 
     String name;
+    String catalog;
     HashMap<String, Table> tables;
     HashMap<String, Trigger> triggers;
     HashMap<String, View> views;
@@ -64,6 +65,15 @@ public class Schema extends Report {
 //    public void setConstraints(HashMap<String, Constraint> constraints) {
 //        this.constraints = constraints;
 //    }
+
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
+    }
 
     @Override
     public boolean equals(Object obj) {

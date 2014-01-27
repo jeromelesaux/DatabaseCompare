@@ -3,6 +3,7 @@ package fr.axione.dbcompare.parser.database;
 import fr.axione.dbcompare.model.common.ColumnType;
 import fr.axione.dbcompare.model.common.ConstraintType;
 import fr.axione.dbcompare.model.dbitem.*;
+import fr.axione.dbcompare.parser.DatabaseFilter;
 
 import java.sql.*;
 
@@ -12,14 +13,19 @@ import java.sql.*;
 public class DatabaseStructure {
 
     DatabaseMetaData meta;
-
-
-
+    DatabaseFilter filter;
 
 
     public Schema getSchema(Connection connection) throws SQLException {
+
+        return getSchema(connection,new DatabaseFilter());
+
+    }
+
+    public Schema getSchema(Connection connection, DatabaseFilter databaseFilter) throws SQLException {
         Schema schema = null;
         meta  = connection.getMetaData();
+        filter = databaseFilter;
 
         schema = new Schema();
         ResultSet schemaResult = meta.getSchemas();
@@ -29,14 +35,27 @@ public class DatabaseStructure {
             schemaResult = meta.getCatalogs();
             schemaResult.next();
             schema.setName(schemaResult.getString(1));
+
         }
         else {
             schemaResult.next();
-            schema.setName(schemaResult.getString(1));
+            schema.setName(meta.getUserName());
+
         }
+
         schemaResult.close();
 
+
+       // retreive the catalogue name
+        ResultSet catalogueResult = meta.getCatalogs();
+        while (catalogueResult.next()) {
+            String catalogue = catalogueResult.getString(1);
+            schema.setCatalog(catalogue);
+        }
+        catalogueResult.close();
+
         schema = getTables(schema);
+        schema = getIndexes(schema);
 
         connection.close();
         return schema;
@@ -48,8 +67,17 @@ public class DatabaseStructure {
             String columnName = primaryKeyResults.getString("COLUMN_NAME");
             if (table.getColumns().containsKey(columnName)) {
                 table.getColumns().get(columnName).setIsPrimaryKey(true);
+                String indexName = primaryKeyResults.getString("PK_NAME");
+                Index pkIndex = new Index(table.getSchema());
+                pkIndex.setName(indexName);
+
+                pkIndex.getTypes().add(ConstraintType.PRIMARY_CONSTRAINT);
+                pkIndex.getTypes().add(ConstraintType.UNIQUE_PLAIN_INDEX);
+                pkIndex.getColumns().add(table.getColumns().get(columnName));
+                table.getIndexes().put(pkIndex.getName(),pkIndex);
             }
         }
+        primaryKeyResults.close();
         return table;
     }
 
@@ -70,50 +98,53 @@ public class DatabaseStructure {
                     Index index = new Index(table.getSchema());
                     index.setName(fkName);
                     index.getColumns().add(fkColumn);
-                    index.setType(ConstraintType.FOREIGN_KEY);
+                    index.getTypes().add(ConstraintType.FOREIGN_KEY);
 //                    Constraint constraint = new Constraint(table.getSchema());
 //                    constraint.setName(fkName);
 //                    constraint.setForeignColumn(fkColumn);
                     if  (table.getName().equals(pkTableName) && table.getColumns().containsKey(pkColumnName)) {
-//                        constraint.setPrimaryColumn(table.getColumns().get(pkColumnName));
+                      //  constraint.setPrimaryColumn(table.getColumns().get(pkColumnName));
                         index.getColumns().add(table.getColumns().get(pkColumnName));
                     }
                     fkTable.getIndexes().put(index.getName(),index);
-                    table.getIndexes().put(index.getName(),index);
-//                    fkTable.getConstraints().put(constraint.getName(),constraint);
-//                    table.getConstraints().put(constraint.getName(),constraint);
-//                    table.getSchema().getConstraints().put(constraint.getName(),constraint);
+                   // table.getIndexes().put(index.getName(),index);
+                   // fkTable.getConstraints().put(constraint.getName(),constraint);
+                   // table.getConstraints().put(constraint.getName(),constraint);
+                   // table.getSchema().getConstraints().put(constraint.getName(),constraint);
+
                 }
             }
 
         }
+        foreignKeyResults.close();
         return table;
     }
 
     protected Table getColumns(Table table) throws SQLException {
-        try  {
-            Statement statement = meta.getConnection().createStatement();
-            ResultSet columnResults = meta.getColumns(null,table.getSchema().getName(),table.getName(),"%");
-            Statement s = columnResults.getStatement();
-            while (columnResults.next()) {
-                String colName = columnResults.getString("COLUMN_NAME");
-                String colType = columnResults.getString("TYPE_NAME");
-                int  colSize = columnResults.getInt("COLUMN_SIZE");
-                int nullable = columnResults.getInt("NULLABLE");
-
-                Column column = new Column(colName,table);
-                column.setSize(Integer.valueOf(colSize));
-                column.setType(getType(colType));
-                column.setNullable(nullable ==DatabaseMetaData.columnNullable ? true : false);
-                table.getColumns().put(colName,column);
-            }
-
-            columnResults.close();
-            s.close();
-            statement.close();
-        }  catch (SQLException e) {
-            throw e;
+        ResultSet columnResults = null;
+        if (filter.getColumnPattern() != null) {
+            columnResults = meta.getColumns(null,null,table.getName(),null);
         }
+        else  {
+            columnResults = meta.getColumns(null,null,table.getName(),filter.getColumnPattern());
+        }
+
+        while (columnResults.next()) {
+            String colName = columnResults.getString("COLUMN_NAME");
+            String colType = columnResults.getString("TYPE_NAME");
+            int colSize = columnResults.getInt("COLUMN_SIZE");
+            int nullable = columnResults.getInt("NULLABLE");
+
+            Column column = new Column(colName,table);
+            column.setSize(Integer.valueOf(colSize));
+            column.setType(getType(colType));
+            column.setNullable(nullable == DatabaseMetaData.columnNullable ? true : false);
+            table.getColumns().put(colName,column);
+        }
+
+        columnResults.close();
+
+
         table = setPrimaryKeys(table);
         table = setForeignKeys(table);
         return table;
@@ -122,8 +153,15 @@ public class DatabaseStructure {
     protected Schema getTables(Schema schema) throws SQLException {
 
         //String[] TABLE_TYPES = {"TABLE"};
-        ResultSet tablesResults = meta.getTables(null,null,"%",new String[] {"TABLE"});
+        ResultSet tablesResults = null;
+        if ( filter.getTablePattern() != null) {
+            tablesResults = meta.getTables(null,null,filter.getTablePattern(),new String[] {"TABLE"});
+        }
+        else {
+            tablesResults = meta.getTables(null,null,"%",new String[] {"TABLE"});
+        }
         while (tablesResults.next()){
+
             Table table = new Table(tablesResults.getString(3),schema);
 //            ResultSet indexesResults = meta.getIndexInfo(null,null,table.getName(),false,true);
 //            while (indexesResults.next()) {
@@ -152,7 +190,86 @@ public class DatabaseStructure {
         return schema;
     }
 
-    protected  Schema getIndexes(Schema schema) {
+    protected  Schema getIndexes(Schema schema) throws SQLException {
+
+        for (String tableName : schema.getTables().keySet()) {
+            // récupération des contraintes uniques
+            ResultSet indexesResults = null;
+
+            indexesResults = meta.getIndexInfo(schema.getCatalog(),schema.getName(),tableName,true,true);
+
+            while (indexesResults.next()) {
+                String indexName = indexesResults.getString("INDEX_NAME");
+                short indexType = indexesResults.getShort("TYPE");
+                String columnName = indexesResults.getString("COLUMN_NAME");
+                Index index;
+                if (indexName != null) {
+                    Table table = schema.getTables().get(tableName);
+                    if (table.getIndexes().containsKey(indexName)) {
+                        index = table.getIndexes().get(indexName);
+                    }
+                    else {
+                        index = new Index(schema);
+                        index.setName(indexName);
+                        index.getTypes().add(ConstraintType.UNIQUE_CONSTRAINT);
+                        index.getTypes().add(ConstraintType.UNIQUE_PLAIN_INDEX);
+                        table.getIndexes().put(index.getName(),index);
+                    }
+
+                    if (table.getColumns().containsKey(columnName)) {
+                        Column column = table.getColumns().get(columnName);
+                        index.getColumns().add(column);
+                    }
+                    else {
+                        System.out.println("Table:" + tableName + " does not contain column " + columnName);
+                    }
+
+                }
+
+
+            }
+            indexesResults.close();
+
+        }
+
+
+//        for (String tableName : schema.getTables().keySet()) {
+//            // récupération des contraintes uniques
+//            ResultSet indexesResults = null;
+//
+//            indexesResults = meta.getIndexInfo(schema.getCatalog(),schema.getName(),tableName,false,true);
+//            while (indexesResults.next()) {
+//                String indexName = indexesResults.getString("INDEX_NAME");
+//                short indexType = indexesResults.getShort("TYPE");
+//                String columnName = indexesResults.getString("COLUMN_NAME");
+//                Index index ;
+//                if (indexName != null) {
+//                    Table table = schema.getTables().get(tableName);
+//                    if (table.getIndexes().containsKey(indexName)) {
+//                        index = table.getIndexes().get(indexName);
+//                    }
+//                    else {
+//                        index = new Index(schema);
+//                        index.setName(indexName);
+//                        index.setType(ConstraintType.UNIQUE_PLAIN_INDEX);
+//                        table.getIndexes().put(index.getName(),index);
+//                    }
+//
+//                    if (table.getColumns().containsKey(columnName)) {
+//                        Column column = table.getColumns().get(columnName);
+//                        index.getColumns().add(column);
+//                    }
+//                    else {
+//                        System.out.println("Table:" + tableName + " does not contain column " + columnName);
+//                    }
+//
+//                }
+//
+//            }
+//            indexesResults.close();
+//
+//        }
+
         return schema;
     }
 

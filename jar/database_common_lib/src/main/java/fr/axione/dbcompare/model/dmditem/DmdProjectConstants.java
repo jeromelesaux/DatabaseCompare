@@ -20,7 +20,7 @@ public class DmdProjectConstants {
     public DmdProjectConstants(String rootXmlFilePath) throws Exception {
         this();
         rootPatternXmlFile=rootXmlFilePath;
-        File relDirectory = new File(rootPatternXmlFile.replace(".xml","") + File.separator + "rel" + File.separator);
+        File relDirectory = new File(rootPatternXmlFile.replace(".dmd","") + File.separator + "rel" + File.separator);
         File[] filesInRelDirectory  = relDirectory.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {

@@ -13,7 +13,7 @@ public class TestDmdStructure {
 
     @Test
     public void loadDmdFile() throws Exception {
-        URL xmlPath = this.getClass().getResource("/testDmd.xml");
+        URL xmlPath = this.getClass().getResource("/testDmd.dmd");
         dmdStructure = new DmdStructure();
         Schema schema = dmdStructure.getSchema(xmlPath.getFile());
 
