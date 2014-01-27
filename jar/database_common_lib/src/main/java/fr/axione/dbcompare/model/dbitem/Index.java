@@ -5,6 +5,7 @@ import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 import fr.axione.dbcompare.model.common.ConstraintType;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,9 @@ public class Index extends Report {
     Set<Column> columns;
     List<ConstraintType> types;
     Schema schema;
+    String objectId;
+    String seqName;
+    String xmlFilePath;
 
     public Index() {
       columns = new HashSet<Column>();
@@ -30,6 +34,10 @@ public class Index extends Report {
         this.schema = schema;
     }
 
+    public Index(String name,Schema schema) {
+        this(schema);
+        this.name = name;
+    }
     public String getName() {
         return name;
     }
@@ -52,6 +60,41 @@ public class Index extends Report {
 
     public void setTypes(List<ConstraintType> types) {
         this.types = types;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public Schema getSchema() {
+        return schema;
+    }
+
+    public void setSchema(Schema schema) {
+        this.schema = schema;
+    }
+
+    public String getSeqName() {
+        return seqName;
+    }
+
+    public void setSeqName(String seqName) {
+        this.seqName = seqName;
+    }
+
+    public String getXmlFilePath() {
+        if (xmlFilePath == null) {
+            if (objectId != null) {
+                if (seqName != null ) {
+                    xmlFilePath = "foreignkey" + File.separator + seqName + File.separator + objectId + ".xml";
+                }
+            }
+        }
+        return xmlFilePath;
     }
 
     @Override

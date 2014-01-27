@@ -1,4 +1,4 @@
-import fr.axione.dbcompare.model.dmditem.Schema;
+import fr.axione.dbcompare.model.dbitem.Schema;
 import fr.axione.dbcompare.parser.dmd.DmdStructure;
 import org.junit.Test;
 

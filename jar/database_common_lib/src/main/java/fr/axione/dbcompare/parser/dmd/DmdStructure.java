@@ -2,7 +2,9 @@ package fr.axione.dbcompare.parser.dmd;
 
 
 import fr.axione.dbcompare.model.common.ConstraintType;
-import fr.axione.dbcompare.model.dmditem.*;
+import fr.axione.dbcompare.model.dbitem.*;
+import fr.axione.dbcompare.model.dmditem.ColumnDmdTypeMapper;
+import fr.axione.dbcompare.model.dmditem.DmdProjectConstants;
 import fr.axione.dbcompare.parser.DatabaseFilter;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -79,7 +81,7 @@ public class DmdStructure {
                         index.setName(name);
                         index.setObjectId(objectID);
                         index.setSeqName(seqName);
-                        index.setType(ConstraintType.FOREIGN_KEY);
+                        index.getTypes().add(ConstraintType.FOREIGN_KEY);
                         schema.getIndexes().put(index.getName(),index);
                     }
 //                    System.out.println(element.getNodeName() + " " + objectType + " " + objectID + " " + name + " " + seqName);
@@ -98,7 +100,7 @@ public class DmdStructure {
     protected Schema getForeignKey(Schema schema) throws ParserConfigurationException, IOException, SAXException {
              for (String key : schema.getIndexes().keySet()){
                  Index index = schema.getIndexes().get(key);
-                 if (index.getType() == ConstraintType.FOREIGN_KEY) {
+                 if (index.getTypes().contains(ConstraintType.FOREIGN_KEY)) {
                      String filePath = dmdConstants.getRelDirectoryPath() + File.separator + index.getXmlFilePath();
                      Document document = null;
                      DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -231,7 +233,7 @@ public class DmdStructure {
                                             // to debug
                                             System.out.println("table : " + tableName + "."   + name + " got index type " + String.valueOf(type));
 
-                                            index.setType(type != null ? type : ConstraintType.UNKNOWN);
+                                            index.getTypes().add(type != null ? type : ConstraintType.UNKNOWN);
                                         }
                                         else if (item.getNodeName().equals("indexColumnUsage")) {
                                             NodeList childIndexNodes = item.getChildNodes();
@@ -245,7 +247,7 @@ public class DmdStructure {
                                                         if ( column != null) {
                                                             if ( isPrimaryKey != null) {
                                                                 column.setIsPrimaryKey(Boolean.valueOf(isPrimaryKey));
-                                                                index.setType(ConstraintType.PRIMARY_CONSTRAINT);
+                                                                index.getTypes().add(ConstraintType.PRIMARY_CONSTRAINT);
                                                             }
                                                             if (!index.getColumns().contains(column)) {
                                                                 index.getColumns().add(column);

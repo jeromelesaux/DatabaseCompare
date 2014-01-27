@@ -4,6 +4,7 @@ import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -12,6 +13,9 @@ import java.util.HashMap;
 public class Table extends Report{
     String name;
     Schema schema;
+    String objectId;
+    String seqName;
+    String xmlFilePath;
     HashMap<String,Column> columns;
     HashMap<String,Column> primariesKeys;
     HashMap<String,Index>  indexes;
@@ -24,6 +28,7 @@ public class Table extends Report{
         primariesKeys = new HashMap<String, Column>();
         indexes = new HashMap<String, Index>();
         foreignKeys = new HashMap<String, Column>();
+        xmlFilePath = null;
     }
 
     public Table(String tableName, Schema schema) {
@@ -84,6 +89,47 @@ public class Table extends Report{
 
     public void setSchema(Schema schema) {
         this.schema = schema;
+    }
+
+    public String getSeqName() {
+        return seqName;
+    }
+
+    public void setSeqName(String seqName) {
+        this.seqName = seqName;
+    }
+
+    public String getXmlFilePath() {
+        if (xmlFilePath == null) {
+            if (objectId != null) {
+                if (seqName != null ) {
+                    xmlFilePath = "table" + File.separator + seqName + File.separator + objectId + ".xml";
+                }
+            }
+        }
+        return xmlFilePath;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+
+    public void setXmlFilePath(String xmlFilePath) {
+        this.xmlFilePath = xmlFilePath;
+    }
+
+    public Column getColumnByObjectId(String columnObjectId){
+        for (String columnName : this.columns.keySet()) {
+            if ( this.columns.get(columnName).getObjectId().equals(columnObjectId) ) {
+                return this.columns.get(columnName);
+            }
+        }
+        return null;
     }
 
     @Override

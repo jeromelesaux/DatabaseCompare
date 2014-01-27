@@ -18,7 +18,7 @@ public class Column extends Report{
     Boolean isForeignKey;
     ColumnType type;
     Table table;
-
+    String objectId;
 
     public Column() {
         nullable = false;
@@ -96,6 +96,14 @@ public class Column extends Report{
 
     public void setType(ColumnType type) {
         this.type = type;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 
     @Override
