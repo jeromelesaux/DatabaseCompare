@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="database-compare-common-lib" />
+        <module name="database-compare-tool" />
       </profile>
     </annotationProcessing>
   </component>

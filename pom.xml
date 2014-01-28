@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>jar/database_common_lib</module>
+        <module>jar/database-compare-tool</module>
     </modules>
 
 </project>
