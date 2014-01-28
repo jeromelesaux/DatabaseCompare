@@ -132,8 +132,13 @@ public class DatabaseStructure {
         while (columnResults.next()) {
             String colName = columnResults.getString("COLUMN_NAME");
             String colType = columnResults.getString("TYPE_NAME");
+            String size =  columnResults.getString("COLUMN_SIZE");
             int colSize = columnResults.getInt("COLUMN_SIZE");
             int nullable = columnResults.getInt("NULLABLE");
+
+             if ( colSize == 0 ) {
+                 colSize = columnResults.getInt("CHAR_OCTET_LENGTH");
+             }
 
             Column column = new Column(colName,table);
             column.setSize(Integer.valueOf(colSize));
@@ -160,9 +165,17 @@ public class DatabaseStructure {
         else {
             tablesResults = meta.getTables(null,null,"%",new String[] {"TABLE"});
         }
-        while (tablesResults.next()){
 
-            Table table = new Table(tablesResults.getString(3),schema);
+        while (tablesResults.next()){
+            String schemaName = tablesResults.getString("TABLE_SCHEM");
+            if ( schema.getName().equals(schemaName)) {
+
+                Table table = new Table(tablesResults.getString("TABLE_NAME"),schema);
+//                String type = tablesResults.getString("TABLE_TYPE");
+//                String cat = tablesResults.getString("TABLE_CAT");
+//                String schem = tablesResults.getString("TABLE_SCHEM");
+
+
 //            ResultSet indexesResults = meta.getIndexInfo(null,null,table.getName(),false,true);
 //            while (indexesResults.next()) {
 //                int type = indexesResults.getShort("TYPE");
@@ -171,7 +184,8 @@ public class DatabaseStructure {
 //                String columnName = indexesResults.getString("COLUMN_NAME");
 //                System.out.println(columnName);
 //            }
-            schema.getTables().put(table.getName(), table);
+                schema.getTables().put(table.getName(), table);
+            }
         }
 
         tablesResults.close();

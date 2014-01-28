@@ -12,6 +12,7 @@ public class DmdProjectConstants {
     String rootPatternXmlFile;
     String relDirectoryPath;
     String objectsLocalFilePath;
+    String schemaObjectFilePath;
     final static String OBJECTLOCALNAME = File.separator + "Objects.local";
 
     public DmdProjectConstants() {
@@ -37,7 +38,7 @@ public class DmdProjectConstants {
 
         relDirectoryPath = filesInRelDirectory[0].getPath();
         objectsLocalFilePath = relDirectoryPath + OBJECTLOCALNAME;
-
+        schemaObjectFilePath = relDirectoryPath + ".xml";
 
     }
 
@@ -64,5 +65,13 @@ public class DmdProjectConstants {
 
     public void setObjectsLocalFilePath(String objectsLocalFilePath) {
         this.objectsLocalFilePath = objectsLocalFilePath;
+    }
+
+    public String getSchemaObjectFilePath() {
+        return schemaObjectFilePath;
+    }
+
+    public void setSchemaObjectFilePath(String schemaObjectFilePath) {
+        this.schemaObjectFilePath = schemaObjectFilePath;
     }
 }

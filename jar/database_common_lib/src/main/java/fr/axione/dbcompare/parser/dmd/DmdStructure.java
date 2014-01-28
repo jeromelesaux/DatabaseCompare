@@ -41,9 +41,49 @@ public class DmdStructure {
         return schema;
     }
 
+    public Schema getSchemaName(Schema schema) throws IOException, SAXException, ParserConfigurationException {
+        Document document = null;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        document = documentBuilder.parse(dmdConstants.getSchemaObjectFilePath());
+        document.getDocumentElement().normalize();
+
+        Element rootElement = document.getDocumentElement();
+        NodeList childNodes= rootElement.getChildNodes();
+
+        for (int i=0; i<childNodes.getLength(); i++){
+            Element element = null;
+            if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                element = (Element)childNodes.item(i);
+                if ( element.getNodeName().equals("importConnectionStamps")) {
+                    NodeList connectionStampsChild = element.getChildNodes();
+                    for (int j = 0 ; j < connectionStampsChild.getLength(); j++) {
+                        if ( connectionStampsChild.item(j).getNodeType() == Node.ELEMENT_NODE ) {
+                            if (connectionStampsChild.item(j).getNodeName().equals("importConnectionStamp")) {
+                                NodeList connectionStampChild = connectionStampsChild.item(j).getChildNodes();
+                                for (int k = 0 ; k < connectionStampChild.getLength();k++) {
+                                    if ( connectionStampChild.item(k).getNodeType() == Node.ELEMENT_NODE ) {
+                                        if (connectionStampChild.item(k).getNodeName().equals("connUser")) {
+                                            String schemaName = connectionStampChild.item(k).getFirstChild().getTextContent();
+                                            schema.setName(schemaName);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return schema;
+    }
 
     public Schema parseObjectsLocalFile(Schema schema)
             throws IOException, SAXException, ParserConfigurationException {
+        schema = getSchemaName(schema);
+
         Document document = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -181,6 +221,10 @@ public class DmdStructure {
                                                 String size = item.getFirstChild().getTextContent();
                                                 column.setSize(Integer.valueOf(size.replace(" BYTE","")));
                                             }
+                                            else if ( item.getNodeName().equals("dataTypePrecision")) {
+                                                String size = item.getFirstChild().getTextContent();
+                                                column.setSize(Integer.valueOf(size));
+                                            }
                                             else if ( item.getNodeName().equals("nullsAllowed")) {
                                                 String isNullable = item.getFirstChild().getTextContent();
                                                 column.setNullable(Boolean.valueOf(isNullable));
@@ -231,7 +275,7 @@ public class DmdStructure {
                                             ConstraintType type = ConstraintType.valueOf(indexType.toUpperCase().replaceAll(" ","_"));
 
                                             // to debug
-                                            System.out.println("table : " + tableName + "."   + name + " got index type " + String.valueOf(type));
+                                            //System.out.println("table : " + tableName + "."   + name + " got index type " + String.valueOf(type));
 
                                             index.getTypes().add(type != null ? type : ConstraintType.UNKNOWN);
                                         }

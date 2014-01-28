@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static fr.axione.dbcompare.model.StringUtils.stringValueForBoolean;
 
 /**
  * Created by jlesaux on 20/01/14.
