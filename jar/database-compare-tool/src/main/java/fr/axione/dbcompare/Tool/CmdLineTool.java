@@ -3,6 +3,8 @@ package fr.axione.dbcompare.Tool;
 
 import com.martiansoftware.jsap.*;
 
+import java.util.Iterator;
+
 
 /**
  * Created by jlesaux on 28/01/14.
@@ -16,29 +18,36 @@ public class CmdLineTool {
 
         helpUsage(jsapResult,jsap);
 
+        String[] types = jsapResult.getStringArray("type");
+        for (int i = 0 ; i < types.length ; i++){
+            System.out.println(types[i]);
+        }
 
+
+
+        System.exit(0);
     }
 
 
     protected static JSAP setCmdLineOptions() throws JSAPException {
         JSAP jsap = new JSAP();
 
-        Switch rightOpt = new Switch("rightSchema")
-                .setShortFlag('R')
-                .setLongFlag(JSAP.NO_LONGFLAG);
-
-        rightOpt.setHelp("Database to compare with. (R for right operand)");
-
-        jsap.registerParameter(rightOpt);
-
-
-        Switch leftOpt = new Switch("leftSchema")
-                .setShortFlag('L')
-                .setLongFlag(JSAP.NO_LONGFLAG);
-
-        leftOpt.setHelp("Database pivot. (L for left operand)");
-
-        jsap.registerParameter(leftOpt);
+//        Switch rightOpt = new Switch("rightSchema")
+//                .setShortFlag('R')
+//                .setLongFlag(JSAP.NO_LONGFLAG);
+//
+//        rightOpt.setHelp("Database to compare with. (R for right operand)");
+//
+//        jsap.registerParameter(rightOpt);
+//
+//
+//        Switch leftOpt = new Switch("leftSchema")
+//                .setShortFlag('L')
+//                .setLongFlag(JSAP.NO_LONGFLAG);
+//
+//        leftOpt.setHelp("Database pivot. (L for left operand)");
+//
+//        jsap.registerParameter(leftOpt);
 
         FlaggedOption typeOpt = new FlaggedOption("type")
                 .setStringParser(JSAP.STRING_PARSER)

@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/DatabaseCompare.iml" filepath="$PROJECT_DIR$/DatabaseCompare.iml" />
       <module fileurl="file://$PROJECT_DIR$/jar/database_common_lib/database-compare-common-lib.iml" filepath="$PROJECT_DIR$/jar/database_common_lib/database-compare-common-lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/jar/database-compare-tool/database-compare-tool.iml" filepath="$PROJECT_DIR$/jar/database-compare-tool/database-compare-tool.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jar/database-compare-tool/database-compare-tool.iml" filepath="$PROJECT_DIR$/jar/database-compare-tool/database-compare-tool.iml" />
     </modules>
   </component>
 </project>
