@@ -127,7 +127,7 @@ public class Column extends Report{
                     objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different name attribut (" + this.name +","+ rightName + ")."
             );
@@ -140,7 +140,7 @@ public class Column extends Report{
                     objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different nullable attribut (" + stringValueForBoolean(this.nullable) + ","+ stringValueForBoolean(rightNullable) + ")."
             );
@@ -154,7 +154,7 @@ public class Column extends Report{
                     objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different primary key attribut ("+ stringValueForBoolean(this.isPrimaryKey)  +","+ stringValueForBoolean(rightIsPrimaryKey) + ")."
             );
@@ -168,7 +168,7 @@ public class Column extends Report{
                     objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different primary key attribut (" + stringValueForBoolean(this.isForeignKey)+ ","+ stringValueForBoolean(rightIsForeignKey) + ")."
             );
@@ -182,7 +182,7 @@ public class Column extends Report{
                     objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different type attribut ("+ String.valueOf(this.type) +","+ String.valueOf(rightColumnType) + ")."
             );
@@ -196,7 +196,7 @@ public class Column extends Report{
                     objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different type size  ("+ String.valueOf(this.size) +","+ String.valueOf(rightSize) + ")."
             );

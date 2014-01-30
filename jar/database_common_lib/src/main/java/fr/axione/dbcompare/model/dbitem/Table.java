@@ -141,7 +141,7 @@ public class Table extends Report{
             getErrors().add(report.fillWithInformations(objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : right table is absent."));
             return false;
@@ -153,7 +153,7 @@ public class Table extends Report{
             getErrors().add(report.fillWithInformations(objType,
                     obj,
                     this,
-                    Direction.minus,
+                    Direction.plus,
                     this.getClass().getName(),
                     objType + " : has a different name attribut (" + this.name + "," + rightTable.getName() + ")."));
             areEquals = false;
