@@ -2,8 +2,7 @@ package fr.axione.dbcompare.Tool;
 
 
 import com.martiansoftware.jsap.*;
-
-import java.util.Iterator;
+import fr.axione.dbcompare.analyse.ReportItem;
 
 
 /**
@@ -11,21 +10,94 @@ import java.util.Iterator;
  */
 public class CmdLineTool {
 
-    public static void main(String[] args) throws JSAPException {
-        JSAP jsap = setCmdLineOptions();
+    public static void main(String[] args) {
+        try {
+            JSAP jsap = setCmdLineOptions();
+            CmdLineSchema rightSchema = new CmdLineSchema();
+            CmdLineSchema leftSchema =  new CmdLineSchema();
 
-        JSAPResult jsapResult = jsap.parse(args);
+            JSAPResult jsapResult = jsap.parse(args);
 
-        helpUsage(jsapResult,jsap);
+            helpUsage(jsapResult,jsap);
 
-        String[] types = jsapResult.getStringArray("type");
-        for (int i = 0 ; i < types.length ; i++){
-            System.out.println(types[i]);
+            String[] types = jsapResult.getStringArray("type");
+            String[] dmdFilepaths = jsapResult.getStringArray("dmd_file");
+            String[] users = jsapResult.getStringArray("user");
+            String[] connectionStrings = jsapResult.getStringArray("connectionString");
+            String[] passwords = jsapResult.getStringArray("pass");
+
+
+            if (types.length > 2) {
+                throw new Exception("To many schemas, can compare only 2 schema at once. ");
+            }
+
+            if (types[0].toUpperCase().equals("DMD")) {
+                leftSchema.setCmdlinetype(CMDLINETYPE.DMDFILE);
+            }
+            else {
+                leftSchema.setCmdlinetype(CMDLINETYPE.DATABASECONNECTION);
+            }
+            if (types[1].toUpperCase().equals("CONN")) {
+                rightSchema.setCmdlinetype(CMDLINETYPE.DATABASECONNECTION);
+            }
+            else {
+                rightSchema.setCmdlinetype(CMDLINETYPE.DMDFILE);
+            }
+
+            if (leftSchema.getCmdlinetype() == CMDLINETYPE.DMDFILE) {
+                leftSchema.setDmdFilepath(dmdFilepaths[0]);
+            }
+            else {
+                leftSchema.setUrl(connectionStrings[0]);
+                leftSchema.setUser(users[0]);
+                leftSchema.setPassword(passwords[0]);
+            }
+
+            if (rightSchema.getCmdlinetype() == CMDLINETYPE.DMDFILE ) {
+                if (leftSchema.getCmdlinetype() == CMDLINETYPE.DMDFILE) {
+                    rightSchema.setDmdFilepath(dmdFilepaths[1]);
+                }
+                else {
+                    rightSchema.setDmdFilepath(dmdFilepaths[0]);
+                }
+            }
+
+            if (rightSchema.getCmdlinetype() == CMDLINETYPE.DATABASECONNECTION ) {
+                if ( leftSchema.getCmdlinetype() == CMDLINETYPE.DMDFILE ) {
+                    rightSchema.setUrl(connectionStrings[0]);
+                    rightSchema.setUser(users[0]);
+                    rightSchema.setPassword(passwords[0]);
+                }
+                else {
+                    rightSchema.setUrl(connectionStrings[1]);
+                    rightSchema.setUser(users[1]);
+                    rightSchema.setPassword(passwords[1]);
+                }
+            }
+
+
+            System.out.println("Parsing schema for " + leftSchema.toString());
+            leftSchema.parseSchema();
+            System.out.println("Parsing schema for " + rightSchema.toString());
+            rightSchema.parseSchema();
+            System.out.println("Comparing both schemas.");
+
+            if ( ! leftSchema.getSchema().equals(rightSchema.getSchema()) ){
+                for (ReportItem item : leftSchema.getSchema().getErrors()) {
+                    System.out.println(item.getDescription());
+                }
+            }
+            else {
+                System.out.println("Both schemas are equals.");
+            }
+
+            System.exit(0);
+
+        } catch ( Exception e) {
+            System.out.println("An error occurs with error : " + e.getMessage());
+            System.out.println(e.getStackTrace().toString());
+            System.exit(2);
         }
-
-
-
-        System.exit(0);
     }
 
 
