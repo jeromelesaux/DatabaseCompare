@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_BUGS" objectId="345A33E5-22C7-5024-A32D-52EFB546797B" directorySegmentName="seg_0">
+<createdBy>AN.LEFEBVRE</createdBy>
+<createdTime>2013-01-29 13:47:48 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-3 MCD-FACTUPRO V3.0</ownerDesignName>
+<importedID>47521635-01DD-2692-8CAE-DC7912F7AF26</importedID>
+</SchemaObject>

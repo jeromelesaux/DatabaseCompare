@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" objectId="ADB0C4B9-5C75-68F1-7288-B8C7265B6474" directorySegmentName="seg_0" name="FK_FAE_CONFIG_FAI_DTI">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>FK_FAE_CONFIG_FAI_DTI</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:35 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<containerWithKeyObject>D43B4D51-44C3-63DC-E1EF-BCA5807D8AEE</containerWithKeyObject>
+<deleteRule>CASCADE</deleteRule>
+<localFKIndex>C323F9EC-3029-E8F5-E369-0D0DBCAEDB4D</localFKIndex>
+<keyObject>A9842D22-B1DA-0480-2C3C-0C41916CDB17</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+</FKIndexAssociation>
