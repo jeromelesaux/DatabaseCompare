@@ -56,6 +56,7 @@ public class DatabaseStructure {
 
         schema = getTables(schema);
         schema = getIndexes(schema);
+        //schema = getProcedures(schema);
 
         connection.close();
         return schema;
@@ -152,6 +153,7 @@ public class DatabaseStructure {
 
         table = setPrimaryKeys(table);
         table = setForeignKeys(table);
+
         return table;
     }
 
@@ -200,6 +202,23 @@ public class DatabaseStructure {
         return schema;
     }
 
+
+    protected Schema getProcedures(Schema schema) throws SQLException {
+
+        ResultSet proceduresSet = meta.getProcedures(schema.getCatalog(),schema.getName(),"%");
+        while (proceduresSet.next()){
+            String name = proceduresSet.getString("PROCEDURE_NAME");
+            int type = proceduresSet.getInt("PROCEDURE_TYPE");
+            String procedureSchema = proceduresSet.getString("PROCEDURE_SCHEM");
+            String specificName = proceduresSet.getString("SPECIFIC_NAME");
+
+            System.out.println(name + " " + type + " " + procedureSchema + " " + specificName);
+
+        }
+
+        return schema;
+    }
+
     protected Schema getViews(Schema schema){
         return schema;
     }
@@ -245,6 +264,8 @@ public class DatabaseStructure {
             indexesResults.close();
 
         }
+
+
 
 
 //        for (String tableName : schema.getTables().keySet()) {

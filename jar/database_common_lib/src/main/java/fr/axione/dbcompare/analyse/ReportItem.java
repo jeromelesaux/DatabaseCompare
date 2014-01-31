@@ -15,7 +15,10 @@ public class ReportItem {
     }
 
 
-
+    /**
+     *
+     * @return pivot object
+     */
     public Object getDbItemLeft() {
         return dbItemLeft;
     }

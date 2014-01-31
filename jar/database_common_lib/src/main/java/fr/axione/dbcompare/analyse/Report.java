@@ -12,17 +12,25 @@ public class Report {
     List<ReportItem> errors;
     Schema schema;
 
-
-
-
+    /**
+     *
+     */
     public Report() {
         errors = new ArrayList<ReportItem>();
     }
 
+    /**
+     *
+     * @return collection of Report Items
+     */
     public List<ReportItem> getErrors() {
         return errors;
     }
 
+    /**
+     *
+     * @param errors collection of Report Items
+     */
     public void setErrors(List<ReportItem> errors) {
         this.errors = errors;
     }

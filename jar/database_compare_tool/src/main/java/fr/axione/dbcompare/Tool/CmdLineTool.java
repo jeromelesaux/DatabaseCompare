@@ -4,6 +4,9 @@ package fr.axione.dbcompare.Tool;
 import com.martiansoftware.jsap.*;
 import fr.axione.dbcompare.analyse.ReportItem;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 
 /**
  * Created by jlesaux on 28/01/14.
@@ -18,7 +21,11 @@ public class CmdLineTool {
 
             JSAPResult jsapResult = jsap.parse(args);
 
-            helpUsage(jsapResult,jsap);
+            if (args.length == 0 ){
+                helpUsage(jsapResult,jsap,args);
+            }
+
+            helpUsage(jsapResult,jsap,args);
 
             String[] types = jsapResult.getStringArray("type");
             String[] dmdFilepaths = jsapResult.getStringArray("dmd_file");
@@ -95,7 +102,10 @@ public class CmdLineTool {
 
         } catch ( Exception e) {
             System.out.println("An error occurs with error : " + e.getMessage());
-            System.out.println(e.getStackTrace().toString());
+            StringWriter writer = new StringWriter();
+            PrintWriter printer = new PrintWriter(writer);
+            e.printStackTrace(printer);
+            System.out.println(writer.toString());
             System.exit(2);
         }
     }
@@ -126,7 +136,7 @@ public class CmdLineTool {
                 .setRequired(false)
                 .setShortFlag('T')
                 .setAllowMultipleDeclarations(true)
-                .setLongFlag(JSAP.NO_LONGFLAG);
+                .setLongFlag("type");
 
         typeOpt.setHelp("Type (DMD Oracle datamodeler or connection string) \n values :\n - <dmd> for a DMD Oracle file from datamodeler \n - <conn> for a connection string");
 
@@ -138,7 +148,7 @@ public class CmdLineTool {
                 .setRequired(false)
                 .setShortFlag('u')
                 .setAllowMultipleDeclarations(true)
-                .setLongFlag(JSAP.NO_LONGFLAG);
+                .setLongFlag("user");
 
         userOption.setHelp("User name for database connection ");
 
@@ -149,7 +159,7 @@ public class CmdLineTool {
                 .setRequired(false)
                 .setShortFlag('p')
                 .setAllowMultipleDeclarations(true)
-                .setLongFlag(JSAP.NO_LONGFLAG);
+                .setLongFlag("pass");
 
         passOption.setHelp("Password for database connection ");
 
@@ -160,7 +170,7 @@ public class CmdLineTool {
                 .setRequired(false)
                 .setShortFlag('c')
                 .setAllowMultipleDeclarations(true)
-                .setLongFlag(JSAP.NO_LONGFLAG);
+                .setLongFlag("connection-url");
 
         connectionStringOption.setHelp("Connection String of the database instance : \n - for MySQL : 'jdbc:mysql://<url>/<db schema>'\n - for Oracle 'jdbc:oracle:thin:@<url>:<port>:<db schema>'");
 
@@ -171,7 +181,7 @@ public class CmdLineTool {
                 .setRequired(false)
                 .setShortFlag('f')
                 .setAllowMultipleDeclarations(true)
-                .setLongFlag(JSAP.NO_LONGFLAG);
+                .setLongFlag("dmd-filepath");
 
         dmdFile.setHelp("Path for the DMD datamodeler file");
 
@@ -180,8 +190,8 @@ public class CmdLineTool {
         return jsap;
     }
 
-    protected static void helpUsage(JSAPResult config, JSAP jsap) {
-        if (!config.success()) {
+    protected static void helpUsage(JSAPResult config, JSAP jsap, String[] args) {
+        if (!config.success() || args.length == 0) {
 
             System.err.println();
 
@@ -194,12 +204,14 @@ public class CmdLineTool {
             }
 
             System.err.println();
-            System.err.println("Usage: java "
+            System.err.println("Usage:\n java -jar "
                     +CmdLineTool.class.getName());
             System.err.println("                "
                     + jsap.getUsage());
             System.err.println();
             System.err.println(jsap.getHelp());
+            System.err.println("For instance : \n 'java -jar DBCompare.jar -T dmd  -f ST_AXIONE_FACTUFT.dmd -T conn -u userdb -p passwordUser  -c 'jdbc:oracle:thin:@127.0.0.11521:USERDB'\n"
+                   +" will compare the pivot schema in dmd oracle file to the schema on ther server 127.0.0.1.");
             System.exit(1);
 
         }
