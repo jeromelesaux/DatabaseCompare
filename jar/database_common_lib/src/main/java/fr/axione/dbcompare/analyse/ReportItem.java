@@ -1,10 +1,17 @@
 package fr.axione.dbcompare.analyse;
 
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
+
 /**
  * Created by jlesaux on 20/01/14.
  */
-public class ReportItem {
+@XmlRootElement()
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ReportItem implements Serializable {
+    @XmlTransient
     Object dbItemLeft;
+    @XmlTransient
     Object dbItemRight;
     Direction direction;
     String name;

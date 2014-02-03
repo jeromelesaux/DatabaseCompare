@@ -2,10 +2,13 @@ package fr.axione.dbcompare.Tool;
 
 
 import com.martiansoftware.jsap.*;
+import com.martiansoftware.jsap.stringparsers.BooleanStringParser;
+import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.*;
 
 
 /**
@@ -32,7 +35,7 @@ public class CmdLineTool {
             String[] users = jsapResult.getStringArray("user");
             String[] connectionStrings = jsapResult.getStringArray("connectionString");
             String[] passwords = jsapResult.getStringArray("pass");
-
+            String[] outputs = jsapResult.getStringArray("output");
 
             if (types.length > 2) {
                 throw new Exception("To many schemas, can compare only 2 schema at once. ");
@@ -90,8 +93,18 @@ public class CmdLineTool {
             System.out.println("Comparing both schemas.");
 
             if ( ! leftSchema.getSchema().equals(rightSchema.getSchema()) ){
-                for (ReportItem item : leftSchema.getSchema().getErrors()) {
-                    System.out.println(item.getDescription());
+                if (outputs.length == 0 || outputs[0].equals("txt")) {
+                    for (ReportItem item : leftSchema.getSchema().getErrors()) {
+                        System.out.println(item.getDescription());
+                    }
+                }
+                else {
+                    Report report = new Report();
+                    report.setErrors(leftSchema.getSchema().getErrors());
+                    JAXBContext context = JAXBContext.newInstance(Report.class,ReportItem.class);
+                    Marshaller marshaller = context.createMarshaller();
+                    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+                    marshaller.marshal(report, new File("out.xml"));
                 }
             }
             else {
@@ -184,8 +197,17 @@ public class CmdLineTool {
                 .setLongFlag("dmd-filepath");
 
         dmdFile.setHelp("Path for the DMD datamodeler file");
-
         jsap.registerParameter(dmdFile);
+
+        FlaggedOption xmlOpt = new FlaggedOption("output")
+                .setStringParser(JSAP.STRING_PARSER)
+                .setRequired(false)
+                .setShortFlag('o')
+                .setAllowMultipleDeclarations(false)
+                .setLongFlag("output");
+
+        xmlOpt.setHelp("print report as a Xml file (option -o xml) otherwise -o txt).");
+        jsap.registerParameter(xmlOpt);
 
         return jsap;
     }
@@ -210,7 +232,7 @@ public class CmdLineTool {
                     + jsap.getUsage());
             System.err.println();
             System.err.println(jsap.getHelp());
-            System.err.println("For instance : \n 'java -jar DBCompare.jar -T dmd  -f ST_AXIONE_FACTUFT.dmd -T conn -u userdb -p passwordUser  -c 'jdbc:oracle:thin:@127.0.0.11521:USERDB'\n"
+            System.err.println("For instance : \n 'java -jar DBCompare.jar -T dmd  -f ST_AXIONE_FACTUFT.dmd -T conn -u userdb -p passwordUser  -c 'jdbc:oracle:thin:@127.0.0.1:1521:USERDB'\n"
                    +" will compare the pivot schema in dmd oracle file to the schema on ther server 127.0.0.1.");
             System.exit(1);
 

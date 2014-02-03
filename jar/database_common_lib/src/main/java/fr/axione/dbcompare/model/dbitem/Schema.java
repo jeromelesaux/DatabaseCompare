@@ -4,12 +4,13 @@ import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by jlesaux on 20/01/14.
  */
-public class Schema extends Report {
+public class Schema extends Report implements Serializable {
 
     String name;
     String catalog;

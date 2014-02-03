@@ -6,6 +6,7 @@ import fr.axione.dbcompare.analyse.ReportItem;
 import fr.axione.dbcompare.model.common.ConstraintType;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Set;
 /**
  * Created by jlesaux on 20/01/14.
  */
-public class Index extends Report {
+public class Index extends Report implements Serializable{
     String name;
     Set<Column> columns;
     List<ConstraintType> types;

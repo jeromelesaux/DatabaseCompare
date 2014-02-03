@@ -5,12 +5,14 @@ import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
 import fr.axione.dbcompare.model.common.ColumnType;
 
+import java.io.Serializable;
+
 import static fr.axione.dbcompare.model.StringUtils.*;
 
 /**
  * Created by jlesaux on 17/01/14.
  */
-public class Column extends Report{
+public class Column extends Report implements Serializable {
     String name;
     Boolean nullable;
     Integer size;

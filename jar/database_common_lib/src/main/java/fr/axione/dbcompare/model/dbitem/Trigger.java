@@ -2,10 +2,12 @@ package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Report;
 
+import java.io.Serializable;
+
 /**
  * Created by jlesaux on 20/01/14.
  */
-public class Trigger extends Report {
+public class Trigger extends Report implements Serializable {
     String name;
     String codeSql;
 
