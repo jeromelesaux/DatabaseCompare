@@ -21,7 +21,14 @@ public class TestCmdLineTool {
         testCmdLineTool.main(new String[]{"-T", "dmd", "-f", xmlPath.getPath(), "-T", "dmd", "-f", xmlPath.getPath()});
 
     }
-   
+
+    @Test
+    public void testCmdLineDmdFileDmdFileXmlOutput() {
+        CmdLineTool testCmdLineTool = new CmdLineTool();
+        exit.expectSystemExitWithStatus(0);
+        testCmdLineTool.main(new String[]{"-T", "dmd", "-f", xmlPath.getPath(), "-T", "dmd", "-f", xmlPath.getPath(),"-o","xml"});
+
+    }
 
     @Test()
     public void testCmdLineConnectionDBConnectionDBWithoutUser() {

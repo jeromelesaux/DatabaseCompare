@@ -123,6 +123,15 @@ public class Schema extends Report implements Serializable {
 
 
     @Override
+    public String toString() {
+        return "Schema : " + name;
+    }
+
+
+
+
+
+    @Override
     public boolean equals(Object obj) {
         String objType = "Schema " + this.name;
         Boolean areEquals = true;

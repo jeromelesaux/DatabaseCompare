@@ -110,4 +110,10 @@ public class CmdLineSchema {
             schema = databaseStructure.getSchema(connection);
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "schema:"+(schema.getName()==null?"unknown":schema.getName())+",type:"+String.valueOf(cmdlinetype);
+    }
 }
