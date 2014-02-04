@@ -56,6 +56,7 @@ public class DatabaseStructure {
 
         schema = getTables(schema);
         schema = getIndexes(schema);
+        schema = getViews(schema);
         //schema = getProcedures(schema);
 
         connection.close();
@@ -219,8 +220,85 @@ public class DatabaseStructure {
         return schema;
     }
 
-    protected Schema getViews(Schema schema){
+    protected View getColumns(View view) throws SQLException {
+        ResultSet columnResults = null;
+        if (filter.getColumnPattern() != null) {
+            columnResults = meta.getColumns(null,null,view.getName(),null);
+        }
+        else  {
+            columnResults = meta.getColumns(null,null,view.getName(),filter.getColumnPattern());
+        }
+
+/*        ResultSetMetaData resultSetMetaData = columnResults.getMetaData();
+        for (int i = 1; i<resultSetMetaData.getColumnCount(); i++){
+            System.out.println("View column : " + resultSetMetaData.getColumnName(i));
+        }*/
+        while (columnResults.next()) {
+            String colName = columnResults.getString("COLUMN_NAME");
+            String colType = columnResults.getString("TYPE_NAME");
+            String size =  columnResults.getString("COLUMN_SIZE");
+            int colSize = columnResults.getInt("COLUMN_SIZE");
+            int nullable = columnResults.getInt("NULLABLE");
+            String tableName = columnResults.getString("TABLE_NAME");
+
+            if ( colSize == 0 ) {
+                colSize = columnResults.getInt("CHAR_OCTET_LENGTH");
+            }
+/*
+            Table tableOwner = null;
+            if( view.getSchema().getTables().containsKey(tableName) ) {
+                tableOwner = view.getSchema().getTables().get(tableName);
+            }
+            else {
+                tableOwner = new Table(tableName,view.getSchema());
+                view.getSchema().getTables().put(tableOwner.getName(),tableOwner);
+            }*/
+
+        //    Column column = new Column(colName,tableOwner);
+
+            Column column = new Column();
+            column.setName(colName);
+            column.setSize(Integer.valueOf(colSize));
+            column.setType(getType(colType));
+            column.setNullable(nullable == DatabaseMetaData.columnNullable ? true : false);
+
+            view.getColumns().put(colName, column);
+            //tableOwner.getColumns().put(colName,column);
+        }
+
+        columnResults.close();
+
+        return view;
+    }
+
+    protected Schema getViews(Schema schema) throws SQLException {
+        ResultSet viewsResults = null;
+        if ( filter.getTablePattern() != null) {
+            viewsResults = meta.getTables(null,null,filter.getTablePattern(),new String[] {"VIEW"});
+        }
+        else {
+            viewsResults = meta.getTables(null,null,"%",new String[] {"VIEW"});
+        }
+
+        while (viewsResults.next()){
+            String schemaName = viewsResults.getString("TABLE_SCHEM");
+            if ( schema.getName().equals(schemaName)) {
+
+                View view = new View(viewsResults.getString("TABLE_NAME"),schema);
+                schema.getViews().put(view.getName(),view);
+            }
+        }
+
+        viewsResults.close();
+
+        for (String viewName : schema.getViews().keySet()) {
+            View view = schema.getViews().get(viewName);
+            view = getColumns(view);
+            schema.getViews().put(viewName,view);
+        }
+
         return schema;
+
     }
 
     protected  Schema getIndexes(Schema schema) throws SQLException {

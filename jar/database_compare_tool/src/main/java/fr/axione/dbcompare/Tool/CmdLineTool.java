@@ -88,10 +88,10 @@ public class CmdLineTool {
 
 
             leftSchema.parseSchema();
-            System.out.println("Parsing schema for " + leftSchema.toString());
+            System.out.println("Parsing schema for " + leftSchema.toString() + " done");
 
             rightSchema.parseSchema();
-            System.out.println("Parsing schema for " + rightSchema.toString());
+            System.out.println("Parsing schema for " + rightSchema.toString() + " done");
 
             System.out.println("Comparing both schemas.");
 

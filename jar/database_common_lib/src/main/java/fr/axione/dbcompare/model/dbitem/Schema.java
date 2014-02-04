@@ -142,7 +142,7 @@ public class Schema extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : right schema is absent."));
             return false;
         }
@@ -155,7 +155,7 @@ public class Schema extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : right schema has a different name (" + this.name + ","+ rightSchema.getName()+")."));
             areEquals = false;
         }
@@ -174,7 +174,7 @@ public class Schema extends Report implements Serializable {
                         obj,
                         this,
                         Direction.plus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : right schema as no table (" + key +",null)."));
                 areEquals = false;
             }
@@ -187,11 +187,47 @@ public class Schema extends Report implements Serializable {
                         obj,
                         this,
                         Direction.minus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : left schema as no table (null,"+key+")."));
                 areEquals = false;
             }
         }
+
+
+        for (String key : this.getViews().keySet()) {
+            if ( rightSchema.getViews().containsKey(key) ) {
+                View rightView = rightSchema.getViews().get(key);
+                View leftView = this.getViews().get(key);
+                if (leftView.equals(rightView)) {
+                    // just to compare
+                }
+            }
+            else {
+                ReportItem report = new ReportItem();
+                getErrors().add(report.fillWithInformations(objType,
+                        obj,
+                        this,
+                        Direction.plus,
+                        this.name,
+                        objType + " : right schema as no view (" + key +",null)."));
+                areEquals = false;
+            }
+        }
+
+        for (String key : rightSchema.getViews().keySet()){
+            if (!this.getViews().containsKey(key)) {
+                ReportItem report = new ReportItem();
+                getErrors().add(report.fillWithInformations(objType,
+                        obj,
+                        this,
+                        Direction.minus,
+                        this.name,
+                        objType + " : left schema as no view (null,"+key+")."));
+                areEquals = false;
+            }
+        }
+
+
 
         // gathering all errors from all objects
 

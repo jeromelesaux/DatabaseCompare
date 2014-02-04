@@ -131,6 +131,7 @@ public class DmdStructure {
 
 
         schema = getTables(schema);
+        schema = getViews(schema);
 //        schema = getForeignKey(schema);
 
         return schema;
@@ -314,5 +315,66 @@ public class DmdStructure {
         return schema;
     }
 
+    protected Schema getViews(Schema schema) throws ParserConfigurationException, IOException, SAXException {
+
+        for (String viewName : schema.getViews().keySet()){
+            View view = schema.getViews().get(viewName);
+            String filePath = dmdConstants.getRelDirectoryPath() + File.separator + view.getXmlFilePath();
+            Document document = null;
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            document = documentBuilder.parse(filePath);
+            document.getDocumentElement().normalize();
+            Element rootElement = document.getDocumentElement();
+            NodeList childNodes= rootElement.getChildNodes();
+
+            for (int i=0; i<childNodes.getLength(); i++){
+                Element element = null;
+                // parsing of the columns
+                if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals("viewElements")) {
+                    NodeList columnsElements = childNodes.item(i).getChildNodes();
+                    for (int j=0;j<columnsElements.getLength();j++){
+                        Element columnElement = null;
+                        if (columnsElements.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                            columnElement = (Element)columnsElements.item(j);
+                            if (columnElement.getNodeName().equals("viewElement")) {
+                                String objectID = columnElement.getAttribute("objectId");
+                                String name = columnElement.getAttribute("name");
+                                Column column = new Column();
+                                column.setName(name);
+                                column.setObjectId(objectID);
+                                if (filter.columnMatchesRegex(name)) {
+                                    NodeList columnsAttribute = columnElement.getChildNodes();
+                                    for (int h=0; h<columnsAttribute.getLength(); h++) {
+                                        Node item = columnsAttribute.item(h);
+
+                                        if (item.getNodeType() == Node.ELEMENT_NODE) {
+                                            if ( item.getNodeName().equals("dataType")) {
+                                                String sqlType = item.getFirstChild().getTextContent();
+                                                int size = 1;
+                                                if (sqlType.contains("(")) {
+                                                    String sizeValue = sqlType.replaceFirst(".*?\\((\\d+)(,\\s?\\d+)?\\)$", "$1");
+                                                    size = Integer.valueOf(sizeValue);
+                                                }
+                                                column.setType(ColumnDmdTypeMapper.getColumnType(sqlType));
+                                                column.setSize(size);
+                                            }
+                                            else if ( item.getNodeName().equals("nullsAllowed")) {
+                                                String isNullable = item.getFirstChild().getTextContent();
+                                                column.setNullable(Boolean.valueOf(isNullable));
+                                            }
+
+                                        }
+                                    }
+                                    view.getColumns().put(column.getName(),column);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return schema;
+    }
 
 }

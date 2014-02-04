@@ -1,8 +1,11 @@
 package fr.axione.dbcompare.model.dbitem;
 
+import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
+import fr.axione.dbcompare.analyse.ReportItem;
 
 import java.io.File;
+import java.util.HashMap;
 
 /**
  * Created by jlesaux on 20/01/14.
@@ -14,8 +17,10 @@ public class View extends Report {
     String objectId;
     String seqName;
     String xmlFilePath;
+    HashMap<String,Column> columns;
 
     public View() {
+        columns = new HashMap<String, Column>();
 
     }
     public View(Schema schema) {
@@ -74,8 +79,84 @@ public class View extends Report {
         this.xmlFilePath = xmlFilePath;
     }
 
+    public HashMap<String, Column> getColumns() {
+        return columns;
+    }
+
+    public void setColumns(HashMap<String, Column> columns) {
+        this.columns = columns;
+    }
+
+    public Schema getSchema() {
+        return schema;
+    }
+
+    public void setSchema(Schema schema) {
+        this.schema = schema;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        String objType = "Schema " + this.schema.getName() + " View " + this.name;
+        Boolean areEquals = true;
+        if (obj == null ) {
+            ReportItem report = new ReportItem();
+            getErrors().add(report.fillWithInformations(objType,
+                    obj,
+                    this,
+                    Direction.plus,
+                    this.name,
+                    objType + " : right table is absent."));
+            return false;
+        }
+
+        View rightView = ((View)obj);
+        if (this.name != null && ! this.name.equals(rightView.getName())) {
+            ReportItem report = new ReportItem();
+            getErrors().add(report.fillWithInformations(objType,
+                    obj,
+                    this,
+                    Direction.plus,
+                    this.name,
+                    objType + " : has a different name attribut (" + this.name + "," + rightView.getName() + ")."));
+            areEquals = false;
+        }
+
+        for (String columnName : this.columns.keySet()) {
+            Column leftColumn = this.columns.get(columnName);
+            if (rightView.getColumns().containsKey(columnName)) {
+                if (leftColumn.equals(rightView.getColumns().get(columnName))) {
+                    // nothing to do just compare and store into reports object
+                }
+            }
+            else {
+                ReportItem report = new ReportItem().fillWithInformations(
+                        objType,
+                        obj,
+                        this,
+                        Direction.plus,
+                        this.name,
+                        objType + " : right table as no foreignColumn (" + columnName+",null)."
+                );
+                getErrors().add(report);
+                areEquals = false;
+            }
+        }
+        for (String columnName : rightView.getColumns().keySet()) {
+            if ( ! this.columns.containsKey(columnName) ) {
+                ReportItem report = new ReportItem().fillWithInformations(
+                        objType,
+                        obj,
+                        this,
+                        Direction.minus,
+                        this.name,
+                        objType + " : left table as no foreignColumn (null," + columnName +")."
+                );
+                getErrors().add(report);
+                areEquals = false;
+            }
+        }
+
+        return areEquals;
     }
 }

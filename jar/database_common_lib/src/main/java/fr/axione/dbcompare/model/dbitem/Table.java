@@ -143,7 +143,7 @@ public class Table extends Report implements Serializable{
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : right table is absent."));
             return false;
         }
@@ -155,7 +155,7 @@ public class Table extends Report implements Serializable{
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different name attribut (" + this.name + "," + rightTable.getName() + ")."));
             areEquals = false;
         }
@@ -173,7 +173,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.plus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : right table as no foreignColumn (" + columnName+",null)."
                 );
                 getErrors().add(report);
@@ -187,7 +187,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.minus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : left table as no foreignColumn (null," + columnName +")."
                 );
                 getErrors().add(report);
@@ -203,7 +203,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.plus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : right foreignColumn is not a primary key  (" + columnName +",null)."
                 );
                 getErrors().add(report);
@@ -218,7 +218,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.minus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : left foreignColumn is not a primary key  (null," + columnName +")."
                 );
                 getErrors().add(report);
@@ -233,7 +233,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.plus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : right foreignColumn is not in the index  "+ this.indexes.get(columnName).getName() +"(" + columnName +",null)."
                 );
                 getErrors().add(report);
@@ -247,7 +247,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.minus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : left foreignColumn is not in the index  "+ rightTable.getIndexes().get(columnName).getName() +"(null," + columnName +")."
                 );
                 getErrors().add(report);
@@ -263,7 +263,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.plus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : right foreignColumn is not a foreign key  "+ this.foreignKeys.get(columnName).getName() +"(" + columnName +",null)."
                 );
                 getErrors().add(report);
@@ -277,7 +277,7 @@ public class Table extends Report implements Serializable{
                         obj,
                         this,
                         Direction.minus,
-                        this.getClass().getName(),
+                        this.name,
                         objType + " : left foreignColumn is not a foreign key  "+ rightTable.getForeignKeys().get(columnName).getName() +"(null," + columnName +")."
                 );
                 getErrors().add(report);

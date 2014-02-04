@@ -107,7 +107,7 @@ public class Index extends Report implements Serializable{
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : right index is absent."
             );
             getErrors().add(report);
@@ -122,7 +122,7 @@ public class Index extends Report implements Serializable{
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType +" : has no constraint type attribut (" + String.valueOf(type) +",null)."
             );
             getErrors().add(report);

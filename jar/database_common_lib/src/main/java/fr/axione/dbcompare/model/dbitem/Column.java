@@ -110,7 +110,7 @@ public class Column extends Report implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        String objType = "Schema " + table.getSchema().getName() +  " Table " + table.getName() + " Column " + this.name;
+        String objType = "Schema " + (table != null ? table.getSchema().getName() +  " Table " + table.getName() : " View ")  + " Column " + this.name;
         Boolean areEquals = true;
         if (obj == null ) {
             ReportItem report = new ReportItem();
@@ -118,7 +118,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : right table is absent."));
             return false;
         }
@@ -130,7 +130,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different name attribut (" + this.name +","+ rightName + ")."
             );
             getErrors().add(report);
@@ -143,7 +143,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different nullable attribut (" + stringValueForBoolean(this.nullable) + ","+ stringValueForBoolean(rightNullable) + ")."
             );
             getErrors().add(report);
@@ -157,7 +157,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different primary key attribut ("+ stringValueForBoolean(this.isPrimaryKey)  +","+ stringValueForBoolean(rightIsPrimaryKey) + ")."
             );
             getErrors().add(report);
@@ -171,7 +171,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different primary key attribut (" + stringValueForBoolean(this.isForeignKey)+ ","+ stringValueForBoolean(rightIsForeignKey) + ")."
             );
             getErrors().add(report);
@@ -185,7 +185,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different type attribut ("+ String.valueOf(this.type) +","+ String.valueOf(rightColumnType) + ")."
             );
             getErrors().add(report);
@@ -199,7 +199,7 @@ public class Column extends Report implements Serializable {
                     obj,
                     this,
                     Direction.plus,
-                    this.getClass().getName(),
+                    this.name,
                     objType + " : has a different type size  ("+ String.valueOf(this.size) +","+ String.valueOf(rightSize) + ")."
             );
             getErrors().add(report);
