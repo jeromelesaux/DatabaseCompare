@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="module" module-name="database-compare-common-lib" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.28" level="project" />
     <orderEntry type="library" name="Maven: com.oracle:ojdbc6:11.2.0" level="project" />

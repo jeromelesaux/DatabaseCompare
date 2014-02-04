@@ -14,4 +14,9 @@ public class StringUtils {
             return value ? "true" : "false";
         }
     }
+
+    public static String replaceLast(String str, String value) {
+        int index = str.lastIndexOf(value);
+        return str.substring(0,index);
+    }
 }

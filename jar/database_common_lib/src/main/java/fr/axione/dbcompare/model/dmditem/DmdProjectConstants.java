@@ -1,5 +1,7 @@
 package fr.axione.dbcompare.model.dmditem;
 
+import fr.axione.dbcompare.model.StringUtils;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -32,11 +34,11 @@ public class DmdProjectConstants {
             }
         }
         );
-        if (filesInRelDirectory.length == 0 ) {
+        if (filesInRelDirectory == null  || filesInRelDirectory.length == 0 ) {
             throw new Exception("No directory found in directory " + relDirectory.getPath());
         }
 
-        relDirectoryPath = filesInRelDirectory[0].getPath();
+        relDirectoryPath = StringUtils.replaceLast(filesInRelDirectory[0].toURI().getRawPath(),"/");
         objectsLocalFilePath = relDirectoryPath + OBJECTLOCALNAME;
         schemaObjectFilePath = relDirectoryPath + ".xml";
 
@@ -68,7 +70,7 @@ public class DmdProjectConstants {
     }
 
     public String getSchemaObjectFilePath() {
-        return schemaObjectFilePath;
+        return schemaObjectFilePath.replace("\\","/");
     }
 
     public void setSchemaObjectFilePath(String schemaObjectFilePath) {
