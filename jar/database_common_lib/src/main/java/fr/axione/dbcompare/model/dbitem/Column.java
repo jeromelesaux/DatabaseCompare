@@ -3,6 +3,7 @@ package fr.axione.dbcompare.model.dbitem;
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.analyse.ReportItemDBType;
 import fr.axione.dbcompare.model.common.ColumnType;
 
 import java.io.Serializable;
@@ -115,8 +116,9 @@ public class Column extends Report implements Serializable {
         if (obj == null ) {
             ReportItem report = new ReportItem();
             getErrors().add(report.fillWithInformations(objType,
-                    obj,
-                    this,
+                    null,
+                    this.getName(),
+                    ReportItemDBType.Column,
                     Direction.plus,
                     this.name,
                     objType + " : right table is absent."));
@@ -127,8 +129,9 @@ public class Column extends Report implements Serializable {
         if (this.name != null && ! this.name.equals(rightName)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    rightName,
+                    this.name,
+                    ReportItemDBType.Column,
                     Direction.plus,
                     this.name,
                     objType + " : has a different name attribut (" + this.name +","+ rightName + ")."
@@ -140,8 +143,9 @@ public class Column extends Report implements Serializable {
         if (this.nullable != null && ! this.nullable.equals(rightNullable)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    rightName,
+                    this.name,
+                    ReportItemDBType.Column_Type,
                     Direction.plus,
                     this.name,
                     objType + " : has a different nullable attribut (" + stringValueForBoolean(this.nullable) + ","+ stringValueForBoolean(rightNullable) + ")."
@@ -154,8 +158,9 @@ public class Column extends Report implements Serializable {
         if (this.isPrimaryKey != null && ! this.isPrimaryKey.equals(rightIsPrimaryKey)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    rightName,
+                    this.name,
+                    ReportItemDBType.Column_Type,
                     Direction.plus,
                     this.name,
                     objType + " : has a different primary key attribut ("+ stringValueForBoolean(this.isPrimaryKey)  +","+ stringValueForBoolean(rightIsPrimaryKey) + ")."
@@ -168,8 +173,9 @@ public class Column extends Report implements Serializable {
         if (this.isForeignKey != null && ! this.isForeignKey.equals(rightIsForeignKey)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    rightName,
+                    this.name,
+                    ReportItemDBType.Column_Type,
                     Direction.plus,
                     this.name,
                     objType + " : has a different primary key attribut (" + stringValueForBoolean(this.isForeignKey)+ ","+ stringValueForBoolean(rightIsForeignKey) + ")."
@@ -182,8 +188,9 @@ public class Column extends Report implements Serializable {
         if (this.type != null && ! this.type.equals(rightColumnType)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    rightName,
+                    this.name,
+                    ReportItemDBType.Column_Type,
                     Direction.plus,
                     this.name,
                     objType + " : has a different type attribut ("+ String.valueOf(this.type) +","+ String.valueOf(rightColumnType) + ")."
@@ -196,8 +203,9 @@ public class Column extends Report implements Serializable {
         if (this.size != null && ! this.size.equals(rightSize)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    rightName,
+                    this.name,
+                    ReportItemDBType.Column_Type,
                     Direction.plus,
                     this.name,
                     objType + " : has a different type size  ("+ String.valueOf(this.size) +","+ String.valueOf(rightSize) + ")."

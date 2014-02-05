@@ -3,6 +3,7 @@ package fr.axione.dbcompare.model.dbitem;
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.analyse.ReportItemDBType;
 import fr.axione.dbcompare.model.common.ConstraintType;
 
 import java.io.File;
@@ -104,8 +105,9 @@ public class Index extends Report implements Serializable{
         if (obj == null ) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    null,
+                    this.name,
+                    ReportItemDBType.Index,
                     Direction.plus,
                     this.name,
                     objType + " : right index is absent."
@@ -119,8 +121,9 @@ public class Index extends Report implements Serializable{
             if (!this.types.contains(type)) {
             ReportItem report = new ReportItem().fillWithInformations(
                     objType,
-                    obj,
-                    this,
+                    ((Index) obj).getName(),
+                    this.name,
+                    ReportItemDBType.Index,
                     Direction.plus,
                     this.name,
                     objType +" : has no constraint type attribut (" + String.valueOf(type) +",null)."

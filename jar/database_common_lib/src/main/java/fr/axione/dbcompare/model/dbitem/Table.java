@@ -3,6 +3,7 @@ package fr.axione.dbcompare.model.dbitem;
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.analyse.ReportItemDBType;
 
 import java.io.File;
 import java.io.Serializable;
@@ -137,11 +138,13 @@ public class Table extends Report implements Serializable{
     public boolean equals(Object obj) {
        String objType = "Schema " + this.schema.getName() + " Table " + this.name;
        Boolean areEquals = true;
+
         if (obj == null ) {
             ReportItem report = new ReportItem();
             getErrors().add(report.fillWithInformations(objType,
-                    obj,
-                    this,
+                    null,
+                    this.name,
+                    ReportItemDBType.Table,
                     Direction.plus,
                     this.name,
                     objType + " : right table is absent."));
@@ -152,8 +155,9 @@ public class Table extends Report implements Serializable{
         if (this.name != null && ! this.name.equals(rightTable.getName())) {
             ReportItem report = new ReportItem();
             getErrors().add(report.fillWithInformations(objType,
-                    obj,
-                    this,
+                    ((Table) obj).getName(),
+                    this.name,
+                    ReportItemDBType.Table,
                     Direction.plus,
                     this.name,
                     objType + " : has a different name attribut (" + this.name + "," + rightTable.getName() + ")."));
@@ -170,8 +174,9 @@ public class Table extends Report implements Serializable{
             else {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        null,
+                        columnName,
+                        ReportItemDBType.Column,
                         Direction.plus,
                         this.name,
                         objType + " : right table as no foreignColumn (" + columnName+",null)."
@@ -184,8 +189,9 @@ public class Table extends Report implements Serializable{
             if ( ! this.columns.containsKey(columnName) ) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        columnName,
+                        null,
+                        ReportItemDBType.Column,
                         Direction.minus,
                         this.name,
                         objType + " : left table as no foreignColumn (null," + columnName +")."
@@ -200,8 +206,9 @@ public class Table extends Report implements Serializable{
             if (! rightTable.getPrimariesKeys().containsKey(columnName)) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        null,
+                        columnName,
+                        ReportItemDBType.Primary_Key,
                         Direction.plus,
                         this.name,
                         objType + " : right foreignColumn is not a primary key  (" + columnName +",null)."
@@ -215,8 +222,9 @@ public class Table extends Report implements Serializable{
             if (! this.primariesKeys.containsKey(columnName)) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        columnName,
+                        null,
+                        ReportItemDBType.Primary_Key,
                         Direction.minus,
                         this.name,
                         objType + " : left foreignColumn is not a primary key  (null," + columnName +")."
@@ -230,8 +238,9 @@ public class Table extends Report implements Serializable{
             if (! rightTable.getIndexes().containsKey(columnName)) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        null,
+                        columnName,
+                        ReportItemDBType.Index,
                         Direction.plus,
                         this.name,
                         objType + " : right foreignColumn is not in the index  "+ this.indexes.get(columnName).getName() +"(" + columnName +",null)."
@@ -244,8 +253,9 @@ public class Table extends Report implements Serializable{
             if (! this.getIndexes().containsKey(columnName)) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        columnName,
+                        null,
+                        ReportItemDBType.Index,
                         Direction.minus,
                         this.name,
                         objType + " : left foreignColumn is not in the index  "+ rightTable.getIndexes().get(columnName).getName() +"(null," + columnName +")."
@@ -260,8 +270,9 @@ public class Table extends Report implements Serializable{
             if (! rightTable.getForeignKeys().containsKey(columnName)) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        null,
+                        columnName,
+                        ReportItemDBType.Foreign_Key,
                         Direction.plus,
                         this.name,
                         objType + " : right foreignColumn is not a foreign key  "+ this.foreignKeys.get(columnName).getName() +"(" + columnName +",null)."
@@ -274,8 +285,9 @@ public class Table extends Report implements Serializable{
             if (! this.getForeignKeys().containsKey(columnName)) {
                 ReportItem report = new ReportItem().fillWithInformations(
                         objType,
-                        obj,
-                        this,
+                        columnName,
+                        null,
+                        ReportItemDBType.Foreign_Key,
                         Direction.minus,
                         this.name,
                         objType + " : left foreignColumn is not a foreign key  "+ rightTable.getForeignKeys().get(columnName).getName() +"(null," + columnName +")."

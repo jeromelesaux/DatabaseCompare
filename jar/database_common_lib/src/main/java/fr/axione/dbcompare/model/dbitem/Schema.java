@@ -3,6 +3,7 @@ package fr.axione.dbcompare.model.dbitem;
 import fr.axione.dbcompare.analyse.Direction;
 import fr.axione.dbcompare.analyse.Report;
 import fr.axione.dbcompare.analyse.ReportItem;
+import fr.axione.dbcompare.analyse.ReportItemDBType;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -139,8 +140,9 @@ public class Schema extends Report implements Serializable {
         if (obj == null ) {
             ReportItem report = new ReportItem();
             getErrors().add(report.fillWithInformations(objType,
-                    obj,
-                    this,
+                    null,
+                    this.name,
+                    ReportItemDBType.Schema,
                     Direction.plus,
                     this.name,
                     objType + " : right schema is absent."));
@@ -152,8 +154,9 @@ public class Schema extends Report implements Serializable {
         if (this.name != null && ! this.name.equals(rightSchema.getName())) {
             ReportItem report = new ReportItem();
             getErrors().add(report.fillWithInformations(objType,
-                    obj,
-                    this,
+                    rightSchema.getName(),
+                    this.name,
+                    ReportItemDBType.Schema,
                     Direction.plus,
                     this.name,
                     objType + " : right schema has a different name (" + this.name + ","+ rightSchema.getName()+")."));
@@ -171,8 +174,9 @@ public class Schema extends Report implements Serializable {
             else {
                 ReportItem report = new ReportItem();
                 getErrors().add(report.fillWithInformations(objType,
-                        obj,
-                        this,
+                        null,
+                        key,
+                        ReportItemDBType.Table,
                         Direction.plus,
                         this.name,
                         objType + " : right schema as no table (" + key +",null)."));
@@ -184,8 +188,9 @@ public class Schema extends Report implements Serializable {
             if (!this.getTables().containsKey(key)) {
                 ReportItem report = new ReportItem();
                 getErrors().add(report.fillWithInformations(objType,
-                        obj,
-                        this,
+                        key,
+                        null,
+                        ReportItemDBType.Table,
                         Direction.minus,
                         this.name,
                         objType + " : left schema as no table (null,"+key+")."));
@@ -205,8 +210,9 @@ public class Schema extends Report implements Serializable {
             else {
                 ReportItem report = new ReportItem();
                 getErrors().add(report.fillWithInformations(objType,
-                        obj,
-                        this,
+                        null,
+                        key,
+                        ReportItemDBType.View,
                         Direction.plus,
                         this.name,
                         objType + " : right schema as no view (" + key +",null)."));
@@ -218,8 +224,9 @@ public class Schema extends Report implements Serializable {
             if (!this.getViews().containsKey(key)) {
                 ReportItem report = new ReportItem();
                 getErrors().add(report.fillWithInformations(objType,
-                        obj,
-                        this,
+                        key,
+                        null,
+                        ReportItemDBType.Table,
                         Direction.minus,
                         this.name,
                         objType + " : left schema as no view (null,"+key+")."));

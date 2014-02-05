@@ -3,19 +3,19 @@ package fr.axione.dbcompare.analyse;
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 
+
 /**
  * Created by jlesaux on 20/01/14.
  */
 @XmlRootElement()
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ReportItem implements Serializable {
-    @XmlTransient
-    Object dbItemLeft;
-    @XmlTransient
-    Object dbItemRight;
+    String dbItemLeft;
+    String dbItemRight;
     Direction direction;
     String name;
     String description;
+    ReportItemDBType dbType;
 
     public ReportItem() {
 
@@ -26,19 +26,19 @@ public class ReportItem implements Serializable {
      *
      * @return pivot object
      */
-    public Object getDbItemLeft() {
+    public String getDbItemLeft() {
         return dbItemLeft;
     }
 
-    public void setDbItemLeft(Object dbItemLeft) {
+    public void setDbItemLeft(String dbItemLeft) {
         this.dbItemLeft = dbItemLeft;
     }
 
-    public Object getDbItemRight() {
+    public String getDbItemRight() {
         return dbItemRight;
     }
 
-    public void setDbItemRight(Object dbItemRight) {
+    public void setDbItemRight(String dbItemRight) {
         this.dbItemRight = dbItemRight;
     }
 
@@ -68,13 +68,15 @@ public class ReportItem implements Serializable {
     }
 
     public ReportItem fillWithInformations(String objDbType,
-                                           Object rightDbItem,
-                                           Object leftDbItem,
+                                           String rightDbItem,
+                                           String leftDbItem,
+                                           ReportItemDBType dbType,
                                            Direction directionError,
                                            String name,
                                            String description) {
         this.dbItemRight = rightDbItem;
         this.dbItemLeft = leftDbItem;
+        this.dbType = dbType;
         this.direction = directionError;
         this.name = name;
         this.description = description;
