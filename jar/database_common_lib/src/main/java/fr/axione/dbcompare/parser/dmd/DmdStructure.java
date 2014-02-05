@@ -353,7 +353,7 @@ public class DmdStructure {
                                                 String sqlType = item.getFirstChild().getTextContent();
                                                 int size = 1;
                                                 if (sqlType.contains("(")) {
-                                                    String sizeValue = sqlType.replaceFirst(".*?\\((\\d+)(,\\s?\\d+)?\\)$", "$1");
+                                                    String sizeValue = sqlType.replaceFirst(".*?\\((\\d+)(,\\s?\\d+)?(\\s?BYTE)?\\)$", "$1");
                                                     size = Integer.valueOf(sizeValue);
                                                 }
                                                 column.setType(ColumnDmdTypeMapper.getColumnType(sqlType));
