@@ -2,6 +2,8 @@ package fr.axione.dbcompare.parser.database;
 
 import fr.axione.dbcompare.model.common.ColumnType;
 import fr.axione.dbcompare.model.common.ConstraintType;
+import fr.axione.dbcompare.model.common.ProcedureColumnType;
+import fr.axione.dbcompare.model.common.ProcedureType;
 import fr.axione.dbcompare.model.dbitem.*;
 import fr.axione.dbcompare.parser.DatabaseFilter;
 
@@ -57,7 +59,7 @@ public class DatabaseStructure {
         schema = getTables(schema);
         schema = getIndexes(schema);
         schema = getViews(schema);
-        //schema = getProcedures(schema);
+        schema = getProcedures(schema);
 
         connection.close();
         return schema;
@@ -206,16 +208,91 @@ public class DatabaseStructure {
 
     protected Schema getProcedures(Schema schema) throws SQLException {
 
+        // to get content use specific oracle query like : select text from user_source where name='PROCEDURE NAME';
         ResultSet proceduresSet = meta.getProcedures(schema.getCatalog(),schema.getName(),"%");
         while (proceduresSet.next()){
+            String procedureCatalogue = proceduresSet.getString("PROCEDURE_CAT");
             String name = proceduresSet.getString("PROCEDURE_NAME");
-            int type = proceduresSet.getInt("PROCEDURE_TYPE");
+            short type = proceduresSet.getShort("PROCEDURE_TYPE");
             String procedureSchema = proceduresSet.getString("PROCEDURE_SCHEM");
             String specificName = proceduresSet.getString("SPECIFIC_NAME");
+            String procedureRemark = proceduresSet.getString("REMARKS");
 
-            System.out.println(name + " " + type + " " + procedureSchema + " " + specificName);
+            if (schema.getName().equals(procedureSchema)) {
+                Procedure procedure;
+                if (schema.getStoredProcedures().containsKey(name)){
+                    procedure = schema.getStoredProcedures().get(name);
+                }
+                else {
+                    procedure = new Procedure(schema);
+                    procedure.setName(name);
+                    procedure.setRemark(procedureRemark);
+                    procedure.setProcedureType(getProcedureType(type));
+                    procedure.setCatalogue(procedureCatalogue);
+                }
+
+                ResultSet rs = meta.getProcedureColumns(schema.getCatalog(),
+                        schema.getName(),
+                        name,
+                        "%");
+
+  //              System.out.println(name + " " + type + " " + procedureSchema + " " + specificName + " " + procedureRemark);
+                while(rs.next()) {
+
+                    ProcedureColumn procedureColumn;
+
+                    String procedureCatalog     = rs.getString("PROCEDURE_CAT");
+                    String procedureName        = rs.getString("PROCEDURE_NAME");
+                    String columnName           = rs.getString("COLUMN_NAME");
+                    short  columnReturn         = rs.getShort("COLUMN_TYPE");
+                    String columnDataType       = rs.getString("DATA_TYPE");
+                    String columnReturnTypeName = rs.getString("TYPE_NAME");
+                    int    columnPrecision      = rs.getInt("PRECISION");
+                    int    columnByteLength     = rs.getInt("LENGTH");
+                    short  columnScale          = rs.getShort("SCALE");
+                    short  columnRadix          = rs.getShort("RADIX");
+                    short  columnNullable       = rs.getShort("NULLABLE");
+                    String columnRemarks        = rs.getString("REMARKS");
+
+                    if (procedure.getColumns().containsKey(columnName)) {
+                        procedureColumn = procedure.getColumns().get(columnName);
+                    }
+                    else {
+                        procedureColumn = new ProcedureColumn();
+                    }
+                    procedureColumn.setName(columnName);
+                    procedureColumn.setRemark(columnRemarks);
+                    procedureColumn.setSize(columnByteLength == 0 ? 1 : columnByteLength);
+                    procedureColumn.setType(getType(columnReturnTypeName));
+                    procedureColumn.setProcedureColumnType(getColumnReturn(columnReturn));
+                    procedureColumn.setNullable(columnNullable == 1 ? true : false);
+
+                    procedure.getColumns().put(procedureColumn.getName(),procedureColumn);
+
+/*                    // DatabaseMetaData.procedureColumnReturn == columnReturn ?
+
+                    System.out.println("stored Procedure name="+procedureName);
+                    System.out.println("procedureCatalog=" + procedureCatalog);
+                    System.out.println("procedureSchema=" + procedureSchema);
+                    System.out.println("procedureName=" + procedureName);
+                    System.out.println("columnName=" + columnName);
+                    System.out.println("columnReturn=" + getColumnReturn(columnReturn) );
+                    System.out.println("columnDataType=" + columnDataType);
+                    System.out.println("columnReturnTypeName=" + columnReturnTypeName);
+                    System.out.println("columnPrecision=" + columnPrecision);
+                    System.out.println("columnByteLength=" + columnByteLength);
+                    System.out.println("columnScale=" + columnScale);
+                    System.out.println("columnRadix=" + columnRadix);
+                    System.out.println("columnNullable=" + columnNullable);
+                    System.out.println("columnRemarks=" + columnRemarks);*/
+
+                }
+                rs.close();
+                schema.getStoredProcedures().put(procedure.getName(), procedure);
+            }
 
         }
+        proceduresSet.close();
 
         return schema;
     }
@@ -390,10 +467,29 @@ public class DatabaseStructure {
     protected ColumnType getType(String type) {
         ColumnType ctype =  ColumnType.UNKNOWN;
         try {
-            ctype = ColumnType.valueOf(type.replace(' ','_'));
+            ctype = ColumnType.valueOf(type.replace(' ','_').replace('/','_'));
         } catch (IllegalArgumentException e) {
             ctype = ColumnType.UNKNOWN;
         }
         return ctype;
+    }
+
+    protected ProcedureColumnType getColumnReturn(short in) {
+        switch (in) {
+            case DatabaseMetaData.procedureColumnIn : return ProcedureColumnType.PROCEDURECOLUMNIN;
+            case DatabaseMetaData.procedureColumnInOut : return ProcedureColumnType.PROCEDURECOLUMNINOUT;
+            case DatabaseMetaData.procedureColumnOut : return ProcedureColumnType.PROCEDURECOLUMNOUT;
+            case DatabaseMetaData.procedureColumnResult : return ProcedureColumnType.PROCEDURECOLUMNRESULT;
+            case DatabaseMetaData.procedureColumnReturn : return ProcedureColumnType.PROCEDURECOLUMNRETURN;
+            case DatabaseMetaData.procedureColumnUnknown : return ProcedureColumnType.PROCEDURECOLUMNUNKNOWN;
+            default : return ProcedureColumnType.PROCEDURECOLUMNUNKNOWN;
+        }
+    }
+    protected ProcedureType getProcedureType(short in ){
+        switch (in) {
+            case DatabaseMetaData.procedureResultUnknown : return ProcedureType.PROCEDURERESULTUNKNOWN;
+            case DatabaseMetaData.procedureReturnsResult : return ProcedureType.PROCEDURERETURNSRESULT;
+            default : return ProcedureType.PROCEDURERESULTUNKNOWN;
+        }
     }
 }

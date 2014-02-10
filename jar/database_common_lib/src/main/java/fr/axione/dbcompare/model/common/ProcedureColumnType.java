@@ -1,0 +1,10 @@
+package fr.axione.dbcompare.model.common;
+
+public enum  ProcedureColumnType {
+    PROCEDURECOLUMNIN,
+    PROCEDURECOLUMNINOUT,
+    PROCEDURECOLUMNOUT,
+    PROCEDURECOLUMNRESULT,
+    PROCEDURECOLUMNRETURN,
+    PROCEDURECOLUMNUNKNOWN
+}

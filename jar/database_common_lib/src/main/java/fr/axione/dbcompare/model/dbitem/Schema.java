@@ -19,6 +19,7 @@ public class Schema extends Report implements Serializable {
     HashMap<String, Trigger> triggers;
     HashMap<String,Index> indexes;
     HashMap<String, View> views;
+    HashMap<String, Procedure> storedProcedures;
     //HashMap<String, Constraint> constraints;
 
     public Schema() {
@@ -26,6 +27,8 @@ public class Schema extends Report implements Serializable {
         triggers = new HashMap<String, Trigger>();
         views = new HashMap<String, View>();
         indexes = new HashMap<String, Index>();
+        storedProcedures = new HashMap<String, Procedure>();
+
        // constraints = new HashMap<String, Constraint>();
 
     }
@@ -92,6 +95,14 @@ public class Schema extends Report implements Serializable {
         this.catalog = catalog;
     }
 
+
+    public HashMap<String, Procedure> getStoredProcedures() {
+        return storedProcedures;
+    }
+
+    public void setStoredProcedures(HashMap<String, Procedure> storedProcedures) {
+        this.storedProcedures = storedProcedures;
+    }
 
     public Index getIndexByObjectId(String objectId) {
         for (String name : this.indexes.keySet()) {

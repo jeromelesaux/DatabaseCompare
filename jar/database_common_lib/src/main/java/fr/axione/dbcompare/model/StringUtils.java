@@ -19,4 +19,16 @@ public class StringUtils {
         int index = str.lastIndexOf(value);
         return str.substring(0,index);
     }
+
+    public static String unzerializedHtml(String serialized) {
+        String unzerializedHtml = serialized
+                .replace("&lt;br/&gt;", "\n")
+                .replace("&nbsp;"," ")
+                .replace("&quot;","\"")
+                .replace("&amp;","&")
+                .replace("&lt;","<")
+                .replace("&gt;",">");
+
+        return unzerializedHtml;
+    }
 }

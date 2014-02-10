@@ -1,5 +1,7 @@
 package fr.axione.dbcompare.model.common;
 
+import java.sql.DatabaseMetaData;
+
 /**
  * Created by jlesaux on 17/01/14.
  */
@@ -48,5 +50,8 @@ public enum ColumnType  {
     URITYPE,
     XDBURITYPE,
     XMLTYPE,
+    PL_SQL_RECORD,
     UNKNOWN
 }
+
+
