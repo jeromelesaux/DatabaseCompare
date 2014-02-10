@@ -14,6 +14,7 @@ public class Procedure extends Report implements Serializable {
     Schema schema;
     String catalogue;
     String remark;
+    String sqlCode;
     ProcedureType procedureType;
     HashMap<String,ProcedureColumn> columns;
 
@@ -76,6 +77,14 @@ public class Procedure extends Report implements Serializable {
 
     public void setProcedureType(ProcedureType procedureType) {
         this.procedureType = procedureType;
+    }
+
+    public String getSqlCode() {
+        return sqlCode;
+    }
+
+    public void setSqlCode(String sqlCode) {
+        this.sqlCode = sqlCode;
     }
 
     @Override

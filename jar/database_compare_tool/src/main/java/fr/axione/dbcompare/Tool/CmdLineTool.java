@@ -36,6 +36,7 @@ public class CmdLineTool {
             String[] connectionStrings = jsapResult.getStringArray("connectionString");
             String[] passwords = jsapResult.getStringArray("pass");
             String[] outputs = jsapResult.getStringArray("output");
+            String outputFile = jsapResult.getString("output-file");
 
             if (types.length > 2) {
                 throw new Exception("To many schemas, can compare only 2 schema at once. ");
@@ -107,7 +108,12 @@ public class CmdLineTool {
                     JAXBContext context = JAXBContext.newInstance(Report.class,ReportItem.class);
                     Marshaller marshaller = context.createMarshaller();
                     marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
-                    marshaller.marshal(report, new File("out.xml"));
+                    if (outputFile!=null) {
+                        marshaller.marshal(report,new File(outputFile));
+                    }
+                    else {
+                        marshaller.marshal(report, new File("out.xml"));
+                    }
                 }
             }
             else {
@@ -211,6 +217,16 @@ public class CmdLineTool {
 
         xmlOpt.setHelp("print report as a Xml file (option -o xml) otherwise -o txt).");
         jsap.registerParameter(xmlOpt);
+
+        FlaggedOption xmlFileOpt = new FlaggedOption("output-file")
+                .setStringParser(JSAP.STRING_PARSER)
+                .setRequired(false)
+                .setShortFlag('t')
+                .setAllowMultipleDeclarations(false)
+                .setLongFlag("output-file");
+
+        xmlOpt.setHelp("filepath of the xml output file (default is out.xml from the call path when -o xml is set).");
+        jsap.registerParameter(xmlFileOpt);
 
         return jsap;
     }

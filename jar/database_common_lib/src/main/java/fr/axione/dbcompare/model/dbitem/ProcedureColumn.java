@@ -11,6 +11,7 @@ public class ProcedureColumn extends Column implements Serializable {
     ProcedureColumnType procedureColumnType;
     String remark;
 
+
     public ProcedureColumnType getProcedureColumnType() {
         return procedureColumnType;
     }

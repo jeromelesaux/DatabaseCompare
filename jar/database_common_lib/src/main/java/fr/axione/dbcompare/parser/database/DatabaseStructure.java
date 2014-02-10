@@ -205,6 +205,27 @@ public class DatabaseStructure {
         return schema;
     }
 
+    protected Procedure getProcedureCode(Procedure procedure) throws SQLException {
+
+        // to forgive only admin can select on this table
+        String driverName = meta.getDriverName().toUpperCase();
+
+        if (driverName.contains("ORACLE")) {
+            Connection connection = meta.getConnection();
+            PreparedStatement statement = connection.prepareStatement("select text from user_source where name=?");
+            statement.setString(1,procedure.getName());
+            ResultSet resultSet = statement.executeQuery();
+            String result = null;
+
+            while (resultSet.next()) {
+                result += resultSet.getString("TEXT");
+            }
+            resultSet.close();
+            procedure.setSqlCode(result);
+        }
+
+        return procedure;
+    }
 
     protected Schema getProcedures(Schema schema) throws SQLException {
 
@@ -294,6 +315,12 @@ public class DatabaseStructure {
         }
         proceduresSet.close();
 
+
+        /*for (String key : schema.getStoredProcedures().keySet()){
+            Procedure procedure = schema.getStoredProcedures().get(key);
+            schema.getStoredProcedures().put(key,getProcedureCode(procedure));
+        }*/
+
         return schema;
     }
 
@@ -306,7 +333,7 @@ public class DatabaseStructure {
             columnResults = meta.getColumns(null,null,view.getName(),filter.getColumnPattern());
         }
 
-/*        ResultSetMetaData resultSetMetaData = columnResults.getMetaData();
+        /*ResultSetMetaData resultSetMetaData = columnResults.getMetaData();
         for (int i = 1; i<resultSetMetaData.getColumnCount(); i++){
             System.out.println("View column : " + resultSetMetaData.getColumnName(i));
         }*/
@@ -321,7 +348,8 @@ public class DatabaseStructure {
             if ( colSize == 0 ) {
                 colSize = columnResults.getInt("CHAR_OCTET_LENGTH");
             }
-/*
+
+            /*
             Table tableOwner = null;
             if( view.getSchema().getTables().containsKey(tableName) ) {
                 tableOwner = view.getSchema().getTables().get(tableName);
