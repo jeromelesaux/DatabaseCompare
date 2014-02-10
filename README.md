@@ -3,12 +3,12 @@ DatabaseCompare
 
 Database comparator in java (Simple)
 
-= Introduction =
+# Introduction #
 This application will compare database schemas between DMD Oracle datamodeler files and or database.
 The report can be a xml file or text file.
 
 
-= Features = 
+# Features # 
 DatabaseCompare compare : 
 1. Schema name
 2. Table name and structure
@@ -18,5 +18,5 @@ DatabaseCompare compare :
 6. Foreign key
 7. Primary key
 
-= Usage = 
+# Usage #
 Type java -jar DBCompare-version.jar to see options and usage.
