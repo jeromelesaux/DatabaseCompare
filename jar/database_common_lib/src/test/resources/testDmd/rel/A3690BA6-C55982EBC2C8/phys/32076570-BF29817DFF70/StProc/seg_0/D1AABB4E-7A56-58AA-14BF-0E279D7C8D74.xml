@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="P_TEMP_MAJ_ID" id="D1AABB4E-7A56-58AA-14BF-0E279D7C8D74" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>P_TEMP_MAJ_ID</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:38 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<owner>4FCC3A6A-181E-A36A-613B-7868309493E2</owner>
+<source>CREATE OR REPLACE PROCEDURE                    AXIONEUSER_FACTU.P_TEMP_MAJ_ID AS &lt;br/&gt;&lt;br/&gt;cursor c1 is &lt;br/&gt;select id_service from  T_FDSL_DETAIL_FACTURE;&lt;br/&gt;&lt;br/&gt;BEGIN&lt;br/&gt;&lt;br/&gt;for r1 in c1&lt;br/&gt;loop&lt;br/&gt;&lt;br/&gt;  update T_FDSL_DETAIL_FACTURE set ID_FDSL_DETAIL_FACTURE = SEQ_FDSL_DETAIL_FACTU.nextval &lt;br/&gt;  where id_service = r1.id_service;&lt;br/&gt;  &lt;br/&gt;end loop;&lt;br/&gt;&lt;br/&gt;commit;&lt;br/&gt;--commentaire test&lt;br/&gt;END P_TEMP_MAJ_ID;</source>
+<body>CREATE OR REPLACE PROCEDURE                    AXIONEUSER_FACTU.P_TEMP_MAJ_ID AS &lt;br/&gt;&lt;br/&gt;cursor c1 is &lt;br/&gt;select id_service from  T_FDSL_DETAIL_FACTURE;&lt;br/&gt;&lt;br/&gt;BEGIN&lt;br/&gt;&lt;br/&gt;for r1 in c1&lt;br/&gt;loop&lt;br/&gt;&lt;br/&gt;  update T_FDSL_DETAIL_FACTURE set ID_FDSL_DETAIL_FACTURE = SEQ_FDSL_DETAIL_FACTU.nextval &lt;br/&gt;  where id_service = r1.id_service;&lt;br/&gt;  &lt;br/&gt;end loop;&lt;br/&gt;&lt;br/&gt;commit;&lt;br/&gt;--commentaire test&lt;br/&gt;END P_TEMP_MAJ_ID;</body>
+</StoredProcedureOraclev10g>

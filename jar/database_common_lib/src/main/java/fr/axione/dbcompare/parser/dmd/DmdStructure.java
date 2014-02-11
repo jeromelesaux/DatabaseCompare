@@ -1,11 +1,16 @@
 package fr.axione.dbcompare.parser.dmd;
 
 
+import fr.axione.dbcompare.model.StringUtils;
 import fr.axione.dbcompare.model.common.ConstraintType;
 import fr.axione.dbcompare.model.dbitem.*;
 import fr.axione.dbcompare.model.dmditem.ColumnDmdTypeMapper;
 import fr.axione.dbcompare.model.dmditem.DmdProjectConstants;
 import fr.axione.dbcompare.parser.DatabaseFilter;
+import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.parser.CCJSqlParserManager;
+import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.replace.Replace;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -14,6 +19,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 
 /**
  * Created by jlesaux on 21/01/14.
@@ -37,6 +43,7 @@ public class DmdStructure {
         schema = new Schema();
 
         schema = parseObjectsLocalFile(schema);
+        schema = parsePhysObjectsLocalFile(schema);
 
         return schema;
     }
@@ -377,4 +384,84 @@ public class DmdStructure {
         return schema;
     }
 
+
+    protected Schema parsePhysObjectsLocalFile(Schema schema)
+            throws IOException, SAXException, ParserConfigurationException, JSQLParserException {
+        Document document = null;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        document = documentBuilder.parse(dmdConstants.getObjectsLocalPhysFilepath());
+        document.getDocumentElement().normalize();
+
+        Element rootElement = document.getDocumentElement();
+        NodeList childNodes= rootElement.getChildNodes();
+
+        for (int i=0; i<childNodes.getLength(); i++){
+            Element element = null;
+            // parsing of the columns
+            if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE )  {
+                element = (Element)childNodes.item(i);
+                if (element.getNodeName().equals("object")) {
+                    String objectType = element.getAttribute("objectType");
+                    String objectID = element.getAttribute("objectID");
+                    String name = element.getAttribute("name");
+                    String seqName = element.getAttribute("seqName");
+                    if (objectType.equals("Package") || objectType.equals("StProc") || objectType.equals("Function")) {
+                        Procedure procedure =getProcedure(seqName,objectID,objectType);
+                        procedure.setName(name);
+                        schema.getStoredProcedures().put(procedure.getName(),procedure);
+                    }
+                }
+            }
+        }
+
+
+
+        return analyseSql(schema);
+    }
+
+    protected Schema  analyseSql(Schema schema) {
+        for (String key : schema.getStoredProcedures().keySet()) {
+            String sql = schema.getStoredProcedures().get(key).getSqlCode();
+            System.out.println(sql);
+           /* CCJSqlParserManager pm = new CCJSqlParserManager();
+            Statement statement = pm.parse(new StringReader(sql.replaceFirst("^CREATE\\s+OR","")));
+            if (statement instanceof Replace) {
+
+            }*/
+        }
+
+        return schema;
+    }
+
+    protected Procedure getProcedure(String seqName, String filename, String type)
+            throws ParserConfigurationException, IOException, SAXException {
+
+        Procedure procedure = new Procedure(schema);
+        String sourceCode = null;
+        Document document = null;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        document = documentBuilder.parse(dmdConstants.getPhysDirectoryPath() + File.separator + type + File.separator + seqName + File.separator + filename + ".xml" );
+        document.getDocumentElement().normalize();
+
+        Element rootElement = document.getDocumentElement();
+        NodeList childNodes= rootElement.getChildNodes();
+        for (int i=0; i<childNodes.getLength(); i++){
+            Element element = null;
+            // parsing of the columns
+            if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE )  {
+                element = (Element)childNodes.item(i);
+                if (element.getNodeName().equals("source")) {
+                    sourceCode = element.getFirstChild().getTextContent();
+                    sourceCode = StringUtils.unzerializedHtml(sourceCode);
+                    procedure.setSqlCode(sourceCode);
+                    procedure.setRemark(type);
+                    break;
+                }
+            }
+        }
+
+        return procedure;
+    }
 }

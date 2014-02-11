@@ -27,7 +27,9 @@ public class StringUtils {
                 .replace("&quot;","\"")
                 .replace("&amp;","&")
                 .replace("&lt;","<")
-                .replace("&gt;",">");
+                .replace("&gt;",">")
+                .replace("<br>","\n")
+                .replace("<br/>"," ");
 
         return unzerializedHtml;
     }
