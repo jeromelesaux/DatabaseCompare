@@ -1,7 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<StructuredTypeProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StructuredTypeProxyOraclev10g" name="XMLTYPE" id="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1" directorySegmentName="seg_0">
-<createdBy>R.WATH</createdBy>
-<createdTime>2012-12-04 10:06:30 UTC</createdTime>
-<generatorID>Généré par l&apos;utilisateur</generatorID>
-<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
-</StructuredTypeProxyOraclev10g>
