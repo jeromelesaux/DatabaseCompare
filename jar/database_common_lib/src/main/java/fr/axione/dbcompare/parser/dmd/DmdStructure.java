@@ -6,12 +6,12 @@ import fr.axione.dbcompare.model.common.ConstraintType;
 import fr.axione.dbcompare.model.dbitem.*;
 import fr.axione.dbcompare.model.dmditem.ColumnDmdTypeMapper;
 import fr.axione.dbcompare.model.dmditem.DmdProjectConstants;
+import fr.axione.dbcompare.model.sqlparser.SqlPackageParser;
 import fr.axione.dbcompare.parser.DatabaseFilter;
-import net.sf.jsqlparser.JSQLParserException;
-import net.sf.jsqlparser.parser.CCJSqlParserManager;
-import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.replace.Replace;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -19,7 +19,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 
 /**
  * Created by jlesaux on 21/01/14.
@@ -386,7 +385,7 @@ public class DmdStructure {
 
 
     protected Schema parsePhysObjectsLocalFile(Schema schema)
-            throws IOException, SAXException, ParserConfigurationException, JSQLParserException {
+            throws IOException, SAXException, ParserConfigurationException  {
         Document document = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -406,7 +405,7 @@ public class DmdStructure {
                     String objectID = element.getAttribute("objectID");
                     String name = element.getAttribute("name");
                     String seqName = element.getAttribute("seqName");
-                    if (objectType.equals("Package") || objectType.equals("StProc") || objectType.equals("Function")) {
+                    if (objectType.equals("Package")) {
                         Procedure procedure =getProcedure(seqName,objectID,objectType);
                         procedure.setName(name);
                         schema.getStoredProcedures().put(procedure.getName(),procedure);
@@ -423,12 +422,8 @@ public class DmdStructure {
     protected Schema  analyseSql(Schema schema) {
         for (String key : schema.getStoredProcedures().keySet()) {
             String sql = schema.getStoredProcedures().get(key).getSqlCode();
-            System.out.println(sql);
-           /* CCJSqlParserManager pm = new CCJSqlParserManager();
-            Statement statement = pm.parse(new StringReader(sql.replaceFirst("^CREATE\\s+OR","")));
-            if (statement instanceof Replace) {
-
-            }*/
+            SqlPackageParser parser = new SqlPackageParser(sql);
+            parser.parse();
         }
 
         return schema;

@@ -51,6 +51,7 @@ public enum ColumnType  {
     XDBURITYPE,
     XMLTYPE,
     PL_SQL_RECORD,
+    BOOLEAN,
     UNKNOWN
 }
 

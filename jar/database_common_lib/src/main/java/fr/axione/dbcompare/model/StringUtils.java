@@ -22,15 +22,18 @@ public class StringUtils {
 
     public static String unzerializedHtml(String serialized) {
         String unzerializedHtml = serialized
-                .replace("&lt;br/&gt;", "\n")
-                .replace("&nbsp;"," ")
-                .replace("&quot;","\"")
-                .replace("&amp;","&")
-                .replace("&lt;","<")
-                .replace("&gt;",">")
-                .replace("<br>","\n")
-                .replace("<br/>"," ");
-
+                .replaceAll("&lt;br/&gt;", "\n")
+                .replaceAll("&lt;br&gt;", "\n")
+                .replaceAll("&nbsp;", " ")
+                .replaceAll("&quot;","\"")
+                .replaceAll("&amp;", "&")
+                .replaceAll("&apos;","'")
+                .replaceAll("&lt;","<")
+                .replaceAll("&gt;",">")
+                .replaceAll("<br>","\n")
+                .replaceAll("<br/>","\n")
+                //.replaceAll("//.*\\\\n|(\\\"(?:\\\\\\\\[^\\\"]|\\\\\\\\\\\"|.)*?\\\")|(?s)/\\\\*.*?\\\\*/"," ")
+                .replaceAll("\\s+", " ");
         return unzerializedHtml;
     }
 }
