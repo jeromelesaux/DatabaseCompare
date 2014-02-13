@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="SI_INFORMTN_SCHEMA" objectId="5174B74B-B3F0-DD28-9314-9CE93724D508" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjName>SI_INFORMTN_SCHEMA</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:40 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>DMDSdslPro</ownerDesignName>
+<importedID>11F8EA03-FEFD-6DAF-F222-9CEB6F879DBE</importedID>
+</SchemaObject>

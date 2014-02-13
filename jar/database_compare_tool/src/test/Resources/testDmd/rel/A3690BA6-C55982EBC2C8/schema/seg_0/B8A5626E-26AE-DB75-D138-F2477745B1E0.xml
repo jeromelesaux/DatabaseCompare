@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="APEX_040000" objectId="B8A5626E-26AE-DB75-D138-F2477745B1E0" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjName>APEX_040000</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:40 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>DMDSdslPro</ownerDesignName>
+<importedID>94AB843E-56A0-4F14-C6E3-36BD724225EB</importedID>
+</SchemaObject>

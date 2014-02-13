@@ -1,3 +1,4 @@
+
 import fr.axione.dbcompare.Tool.CmdLineTool;
 import org.junit.Test;
 

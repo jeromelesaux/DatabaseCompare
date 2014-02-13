@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="PROC_CREATION_FACTURATION_SDSL" id="FD7B54EA-14CA-81CA-AD3A-B689CAC0859B" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>PROC_CREATION_FACTURATION_SDSL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:38 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<owner>4FCC3A6A-181E-A36A-613B-7868309493E2</owner>
+<source>CREATE OR REPLACE PROCEDURE                    AXIONEUSER_FACTU.PROC_CREATION_FACTURATION_SDSL (DATE_MOIS in date , LIGNE_SERVICE in varchar  ) AS&lt;br/&gt;BEGIN&lt;br/&gt;proc_creation_fas_SDSL(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;proc_creation_abonnement_SDSL(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;proc_creation_resiliation_SDSL(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;PROC_UPDATE_FACTURATION(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;PROC_COMPOSANTE_SI(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;PROC_MES_HOTLINE(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;END PROC_CREATION_FACTURATION_SDSL;</source>
+<body>CREATE OR REPLACE PROCEDURE                    AXIONEUSER_FACTU.PROC_CREATION_FACTURATION_SDSL (DATE_MOIS in date , LIGNE_SERVICE in varchar  ) AS&lt;br/&gt;BEGIN&lt;br/&gt;proc_creation_fas_SDSL(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;proc_creation_abonnement_SDSL(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;proc_creation_resiliation_SDSL(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;PROC_UPDATE_FACTURATION(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;PROC_COMPOSANTE_SI(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;PROC_MES_HOTLINE(DATE_MOIS, LIGNE_SERVICE);&lt;br/&gt;END PROC_CREATION_FACTURATION_SDSL;</body>
+</StoredProcedureOraclev10g>

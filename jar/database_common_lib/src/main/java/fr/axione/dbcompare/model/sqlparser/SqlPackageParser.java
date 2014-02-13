@@ -49,7 +49,7 @@ public class SqlPackageParser {
         while (procedureMatcher.find()) {
             String procedureDeclaration = procedureMatcher.group(1);
             String procedureName = parseProcedureFunctionName(procedureDeclaration);
-            if (procedureName != null) {
+            if (procedureName != null && procedureName.length()>0) {
                 SqlProcedureFunction procedure = new SqlProcedureFunction();
                 procedure.setName(procedureName);
                 procedure.setArguments(parseArguments(procedureDeclaration));
@@ -88,41 +88,45 @@ public class SqlPackageParser {
         Pattern argsPattern = Pattern.compile("\\(([^)]*)");
         Matcher argsMatcher = argsPattern.matcher(declaration);
         while (argsMatcher.find()) {
-            String args = argsMatcher.group(1).replaceAll("\\s+"," ");
-            Pattern argPattern = Pattern.compile("\\s?([^\\s,]*)\\s([inoutINOUT\\s]+)?\\s+([^,$\\s]*),?");
-            Matcher argMatcher = argPattern.matcher(args);
-            while (argMatcher.find()) {
-                SqlArgument sqlArg = new SqlArgument(argMatcher.group(1));
-                String inOutOpt = argMatcher.group(2);
-                String type = argMatcher.group(3).toUpperCase();
-                if (type.contains("%ROWTYPE") || type.contains("%TYPE")) {
-                    sqlArg.setColumnPointer(type.replace("%ROWTYPE","").replace("%TYPE",""));
-                }
-                else {
-                    try {
-                        type = type.replace(' ','_').replace('/','_');
-                        ColumnType columnType = ColumnType.valueOf(type);
-                        sqlArg.setType(columnType == null ? ColumnType.UNKNOWN : columnType);
-                    }   catch (IllegalArgumentException e ) {
-                        sqlArg.setType(ColumnType.UNKNOWN);
-                    }
-                }
-                if (inOutOpt!=null) {
-                    inOutOpt = inOutOpt.toUpperCase();
-                    if (inOutOpt.contains("OUT") && inOutOpt.contains("IN")) {
-                        sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNINOUT);
-                    }
-                    else if (inOutOpt.contains("OUT")) {
-                        sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNOUT);
-                    }
-                    else if (inOutOpt.contains("IN")) {
-                        sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNIN);
+            String argsList = argsMatcher.group(1).replaceAll("\\s+"," ");
+            String[] args = argsList.split(",");
+            for (int i=0; i < args.length;i++) {
+                Pattern argPattern = Pattern.compile("^\\s?([^\\s]+)\\s([i][n]|[o][u][t]|[I][N]|[O][U][T]\\s]+)?\\s?([^$\\s]*)");
+                Matcher argMatcher = argPattern.matcher(args[i]);
+                while (argMatcher.find()) {
+                    SqlArgument sqlArg = new SqlArgument(argMatcher.group(1));
+                    String inOutOpt = argMatcher.group(2);
+                    String type = argMatcher.group(3).toUpperCase();
+                    if (type.contains("%ROWTYPE") || type.contains("%TYPE")) {
+                        sqlArg.setColumnPointer(type.replace("%ROWTYPE","").replace("%TYPE",""));
                     }
                     else {
-                        sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNUNKNOWN);
+                        try {
+                            type = type.replace(' ','_').replace('/','_');
+                            ColumnType columnType = ColumnType.valueOf(type);
+                            sqlArg.setType(columnType == null ? ColumnType.UNKNOWN : columnType);
+                        }   catch (IllegalArgumentException e ) {
+                            sqlArg.setType(ColumnType.UNKNOWN);
+                        }
                     }
+                    if (inOutOpt!=null) {
+                        inOutOpt = inOutOpt.toUpperCase();
+                        if (inOutOpt.contains("OUT") && inOutOpt.contains("IN")) {
+                            sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNINOUT);
+                        }
+                        else if (inOutOpt.contains("OUT")) {
+                            sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNOUT);
+                        }
+                        else if (inOutOpt.contains("IN")) {
+                            sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNIN);
+                        }
+                        else {
+                            sqlArg.setArgType(ProcedureColumnType.PROCEDURECOLUMNUNKNOWN);
+                        }
+                    }
+
+                    arguments.add(sqlArg);
                 }
-                arguments.add(sqlArg);
             }
 
         }

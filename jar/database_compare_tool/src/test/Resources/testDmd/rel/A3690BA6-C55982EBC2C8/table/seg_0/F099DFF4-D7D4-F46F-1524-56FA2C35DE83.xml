@@ -1,0 +1,194 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" objectId="F099DFF4-D7D4-F46F-1524-56FA2C35DE83" directorySegmentName="seg_0" name="T_FAE_CONFIG_FAI_DTI">
+    <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+    <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+    <sourceObjName>T_FAE_CONFIG_FAI_DTI</sourceObjName>
+    <createdBy>R.WATH</createdBy>
+    <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+    <generatorID>Généré par l&apos;utilisateur</generatorID>
+    <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+    <schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+    <pkName>PK_FAE_CONFIG_FAI_DTI</pkName>
+    <fonts>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Titre</foType>
+            <fontStyle>1</fontStyle>
+            <colorRGB>-16776961</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Colonne</foType>
+            <colorRGB>-16777216</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Type de données</foType>
+            <colorRGB>-16744448</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Elément de clé primaire</foType>
+            <colorRGB>-16776961</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Elément de clé étrangère</foType>
+            <colorRGB>-16777216</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Elément de clé unique</foType>
+            <colorRGB>-16776961</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Non NULL</foType>
+            <colorRGB>-65536</colorRGB>
+        </FontObject>
+        <FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+            <foType>Clé</foType>
+            <colorRGB>-16777216</colorRGB>
+        </FontObject>
+    </fonts>
+    <columns>
+        <Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID" objectId="6BB75157-8508-065D-9A68-81466C48E9EA">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>T_FAE_CONFIG_FAI_DTI</sourceObjSchema>
+            <sourceObjName>ID</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <useDomainConstraints>false</useDomainConstraints>
+            <use>1</use>
+            <logicalDatatype>LOGDT019</logicalDatatype>
+            <dataTypeSize>22</dataTypeSize>
+            <autoIncrementCycle>false</autoIncrementCycle>
+        </Column>
+        <Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_DTI" objectId="61185CE8-A470-74F8-5A3B-13A631F43DA2">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>T_FAE_CONFIG_FAI_DTI</sourceObjSchema>
+            <sourceObjName>ID_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <useDomainConstraints>false</useDomainConstraints>
+            <use>1</use>
+            <logicalDatatype>LOGDT019</logicalDatatype>
+            <dataTypeSize>22</dataTypeSize>
+            <delegate>E19C475F-13F9-5D78-DD98-411397D832E2</delegate>
+            <autoIncrementCycle>false</autoIncrementCycle>
+            <associations>
+                <colAssociation fkAssociation="0742A400-367A-CD1F-961E-66A1EF2F9C3F" referredColumn="E19C475F-13F9-5D78-DD98-411397D832E2"/>
+            </associations>
+        </Column>
+        <Column class="oracle.dbtools.crest.model.design.relational.Column" name="NOM_FAI" objectId="9F57CCED-D202-FA4E-3584-9472E4FFB9BD">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>T_FAE_CONFIG_FAI_DTI</sourceObjSchema>
+            <sourceObjName>NOM_FAI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <useDomainConstraints>false</useDomainConstraints>
+            <use>1</use>
+            <logicalDatatype>LOGDT024</logicalDatatype>
+            <dataTypeSize>100 BYTE</dataTypeSize>
+            <autoIncrementCycle>false</autoIncrementCycle>
+        </Column>
+        <Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_SOCIETE" objectId="DA60BB08-47F8-0436-0D4D-C558681BEB14">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>T_FAE_CONFIG_FAI_DTI</sourceObjSchema>
+            <sourceObjName>ID_SOCIETE</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <useDomainConstraints>false</useDomainConstraints>
+            <use>1</use>
+            <logicalDatatype>LOGDT019</logicalDatatype>
+            <dataTypeSize>22</dataTypeSize>
+            <delegate>3A40B7BD-047A-BCA7-A86F-E6668EE1A5C0</delegate>
+            <autoIncrementCycle>false</autoIncrementCycle>
+            <associations>
+                <colAssociation fkAssociation="FEE8A4C1-64B7-45DC-9529-87AAB3B2DCBD" referredColumn="3A40B7BD-047A-BCA7-A86F-E6668EE1A5C0"/>
+            </associations>
+        </Column>
+    </columns>
+    <indexes>
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="A9842D22-B1DA-0480-2C3C-0C41916CDB17" name="PK_FAE_CONFIG_FAI_DTI">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+            <sourceObjName>PK_FAE_CONFIG_FAI_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <pk>true</pk>
+            <indexState>Primary Constraint</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="6BB75157-8508-065D-9A68-81466C48E9EA"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="2239AE98-8DA1-0A38-28B7-44E341754D4D" name="UNI_FAE_CONFIG_FAI_DTI">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+            <sourceObjName>UNI_FAE_CONFIG_FAI_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <indexState>Unique Constraint</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="61185CE8-A470-74F8-5A3B-13A631F43DA2"/>
+                <colUsage columnID="9F57CCED-D202-FA4E-3584-9472E4FFB9BD"/>
+                <colUsage columnID="DA60BB08-47F8-0436-0D4D-C558681BEB14"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="3B28F694-BD8C-C3E5-7F53-563D4C022ACA" name="PK_FAE_CONFIG_FAI_DTI">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+            <sourceObjName>PK_FAE_CONFIG_FAI_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+            <indexState>Unique Plain Index</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="6BB75157-8508-065D-9A68-81466C48E9EA"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="21299D93-085B-2A88-0849-BF5A26090401" name="UNI_FAE_CONFIG_FAI_DTI">
+            <sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+            <sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+            <sourceObjName>UNI_FAE_CONFIG_FAI_DTI</sourceObjName>
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:34 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+            <indexState>Unique Plain Index</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="61185CE8-A470-74F8-5A3B-13A631F43DA2"/>
+                <colUsage columnID="9F57CCED-D202-FA4E-3584-9472E4FFB9BD"/>
+                <colUsage columnID="DA60BB08-47F8-0436-0D4D-C558681BEB14"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="A2347A41-3A75-3E80-F348-80C710133B37" name="FK_FAE_CONFIG_DTI">
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:35 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <indexState>Foreign Key</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="61185CE8-A470-74F8-5A3B-13A631F43DA2"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+        <ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="96EAC2F2-47B8-7B4E-94C1-CFDF6AC9BDD5" name="FK_FAE_CONFIG_SOCIETE">
+            <createdBy>R.WATH</createdBy>
+            <createdTime>2013-12-13 10:35:35 UTC</createdTime>
+            <generatorID>Généré par l&apos;utilisateur</generatorID>
+            <ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+            <indexState>Foreign Key</indexState>
+            <indexColumnUsage>
+                <colUsage columnID="DA60BB08-47F8-0436-0D4D-C558681BEB14"/>
+            </indexColumnUsage>
+        </ind_PK_UK>
+    </indexes>
+</Table>

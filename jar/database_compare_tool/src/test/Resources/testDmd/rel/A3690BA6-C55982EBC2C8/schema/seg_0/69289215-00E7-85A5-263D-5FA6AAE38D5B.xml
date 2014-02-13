@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="AXIONEUSER_PDCFTTHACTIF" objectId="69289215-00E7-85A5-263D-5FA6AAE38D5B" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjName>AXIONEUSER_PDCFTTHACTIF</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:40 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>DMDSdslPro</ownerDesignName>
+<importedID>94946FD8-D04A-2703-E2AC-FCFD2A412152</importedID>
+</SchemaObject>

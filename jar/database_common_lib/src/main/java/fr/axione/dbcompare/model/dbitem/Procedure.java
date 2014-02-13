@@ -1,6 +1,7 @@
 package fr.axione.dbcompare.model.dbitem;
 
 import fr.axione.dbcompare.analyse.Report;
+import fr.axione.dbcompare.model.common.PackageItemType;
 import fr.axione.dbcompare.model.common.ProcedureType;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class Procedure extends Report implements Serializable {
     String remark;
     String sqlCode;
     ProcedureType procedureType;
+    PackageItemType packageItemType;
     HashMap<String,ProcedureColumn> columns;
 
 
@@ -29,7 +31,13 @@ public class Procedure extends Report implements Serializable {
     }
 
 
+    public PackageItemType getPackageItemType() {
+        return packageItemType;
+    }
 
+    public void setPackageItemType(PackageItemType packageItemType) {
+        this.packageItemType = packageItemType;
+    }
 
     public String getName() {
         return name;

@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="ORDSYS" objectId="2AC93534-3716-C880-0150-CFB38A88CAAB" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjName>ORDSYS</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:40 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>DMDSdslPro</ownerDesignName>
+<importedID>1195A946-D736-BD1C-B5EF-77C96C638C35</importedID>
+</SchemaObject>

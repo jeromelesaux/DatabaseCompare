@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="F_HEX_TO_DECIMAL" id="6193042D-400A-0CA5-B977-EE0C4EF3A522" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>F_HEX_TO_DECIMAL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:40 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<owner>4FCC3A6A-181E-A36A-613B-7868309493E2</owner>
+<source>CREATE OR REPLACE FUNCTION                    AXIONEUSER_FACTU.F_HEX_TO_DECIMAL &lt;br/&gt;--this function is based on one by Connor McDonald   &lt;br/&gt;--http://www.jlcomp.demon.co.uk/faq/base_convert.html   &lt;br/&gt;( p_hex_str in varchar2 ) return number   &lt;br/&gt;is  &lt;br/&gt;v_dec   number;   &lt;br/&gt;v_hex   varchar2(16) := &apos;0123456789ABCDEF&apos;;   &lt;br/&gt;begin  &lt;br/&gt;v_dec := 0;   &lt;br/&gt;for indx in 1 .. length(p_hex_str)   &lt;br/&gt;loop   &lt;br/&gt;v_dec := v_dec * 16 + instr(v_hex,upper(substr(p_hex_str,indx,1)))-1;   &lt;br/&gt;end loop;   &lt;br/&gt;return v_dec;   &lt;br/&gt;end f_hex_to_decimal;</source>
+</FunctionOracle>

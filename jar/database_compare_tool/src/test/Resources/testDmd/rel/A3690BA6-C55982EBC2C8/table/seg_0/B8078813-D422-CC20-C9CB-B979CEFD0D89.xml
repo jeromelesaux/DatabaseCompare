@@ -1,0 +1,226 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" objectId="B8078813-D422-CC20-C9CB-B979CEFD0D89" directorySegmentName="seg_0" name="T_FAE_SFR_SDSL_PRO">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>T_FAE_SFR_SDSL_PRO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<pkName>PK_FAE_SFR_SDSL_PRO</pkName>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Titre</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Colonne</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Type de données</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elément de clé primaire</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elément de clé étrangère</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Elément de clé unique</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Non NULL</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Clé</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID" objectId="37699B34-6643-B579-0F44-C6F51D4000EA">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DSP" objectId="3B2C2164-39FD-4F0E-E8B8-87F16358D00E">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>DSP</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="FAI" objectId="A062F06C-392F-F6E4-B2E7-280C4C1705CE">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>FAI</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TOT_ABO" objectId="31CA55B9-33E0-5B16-5125-B803F01A6820">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>TOT_ABO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TOT_FAS" objectId="1E6A9D98-C007-56AC-FF96-83A572DFFE87">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>TOT_FAS</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TOT_RESIL" objectId="5534432B-8E95-DF91-38D8-47903A0AEF4C">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>TOT_RESIL</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TOT_AUTRES" objectId="9B1D0264-4FF7-4289-4696-29250320E48F">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>TOT_AUTRES</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATE_FACTURATION" objectId="D984384D-2A85-1624-A381-BF078FDF5297">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>T_FAE_SFR_SDSL_PRO</sourceObjSchema>
+<sourceObjName>DATE_FACTURATION</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="D0F9ADA3-A14E-14D5-70AB-F72C2F34FCAD" name="PK_FAE_SFR_SDSL_PRO">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>PK_FAE_SFR_SDSL_PRO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="37699B34-6643-B579-0F44-C6F51D4000EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="BF62D699-0D9D-9005-A674-0BDF4C3BBD0F" name="UNI_FAE_SFR_SDSL_PRO">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>UNI_FAE_SFR_SDSL_PRO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="3B2C2164-39FD-4F0E-E8B8-87F16358D00E"/>
+<colUsage columnID="A062F06C-392F-F6E4-B2E7-280C4C1705CE"/>
+<colUsage columnID="D984384D-2A85-1624-A381-BF078FDF5297"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="B204469A-58A3-6ADB-1CBD-F2138BF65F3D" name="PK_FAE_SFR_SDSL_PRO">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>PK_FAE_SFR_SDSL_PRO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<indexState>Unique Plain Index</indexState>
+<indexColumnUsage>
+<colUsage columnID="37699B34-6643-B579-0F44-C6F51D4000EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" objectId="11545717-D0A6-9E9A-68D7-967CB79BF795" name="UNI_FAE_SFR_SDSL_PRO">
+<sourceConnName>INT17_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjSchema>AXIONEUSER_FACTU</sourceObjSchema>
+<sourceObjName>UNI_FAE_SFR_SDSL_PRO</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2013-12-13 10:35:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-8 MCD-FACTUPRO V4.5.0</ownerDesignName>
+<schemaObject>C50DDAD5-A4F9-F8AD-8064-B4A67D88E8C6</schemaObject>
+<indexState>Unique Plain Index</indexState>
+<indexColumnUsage>
+<colUsage columnID="3B2C2164-39FD-4F0E-E8B8-87F16358D00E"/>
+<colUsage columnID="A062F06C-392F-F6E4-B2E7-280C4C1705CE"/>
+<colUsage columnID="D984384D-2A85-1624-A381-BF078FDF5297"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

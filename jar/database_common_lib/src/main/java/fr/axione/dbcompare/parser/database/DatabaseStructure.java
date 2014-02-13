@@ -1,10 +1,8 @@
 package fr.axione.dbcompare.parser.database;
 
-import fr.axione.dbcompare.model.common.ColumnType;
-import fr.axione.dbcompare.model.common.ConstraintType;
-import fr.axione.dbcompare.model.common.ProcedureColumnType;
-import fr.axione.dbcompare.model.common.ProcedureType;
+import fr.axione.dbcompare.model.common.*;
 import fr.axione.dbcompare.model.dbitem.*;
+import fr.axione.dbcompare.model.dbitem.Package;
 import fr.axione.dbcompare.parser.DatabaseFilter;
 
 import java.sql.*;
@@ -239,6 +237,7 @@ public class DatabaseStructure {
             String specificName = proceduresSet.getString("SPECIFIC_NAME");
             String procedureRemark = proceduresSet.getString("REMARKS");
 
+
             if (schema.getName().equals(procedureSchema)) {
                 Procedure procedure;
                 if (schema.getStoredProcedures().containsKey(name)){
@@ -250,6 +249,17 @@ public class DatabaseStructure {
                     procedure.setRemark(procedureRemark);
                     procedure.setProcedureType(getProcedureType(type));
                     procedure.setCatalogue(procedureCatalogue);
+                    if (procedureRemark.equals("Packaged function")) {
+                        procedure.setPackageItemType(PackageItemType.Function);
+                    }
+                    else if (procedureRemark.equals("Packaged procedure")) {
+                        procedure.setPackageItemType(PackageItemType.Procedure);
+                    }
+                    else {
+                        procedure.setPackageItemType(null);
+                    }
+
+                    //procedure.setPackageItemType();
                 }
 
                 ResultSet rs = meta.getProcedureColumns(schema.getCatalog(),
@@ -309,7 +319,21 @@ public class DatabaseStructure {
 
                 }
                 rs.close();
-                schema.getStoredProcedures().put(procedure.getName(), procedure);
+                Package pack = null;
+                if (procedureCatalogue == null) {
+                    // for unclassified Procedure
+                    procedureCatalogue ="STANDALONE";
+                }
+                if (schema.getPackages().containsKey(procedureCatalogue)) {
+                    pack = schema.getPackages().get(procedureCatalogue);
+                }
+                else {
+                    pack = new Package(schema);
+                    pack.setName(procedureCatalogue);
+                }
+                pack.getProcedures().add(procedure);
+                schema.getPackages().put(pack.getName(),pack);
+                //schema.getStoredProcedures().put(procedure.getName(), procedure);*/
             }
 
         }
@@ -517,7 +541,9 @@ public class DatabaseStructure {
         switch (in) {
             case DatabaseMetaData.procedureResultUnknown : return ProcedureType.PROCEDURERESULTUNKNOWN;
             case DatabaseMetaData.procedureReturnsResult : return ProcedureType.PROCEDURERETURNSRESULT;
+            case DatabaseMetaData.procedureNoResult : return ProcedureType.PROCEDURENORESULT;
             default : return ProcedureType.PROCEDURERESULTUNKNOWN;
         }
     }
+
 }

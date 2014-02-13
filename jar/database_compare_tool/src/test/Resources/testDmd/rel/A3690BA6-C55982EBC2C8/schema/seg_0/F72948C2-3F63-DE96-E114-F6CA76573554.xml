@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="ORACLE_OCM" objectId="F72948C2-3F63-DE96-E114-F6CA76573554" directorySegmentName="seg_0">
+<sourceConnName>DEV57_AXIONEUSER_FACTU</sourceConnName>
+<sourceObjName>ORACLE_OCM</sourceObjName>
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:40 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>DMDSdslPro</ownerDesignName>
+<importedID>1C38240F-AB2F-1B06-1929-5B945C19802E</importedID>
+</SchemaObject>

@@ -6,7 +6,9 @@ import fr.axione.dbcompare.analyse.ReportItem;
 import fr.axione.dbcompare.analyse.ReportItemDBType;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by jlesaux on 20/01/14.
@@ -20,6 +22,7 @@ public class Schema extends Report implements Serializable {
     HashMap<String,Index> indexes;
     HashMap<String, View> views;
     HashMap<String, Procedure> storedProcedures;
+    HashMap<String,Package> packages;
     //HashMap<String, Constraint> constraints;
 
     public Schema() {
@@ -28,6 +31,7 @@ public class Schema extends Report implements Serializable {
         views = new HashMap<String, View>();
         indexes = new HashMap<String, Index>();
         storedProcedures = new HashMap<String, Procedure>();
+        packages = new HashMap<String, Package>();
 
        // constraints = new HashMap<String, Constraint>();
 
@@ -77,6 +81,13 @@ public class Schema extends Report implements Serializable {
         this.indexes = indexes;
     }
 
+    public HashMap<String,Package> getPackages() {
+        return packages;
+    }
+
+    public void setPackages(HashMap<String,Package> packages) {
+        this.packages = packages;
+    }
 
 //    public HashMap<String, Constraint> getConstraints() {
 //        return constraints;

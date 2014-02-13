@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StorageDesignOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.StorageDesignOraclev11g" name="Oracle Database 11g" id="D0BBB098-A3C6-FA15-D966-D4E16FB8AC53">
+<createdBy>R.WATH</createdBy>
+<createdTime>2012-12-04 10:06:30 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ST-SYS-SIB-BD_FCTPRO-000009-5 MCD-FACTUPRO V5.0.0</ownerDesignName>
+<siteID>32076570-2523-435C-2E92-BF29817DFF70</siteID>
+<siteName>Oracle Database 11g</siteName>
+<siteType>9</siteType>
+</StorageDesignOraclev11g>

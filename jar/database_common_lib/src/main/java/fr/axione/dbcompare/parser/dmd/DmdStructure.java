@@ -3,10 +3,15 @@ package fr.axione.dbcompare.parser.dmd;
 
 import fr.axione.dbcompare.model.StringUtils;
 import fr.axione.dbcompare.model.common.ConstraintType;
+import fr.axione.dbcompare.model.common.PackageItemType;
 import fr.axione.dbcompare.model.dbitem.*;
+import fr.axione.dbcompare.model.dbitem.Package;
 import fr.axione.dbcompare.model.dmditem.ColumnDmdTypeMapper;
 import fr.axione.dbcompare.model.dmditem.DmdProjectConstants;
+import fr.axione.dbcompare.model.sqlparser.SqlArgument;
+import fr.axione.dbcompare.model.sqlparser.SqlPackage;
 import fr.axione.dbcompare.model.sqlparser.SqlPackageParser;
+import fr.axione.dbcompare.model.sqlparser.SqlProcedureFunction;
 import fr.axione.dbcompare.parser.DatabaseFilter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -406,9 +411,9 @@ public class DmdStructure {
                     String name = element.getAttribute("name");
                     String seqName = element.getAttribute("seqName");
                     if (objectType.equals("Package")) {
-                        Procedure procedure =getProcedure(seqName,objectID,objectType);
-                        procedure.setName(name);
-                        schema.getStoredProcedures().put(procedure.getName(),procedure);
+                        Package pack = getPackage(seqName, objectID, objectType);
+                        pack.setName(name);
+                        schema.getPackages().put(pack.getName(),pack);
                     }
                 }
             }
@@ -420,20 +425,50 @@ public class DmdStructure {
     }
 
     protected Schema  analyseSql(Schema schema) {
-        for (String key : schema.getStoredProcedures().keySet()) {
-            String sql = schema.getStoredProcedures().get(key).getSqlCode();
+        for (String key: schema.getPackages().keySet()) {
+            Package pack = schema.getPackages().get(key);
+            String sql = pack.getSqlCode();
             SqlPackageParser parser = new SqlPackageParser(sql);
             parser.parse();
+            SqlPackage sqlPackage = parser.getSqlPackage();
+
+            for (SqlProcedureFunction proc : sqlPackage.getProcedures()) {
+                Procedure procedure = new Procedure(schema);
+                procedure.setCatalogue(sqlPackage.getCatalogue());
+                procedure.setName(proc.getName());
+                procedure.setPackageItemType(PackageItemType.Procedure);
+                for (SqlArgument arg : proc.getArguments()) {
+                    ProcedureColumn column = new ProcedureColumn();
+                    column.setName(arg.getName());
+                    column.setProcedureColumnType(arg.getArgType());
+                    column.setType(arg.getType());
+                    procedure.getColumns().put(column.getName(),column);
+                }
+                 pack.getProcedures().add(procedure);
+            }
+            for (SqlProcedureFunction proc : sqlPackage.getFunctions()) {
+                Procedure function = new Procedure(schema);
+                function.setCatalogue(sqlPackage.getCatalogue());
+                function.setName(sqlPackage.getName());
+                function.setPackageItemType(PackageItemType.Function);
+                for (SqlArgument arg : proc.getArguments()) {
+                    ProcedureColumn column = new ProcedureColumn();
+                    column.setName(arg.getName());
+                    column.setProcedureColumnType(arg.getArgType());
+                    column.setType(arg.getType());
+                    function.getColumns().put(column.getName(),column);
+                }
+                pack.getProcedures().add(function);
+            }
+            schema.getPackages().put(pack.getName(),pack);
         }
 
         return schema;
     }
 
-    protected Procedure getProcedure(String seqName, String filename, String type)
+    protected Package getPackage(String seqName, String filename, String type)
             throws ParserConfigurationException, IOException, SAXException {
-
-        Procedure procedure = new Procedure(schema);
-        String sourceCode = null;
+        Package dmdPackage = new Package();
         Document document = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -448,15 +483,16 @@ public class DmdStructure {
             if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE )  {
                 element = (Element)childNodes.item(i);
                 if (element.getNodeName().equals("source")) {
-                    sourceCode = element.getFirstChild().getTextContent();
+
+                    String sourceCode = element.getFirstChild().getTextContent();
                     sourceCode = StringUtils.unzerializedHtml(sourceCode);
-                    procedure.setSqlCode(sourceCode);
-                    procedure.setRemark(type);
+                    dmdPackage.setSqlCode(sourceCode);
+
                     break;
                 }
             }
         }
 
-        return procedure;
+        return dmdPackage;
     }
 }
