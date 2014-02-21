@@ -6,14 +6,14 @@
     <parent>
         <groupId>fr.axione.DatabaseCompare</groupId>
         <artifactId>database-compare</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <groupId>fr.axione.DatabaseCompare</groupId>
     <artifactId>database-compare-tool</artifactId>
     <name>DatabaseCompare tool</name>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
 
     <packaging>jar</packaging>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>fr.axione.DatabaseCompare</groupId>
             <artifactId>database-common-lib</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -46,7 +46,7 @@
     </dependencies>
 
     <build>
-<!--        <resources>
+        <resources>
             <resource>
                 <directory>src/test</directory>
                 <excludes>
@@ -54,7 +54,7 @@
                 </excludes>
                 <filtering>false</filtering>
             </resource>
-        </resources>-->
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
