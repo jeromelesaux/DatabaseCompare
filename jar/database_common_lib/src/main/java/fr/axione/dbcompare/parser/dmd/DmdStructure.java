@@ -22,6 +22,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -33,7 +34,13 @@ public class DmdStructure {
     DmdProjectConstants dmdConstants;
     Schema schema;
     DatabaseFilter filter;
-
+    XPathFactory xPathFactory;
+    private static String SCHEMA_NAME_XPATH = "/relationalModel/importConnectionStamps/importConnectionStamp/connUser/text()";
+    private static String OBJECTS_ROOT_XPATH = "/oracle.dbtools.crest.model.design.relational.RelationalDesign/object";
+    private static String COLUMNS_ROOT_XPATH ="/Table/columns/Column";
+    private static String FOREIGNKEY_ROOT_XPATH = "/Table/indexes/ind_PK_UK";
+    private static String VIEWS_ROOT_XPATH = "/TableView/viewElements/viewElement";
+    private static String PACKAGE_BODY_XPATH = "/PackageOracle/body/source/text()";
 
     public Schema getSchema(String xmlRootFilePath)  throws Exception {
         return getSchema(xmlRootFilePath,new DatabaseFilter());
@@ -43,6 +50,7 @@ public class DmdStructure {
     public Schema getSchema(String xmlRootFilePath, DatabaseFilter filter) throws Exception {
         dmdConstants = new DmdProjectConstants(xmlRootFilePath);
         this.filter = filter;
+        xPathFactory = XPathFactory.newInstance();
 
         schema = new Schema();
 
@@ -52,47 +60,25 @@ public class DmdStructure {
         return schema;
     }
 
-    public Schema getSchemaName(Schema schema) throws IOException, SAXException, ParserConfigurationException {
+    public Schema getSchemaName(Schema schema) throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
         Document document = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.parse(dmdConstants.getSchemaObjectFilePath());
         document.getDocumentElement().normalize();
-
-        Element rootElement = document.getDocumentElement();
-        NodeList childNodes= rootElement.getChildNodes();
-
-        for (int i=0; i<childNodes.getLength(); i++){
-            Element element = null;
-            if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                element = (Element)childNodes.item(i);
-                if ( element.getNodeName().equals("importConnectionStamps")) {
-                    NodeList connectionStampsChild = element.getChildNodes();
-                    for (int j = 0 ; j < connectionStampsChild.getLength(); j++) {
-                        if ( connectionStampsChild.item(j).getNodeType() == Node.ELEMENT_NODE ) {
-                            if (connectionStampsChild.item(j).getNodeName().equals("importConnectionStamp")) {
-                                NodeList connectionStampChild = connectionStampsChild.item(j).getChildNodes();
-                                for (int k = 0 ; k < connectionStampChild.getLength();k++) {
-                                    if ( connectionStampChild.item(k).getNodeType() == Node.ELEMENT_NODE ) {
-                                        if (connectionStampChild.item(k).getNodeName().equals("connUser")) {
-                                            String schemaName = connectionStampChild.item(k).getFirstChild().getTextContent();
-                                            schema.setName(schemaName);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        XPath xPath = xPathFactory.newXPath();
+        XPathExpression xPathExpression = xPath.compile(SCHEMA_NAME_XPATH);
+        NodeList nodes = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
+        if (nodes.getLength()>0) {
+            String schemaName = nodes.item(0).getNodeValue();
+            schema.setName(schemaName);
         }
 
         return schema;
     }
 
     public Schema parseObjectsLocalFile(Schema schema)
-            throws IOException, SAXException, ParserConfigurationException {
+            throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
         schema = getSchemaName(schema);
 
         Document document = null;
@@ -100,44 +86,41 @@ public class DmdStructure {
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.parse(dmdConstants.getObjectsLocalFilePath());
         document.getDocumentElement().normalize();
+        XPath xPath = xPathFactory.newXPath();
+        XPathExpression xPathExpression = xPath.compile(OBJECTS_ROOT_XPATH);
+        NodeList childNodes = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
 
-        Element rootElement = document.getDocumentElement();
-        NodeList childNodes= rootElement.getChildNodes();
 
         for (int i=0; i<childNodes.getLength(); i++){
+            Element element = (Element)childNodes.item(i);
 
-            Element element = null;
-            if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                element = (Element)childNodes.item(i);
-                if ( element.getNodeName().equals("object")) {
-                    String objectType = element.getAttribute("objectType");
-                    String objectID = element.getAttribute("objectID");
-                    String name = element.getAttribute("name");
-                    String seqName = element.getAttribute("seqName");
+            String objectType = element.getAttribute("objectType");
+            String objectID = element.getAttribute("objectID");
+            String name = element.getAttribute("name");
+            String seqName = element.getAttribute("seqName");
 
-                    if (objectType.equals("Table") && filter.tableMatchesRegex(name)) {
-                        Table table = new Table(name,schema);
-                        table.setObjectId(objectID);
-                        table.setSeqName(seqName);
-                        schema.getTables().put(table.getName(),table);
-                    }
-                    else if (objectType.equals("View") && filter.viewMatchesRegex(name)) {
-                        View view = new View(name,schema);
-                        view.setObjectId(objectID);
-                        view.setSeqName(seqName);
-                        schema.getViews().put(view.getName(),view);
-                    }
-                    else if (objectType.equals("FKIndexAssociation")) {
-                        Index index = new Index(schema);
-                        index.setName(name);
-                        index.setObjectId(objectID);
-                        index.setSeqName(seqName);
-                        index.getTypes().add(ConstraintType.FOREIGN_KEY);
-                        schema.getIndexes().put(index.getName(),index);
-                    }
-//                    System.out.println(element.getNodeName() + " " + objectType + " " + objectID + " " + name + " " + seqName);
-                }
+            if (objectType.equals("Table") && filter.tableMatchesRegex(name)) {
+                Table table = new Table(name,schema);
+                table.setObjectId(objectID);
+                table.setSeqName(seqName);
+                schema.getTables().put(table.getName(),table);
             }
+            else if (objectType.equals("View") && filter.viewMatchesRegex(name)) {
+                View view = new View(name,schema);
+                view.setObjectId(objectID);
+                view.setSeqName(seqName);
+                schema.getViews().put(view.getName(),view);
+            }
+            else if (objectType.equals("FKIndexAssociation")) {
+                Index index = new Index(schema);
+                index.setName(name);
+                index.setObjectId(objectID);
+                index.setSeqName(seqName);
+                index.getTypes().add(ConstraintType.FOREIGN_KEY);
+                schema.getIndexes().put(index.getName(),index);
+            }
+//                    System.out.println(element.getNodeName() + " " + objectType + " " + objectID + " " + name + " " + seqName);
+
         }
 
 
@@ -150,48 +133,47 @@ public class DmdStructure {
 
 
     protected Schema getForeignKey(Schema schema) throws ParserConfigurationException, IOException, SAXException {
-             for (String key : schema.getIndexes().keySet()){
-                 Index index = schema.getIndexes().get(key);
-                 if (index.getTypes().contains(ConstraintType.FOREIGN_KEY)) {
-                     String filePath = dmdConstants.getRelDirectoryPath() + File.separator + index.getXmlFilePath();
-                     Document document = null;
-                     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-                     DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-                     document = documentBuilder.parse(filePath);
-                     document.getDocumentElement().normalize();
-                     Element rootElement = document.getDocumentElement();
-                     NodeList childNodes= rootElement.getChildNodes();
-                     for (int i=0; i<childNodes.getLength(); i++){
-                         if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                             Element element = (Element)childNodes.item(i);
-                             String tableObjectId = null;
-                             if (element.getNodeName().equals("containerWithKeyObject")) {
-                                 tableObjectId = element.getFirstChild().getTextContent();
-                                 Table table = schema.getTableByObjectId(tableObjectId);
-                                 System.out.println(tableObjectId);
-                             }
-                             else if (element.getNodeName().equals("keyObject"))  {
-                                 String indexPk = element.getFirstChild().getTextContent();
-                                 Index pkIndex = schema.getIndexByObjectId(indexPk);
-                                 if (pkIndex != null) {
+        for (String key : schema.getIndexes().keySet()){
+            Index index = schema.getIndexes().get(key);
+            if (index.getTypes().contains(ConstraintType.FOREIGN_KEY)) {
+                String filePath = dmdConstants.getRelDirectoryPath() + File.separator + index.getXmlFilePath();
+                Document document = null;
+                DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+                document = documentBuilder.parse(filePath);
+                document.getDocumentElement().normalize();
+                Element rootElement = document.getDocumentElement();
+                NodeList childNodes= rootElement.getChildNodes();
+                for (int i=0; i<childNodes.getLength(); i++){
 
-                                 }
-                             }
-                             else if (element.getNodeName().equals("localFKIndex")) {
-                                 String indexFk = element.getFirstChild().getTextContent();
-                                 Index fkIndex = schema.getIndexByObjectId(indexFk);
-                                 if (fkIndex != null) {
+                    Element element = (Element)childNodes.item(i);
+                    String tableObjectId = null;
+                    if (element.getNodeName().equals("containerWithKeyObject")) {
+                        tableObjectId = element.getFirstChild().getTextContent();
+                        Table table = schema.getTableByObjectId(tableObjectId);
+                        System.out.println(tableObjectId);
+                    }
+                    else if (element.getNodeName().equals("keyObject"))  {
+                        String indexPk = element.getFirstChild().getTextContent();
+                        Index pkIndex = schema.getIndexByObjectId(indexPk);
+                        if (pkIndex != null) {
 
-                                 }
-                             }
-                         }
-                     }
-                 }
-             }
+                        }
+                    }
+                    else if (element.getNodeName().equals("localFKIndex")) {
+                        String indexFk = element.getFirstChild().getTextContent();
+                        Index fkIndex = schema.getIndexByObjectId(indexFk);
+                        if (fkIndex != null) {
+
+                        }
+                    }
+                }
+            }
+        }
         return schema;
     }
 
-    protected Schema getTables(Schema schema) throws ParserConfigurationException, IOException, SAXException {
+    protected Schema getTables(Schema schema) throws ParserConfigurationException, IOException, SAXException, XPathExpressionException {
 
         for (String tableName : schema.getTables().keySet()){
             Table table = schema.getTables().get(tableName);
@@ -201,132 +183,115 @@ public class DmdStructure {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             document = documentBuilder.parse(filePath);
             document.getDocumentElement().normalize();
-            Element rootElement = document.getDocumentElement();
-            NodeList childNodes= rootElement.getChildNodes();
+            XPath xPath = xPathFactory.newXPath();
+            XPathExpression xPathExpression = xPath.compile(COLUMNS_ROOT_XPATH);
+            NodeList childNodes = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
 
             for (int i=0; i<childNodes.getLength(); i++){
+                Element columnElement = (Element)childNodes.item(i);
+                String objectID = columnElement.getAttribute("objectId");
+                String name = columnElement.getAttribute("name");
+                Column column = new Column(name,table);
+                column.setObjectId(objectID);
+                if (filter.columnMatchesRegex(name)) {
+                    NodeList columnsAttribute = columnElement.getChildNodes();
+                    for (int h=0; h<columnsAttribute.getLength(); h++) {
+                        Node item = columnsAttribute.item(h);
 
-                Element element = null;
-                // parsing of the columns
-                if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals("columns")) {
-                    NodeList columnsElements = childNodes.item(i).getChildNodes();
-                    for (int j=0;j<columnsElements.getLength();j++){
-                        Element columnElement = null;
-                        if (columnsElements.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                            columnElement = (Element)columnsElements.item(j);
-                            if (columnElement.getNodeName().equals("Column")) {
-                                String objectID = columnElement.getAttribute("objectId");
-                                String name = columnElement.getAttribute("name");
-                                Column column = new Column(name,table);
-                                column.setObjectId(objectID);
-                                if (filter.columnMatchesRegex(name)) {
-                                    NodeList columnsAttribute = columnElement.getChildNodes();
-                                    for (int h=0; h<columnsAttribute.getLength(); h++) {
-                                        Node item = columnsAttribute.item(h);
+                        if (item.getNodeType() == Node.ELEMENT_NODE) {
+                            if ( item.getNodeName().equals("logicalDatatype")) {
+                                String sqlType = item.getFirstChild().getTextContent();
+                                column.setType(ColumnDmdTypeMapper.getColumnType(sqlType));
+                            }
+                            else if ( item.getNodeName().equals("dataTypeSize")) {
+                                String size = item.getFirstChild().getTextContent();
+                                column.setSize(Integer.valueOf(size.replace(" BYTE","")));
+                            }
+                            else if ( item.getNodeName().equals("dataTypePrecision")) {
+                                String size = item.getFirstChild().getTextContent();
+                                column.setSize(Integer.valueOf(size));
+                            }
+                            else if ( item.getNodeName().equals("nullsAllowed")) {
+                                String isNullable = item.getFirstChild().getTextContent();
+                                column.setNullable(Boolean.valueOf(isNullable));
+                            }
+                            else if ( item.getNodeName().equals("pk")) {
+                                String isPrimaryKey = item.getFirstChild().getTextContent();
+                                column.setIsPrimaryKey(Boolean.valueOf(isPrimaryKey));
+                            }
+                        }
+                    }
+                    table.getColumns().put(column.getName(),column);
+                }
+            }
 
-                                        if (item.getNodeType() == Node.ELEMENT_NODE) {
-                                            if ( item.getNodeName().equals("logicalDatatype")) {
-                                                String sqlType = item.getFirstChild().getTextContent();
-                                                column.setType(ColumnDmdTypeMapper.getColumnType(sqlType));
-                                            }
-                                            else if ( item.getNodeName().equals("dataTypeSize")) {
-                                                String size = item.getFirstChild().getTextContent();
-                                                column.setSize(Integer.valueOf(size.replace(" BYTE","")));
-                                            }
-                                            else if ( item.getNodeName().equals("dataTypePrecision")) {
-                                                String size = item.getFirstChild().getTextContent();
-                                                column.setSize(Integer.valueOf(size));
-                                            }
-                                            else if ( item.getNodeName().equals("nullsAllowed")) {
-                                                String isNullable = item.getFirstChild().getTextContent();
-                                                column.setNullable(Boolean.valueOf(isNullable));
-                                            }
-                                            else if ( item.getNodeName().equals("pk")) {
-                                                String isPrimaryKey = item.getFirstChild().getTextContent();
+            xPathExpression = xPath.compile(FOREIGNKEY_ROOT_XPATH);
+            childNodes = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
+
+
+
+            for(int j=0;j<childNodes.getLength();j++) {
+                Element columnElement = (Element)childNodes.item(j);
+
+                String name = columnElement.getAttribute("name");
+                String objectID = columnElement.getAttribute("objectId");
+                Index index;
+                if ( schema.getIndexes().containsKey(name)) {
+                    index = schema.getIndexes().get(name);
+                }
+                else {
+                    index = new Index(name,schema);
+                    index.setObjectId(objectID);
+                    schema.getIndexes().put(index.getName(),index);
+                }
+
+                NodeList columnsAttribute = columnElement.getChildNodes();
+                String isPrimaryKey=null;
+                for (int h=0; h<columnsAttribute.getLength(); h++) {
+                    Node item = columnsAttribute.item(h);
+                    if (item.getNodeType() == Node.ELEMENT_NODE) {
+                        if (item.getNodeName().equals("pk")) {
+                            isPrimaryKey = item.getFirstChild().getTextContent();
+                        }
+                        else if (item.getNodeName().equals("indexState")) {
+                            String indexType =  item.getFirstChild().getTextContent();
+                            // System.out.println(table.getObjectId() + " " + table.getName() +" " +  index.getName() + " " + indexType);
+                            ConstraintType type = ConstraintType.valueOf(indexType.toUpperCase().replaceAll(" ","_"));
+
+                            // to debug
+                            //System.out.println("table : " + tableName + "."   + name + " got index type " + String.valueOf(type));
+
+                            index.getTypes().add(type != null ? type : ConstraintType.UNKNOWN);
+                        }
+                        else if (item.getNodeName().equals("indexColumnUsage")) {
+                            NodeList childIndexNodes = item.getChildNodes();
+                            for (int k =0 ; k < childIndexNodes.getLength(); k++) {
+                                if (childIndexNodes.item(k).getNodeType() == Node.ELEMENT_NODE) {
+                                    Element colUsageElement = (Element)childIndexNodes.item(k);
+                                    if (colUsageElement.getNodeName().equals("colUsage")) {
+                                        String columnObjectId = colUsageElement.getAttribute("columnID");
+                                        Column column = table.getColumnByObjectId(columnObjectId);
+                                        if ( column != null) {
+                                            if ( isPrimaryKey != null) {
                                                 column.setIsPrimaryKey(Boolean.valueOf(isPrimaryKey));
+                                                index.getTypes().add(ConstraintType.PRIMARY_CONSTRAINT);
                                             }
-                                        }
-                                    }
-                                    table.getColumns().put(column.getName(),column);
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals("indexes")) {
-                    // parsing of the indexes
-                    NodeList indexElement = childNodes.item(i).getChildNodes();
-                    for (int j=0;j<indexElement.getLength();j++){
-                        Element columnElement = null;
-                        if (indexElement.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                            columnElement = (Element)indexElement.item(j);
-                            if (columnElement.getNodeName().equals("ind_PK_UK")) {
-                                String name = columnElement.getAttribute("name");
-                                String objectID = columnElement.getAttribute("objectId");
-                                Index index;
-                                if ( schema.getIndexes().containsKey(name)) {
-                                    index = schema.getIndexes().get(name);
-                                }
-                                else {
-                                    index = new Index(name,schema);
-                                    index.setObjectId(objectID);
-                                    schema.getIndexes().put(index.getName(),index);
-                                }
-
-                                NodeList columnsAttribute = columnElement.getChildNodes();
-                                String isPrimaryKey=null;
-                                for (int h=0; h<columnsAttribute.getLength(); h++) {
-                                    Node item = columnsAttribute.item(h);
-                                    if (item.getNodeType() == Node.ELEMENT_NODE) {
-                                        if (item.getNodeName().equals("pk")) {
-                                             isPrimaryKey = item.getFirstChild().getTextContent();
-                                        }
-                                        else if (item.getNodeName().equals("indexState")) {
-                                            String indexType =  item.getFirstChild().getTextContent();
-                                           // System.out.println(table.getObjectId() + " " + table.getName() +" " +  index.getName() + " " + indexType);
-                                            ConstraintType type = ConstraintType.valueOf(indexType.toUpperCase().replaceAll(" ","_"));
-
-                                            // to debug
-                                            //System.out.println("table : " + tableName + "."   + name + " got index type " + String.valueOf(type));
-
-                                            index.getTypes().add(type != null ? type : ConstraintType.UNKNOWN);
-                                        }
-                                        else if (item.getNodeName().equals("indexColumnUsage")) {
-                                            NodeList childIndexNodes = item.getChildNodes();
-                                            for (int k =0 ; k < childIndexNodes.getLength(); k++) {
-                                               Element indexColumnElement = null;
-                                                if (childIndexNodes.item(k).getNodeType() == Node.ELEMENT_NODE) {
-                                                    Element colUsageElement = (Element)childIndexNodes.item(k);
-                                                    if (colUsageElement.getNodeName().equals("colUsage")) {
-                                                        String columnObjectId = colUsageElement.getAttribute("columnID");
-                                                        Column column = table.getColumnByObjectId(columnObjectId);
-                                                        if ( column != null) {
-                                                            if ( isPrimaryKey != null) {
-                                                                column.setIsPrimaryKey(Boolean.valueOf(isPrimaryKey));
-                                                                index.getTypes().add(ConstraintType.PRIMARY_CONSTRAINT);
-                                                            }
-                                                            if (!index.getColumns().contains(column)) {
-                                                                index.getColumns().add(column);
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                            if (!index.getColumns().contains(column)) {
+                                                index.getColumns().add(column);
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-
                     }
                 }
-
             }
         }
         return schema;
     }
 
-    protected Schema getViews(Schema schema) throws ParserConfigurationException, IOException, SAXException {
+    protected Schema getViews(Schema schema) throws ParserConfigurationException, IOException, SAXException, XPathExpressionException {
 
         for (String viewName : schema.getViews().keySet()){
             View view = schema.getViews().get(viewName);
@@ -336,51 +301,42 @@ public class DmdStructure {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             document = documentBuilder.parse(filePath);
             document.getDocumentElement().normalize();
-            Element rootElement = document.getDocumentElement();
-            NodeList childNodes= rootElement.getChildNodes();
-
+            XPath xPath = xPathFactory.newXPath();
+            XPathExpression xPathExpression = xPath.compile(VIEWS_ROOT_XPATH);
+            NodeList childNodes = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
             for (int i=0; i<childNodes.getLength(); i++){
-                Element element = null;
-                // parsing of the columns
-                if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals("viewElements")) {
-                    NodeList columnsElements = childNodes.item(i).getChildNodes();
-                    for (int j=0;j<columnsElements.getLength();j++){
-                        Element columnElement = null;
-                        if (columnsElements.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                            columnElement = (Element)columnsElements.item(j);
-                            if (columnElement.getNodeName().equals("viewElement")) {
-                                String objectID = columnElement.getAttribute("objectId");
-                                String name = columnElement.getAttribute("name");
-                                Column column = new Column();
-                                column.setName(name);
-                                column.setObjectId(objectID);
-                                if (filter.columnMatchesRegex(name)) {
-                                    NodeList columnsAttribute = columnElement.getChildNodes();
-                                    for (int h=0; h<columnsAttribute.getLength(); h++) {
-                                        Node item = columnsAttribute.item(h);
 
-                                        if (item.getNodeType() == Node.ELEMENT_NODE) {
-                                            if ( item.getNodeName().equals("dataType")) {
-                                                String sqlType = item.getFirstChild().getTextContent();
-                                                int size = 1;
-                                                if (sqlType.contains("(")) {
-                                                    String sizeValue = sqlType.replaceFirst(".*?\\((\\d+)(,\\s?\\d+)?(\\s?BYTE)?\\)$", "$1");
-                                                    size = Integer.valueOf(sizeValue);
-                                                }
-                                                column.setType(ColumnDmdTypeMapper.getColumnType(sqlType));
-                                                column.setSize(size);
-                                            }
-                                            else if ( item.getNodeName().equals("nullsAllowed")) {
-                                                String isNullable = item.getFirstChild().getTextContent();
-                                                column.setNullable(Boolean.valueOf(isNullable));
-                                            }
+                if (childNodes.item(i).getNodeName().equals("viewElement")) {
+                    Element columnElement = (Element) childNodes.item(i);
+                    String objectID = columnElement.getAttribute("objectId");
+                    String name = columnElement.getAttribute("name");
+                    Column column = new Column();
+                    column.setName(name);
+                    column.setObjectId(objectID);
+                    if (filter.columnMatchesRegex(name)) {
+                        NodeList columnsAttribute = columnElement.getChildNodes();
+                        for (int h=0; h<columnsAttribute.getLength(); h++) {
+                            Node item = columnsAttribute.item(h);
 
-                                        }
+                            if (item.getNodeType() == Node.ELEMENT_NODE) {
+                                if ( item.getNodeName().equals("dataType")) {
+                                    String sqlType = item.getFirstChild().getTextContent();
+                                    int size = 1;
+                                    if (sqlType.contains("(")) {
+                                        String sizeValue = sqlType.replaceFirst(".*?\\((\\d+)(,\\s?\\d+)?(\\s?BYTE)?\\)$", "$1");
+                                        size = Integer.valueOf(sizeValue);
                                     }
-                                    view.getColumns().put(column.getName(),column);
+                                    column.setType(ColumnDmdTypeMapper.getColumnType(sqlType));
+                                    column.setSize(size);
                                 }
+                                else if ( item.getNodeName().equals("nullsAllowed")) {
+                                    String isNullable = item.getFirstChild().getTextContent();
+                                    column.setNullable(Boolean.valueOf(isNullable));
+                                }
+
                             }
                         }
+                        view.getColumns().put(column.getName(),column);
                     }
                 }
             }
@@ -390,7 +346,7 @@ public class DmdStructure {
 
 
     protected Schema parsePhysObjectsLocalFile(Schema schema)
-            throws IOException, SAXException, ParserConfigurationException  {
+            throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
         Document document = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -444,7 +400,7 @@ public class DmdStructure {
                     column.setType(arg.getType());
                     procedure.getColumns().put(column.getName(),column);
                 }
-                 pack.getProcedures().add(procedure);
+                pack.getProcedures().add(procedure);
             }
             for (SqlProcedureFunction proc : sqlPackage.getFunctions()) {
                 Procedure function = new Procedure(schema);
@@ -467,7 +423,7 @@ public class DmdStructure {
     }
 
     protected Package getPackage(String seqName, String filename, String type)
-            throws ParserConfigurationException, IOException, SAXException {
+            throws ParserConfigurationException, IOException, SAXException, XPathExpressionException {
         Package dmdPackage = new Package();
         Document document = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -475,24 +431,15 @@ public class DmdStructure {
         document = documentBuilder.parse(dmdConstants.getPhysDirectoryPath() + File.separator + type + File.separator + seqName + File.separator + filename + ".xml" );
         document.getDocumentElement().normalize();
 
-        Element rootElement = document.getDocumentElement();
-        NodeList childNodes= rootElement.getChildNodes();
-        for (int i=0; i<childNodes.getLength(); i++){
-            Element element = null;
-            // parsing of the columns
-            if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE )  {
-                element = (Element)childNodes.item(i);
-                if (element.getNodeName().equals("source")) {
+        XPath xPath = xPathFactory.newXPath();
+        XPathExpression xPathExpression = xPath.compile(PACKAGE_BODY_XPATH);
+        NodeList nodes = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
 
-                    String sourceCode = element.getFirstChild().getTextContent();
-                    sourceCode = StringUtils.unzerializedHtml(sourceCode);
-                    dmdPackage.setSqlCode(sourceCode);
-
-                    break;
-                }
-            }
+        if (nodes.getLength()>0) {
+            String sourceCode = nodes.item(0).getNodeValue();
+            sourceCode = StringUtils.unzerializedHtml(sourceCode);
+            dmdPackage.setSqlCode(sourceCode);
         }
-
         return dmdPackage;
     }
 }
