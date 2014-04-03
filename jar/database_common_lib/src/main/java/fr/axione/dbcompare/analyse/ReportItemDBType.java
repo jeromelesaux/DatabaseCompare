@@ -9,5 +9,6 @@ public enum ReportItemDBType {
     Index,
     Foreign_Key,
     Column_Type,
-    Column_Size
+    Column_Size,
+    Procedure
 }

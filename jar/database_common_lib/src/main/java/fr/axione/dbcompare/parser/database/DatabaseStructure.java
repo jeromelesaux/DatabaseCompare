@@ -218,8 +218,9 @@ public class DatabaseStructure {
             while (resultSet.next()) {
                 result += resultSet.getString("TEXT");
             }
+            procedure.setSqlCodeLoaded(true);
             resultSet.close();
-            procedure.setSqlCode(result);
+            procedure.setBodySsqlCode(result);
         }
 
         return procedure;
