@@ -10,5 +10,6 @@ public enum ReportItemDBType {
     Foreign_Key,
     Column_Type,
     Column_Size,
-    Procedure
+    Procedure,
+    Package;
 }

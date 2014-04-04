@@ -31,9 +31,18 @@ public class StringUtils {
                 .replaceAll("&lt;","<")
                 .replaceAll("&gt;",">")
                 .replaceAll("<br>","\n")
-                .replaceAll("<br/>","\n")
+                .replaceAll("<br/>","\n");
                 //.replaceAll("//.*\\\\n|(\\\"(?:\\\\\\\\[^\\\"]|\\\\\\\\\\\"|.)*?\\\")|(?s)/\\\\*.*?\\\\*/"," ")
-                .replaceAll("\\s+", " ");
+               // .replaceAll("\\s+", " ");
         return unzerializedHtml;
+    }
+
+    public static String cleanString(String sqlcode) {
+        String cleanedString = sqlcode.toUpperCase()
+                .replaceAll("\\s+","")
+                .replaceAll("[\\n\\r]","")
+                .replaceAll("/*[^(*/)]*/","")
+                .replaceAll("CREATEORREPLACE","");
+        return cleanedString;
     }
 }

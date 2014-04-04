@@ -58,6 +58,7 @@ public class DatabaseStructure {
         schema = getIndexes(schema);
         schema = getViews(schema);
         schema = getProcedures(schema);
+        schema = getPackages(schema);
 
         connection.close();
         return schema;
@@ -203,27 +204,39 @@ public class DatabaseStructure {
         return schema;
     }
 
-    protected Procedure getProcedureCode(Procedure procedure) throws SQLException {
+    protected Package getPackageCode(Package pack) throws SQLException {
 
         // to forgive only admin can select on this table
         String driverName = meta.getDriverName().toUpperCase();
 
         if (driverName.contains("ORACLE")) {
             Connection connection = meta.getConnection();
-            PreparedStatement statement = connection.prepareStatement("select text from user_source where name=?");
-            statement.setString(1,procedure.getName());
+            PreparedStatement statement = connection.prepareStatement("select text from user_source where name=? and type = 'PACKAGE BODY' order by line ");
+            statement.setString(1,pack.getName());
             ResultSet resultSet = statement.executeQuery();
-            String result = null;
+            StringBuilder result = new StringBuilder();
 
             while (resultSet.next()) {
-                result += resultSet.getString("TEXT");
+                result.append(resultSet.getString("text"));
             }
-            procedure.setSqlCodeLoaded(true);
+            if ( result != null ) {
+                pack.setSqlCodeLoaded(true);
+            }
             resultSet.close();
-            procedure.setBodySsqlCode(result);
+            pack.setSqlCode(result.toString());
         }
 
-        return procedure;
+        return pack;
+    }
+
+    protected Schema getPackages(Schema schema) throws SQLException {
+        for (String packName : schema.getPackages().keySet()) {
+            Package pack = schema.getPackages().get(packName);
+            pack = getPackageCode(pack);
+            pack.setSchema(schema);
+            schema.getPackages().put(packName,pack);
+        }
+        return schema;
     }
 
     protected Schema getProcedures(Schema schema) throws SQLException {
@@ -332,6 +345,7 @@ public class DatabaseStructure {
                     pack = new Package(schema);
                     pack.setName(procedureCatalogue);
                 }
+
                 pack.getProcedures().add(procedure);
                 schema.getPackages().put(pack.getName(),pack);
                 //schema.getStoredProcedures().put(procedure.getName(), procedure);*/

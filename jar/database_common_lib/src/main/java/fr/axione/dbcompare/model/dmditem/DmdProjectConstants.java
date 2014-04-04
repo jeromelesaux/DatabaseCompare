@@ -42,7 +42,7 @@ public class DmdProjectConstants {
 
 
 
-        relDirectoryPath = StringUtils.replaceLast(filesInRelDirectory[0].toURI().getRawPath(),"/");
+        relDirectoryPath = StringUtils.replaceLast(filesInRelDirectory[0].toURI().getPath(),File.separator);
 
         File physDirectory = new File(relDirectoryPath + File.separator + "phys" + File.separator);
         File[] filesInPhysDirectory  = physDirectory.listFiles(new FileFilter() {
@@ -60,7 +60,7 @@ public class DmdProjectConstants {
             throw new Exception("No directory found in directory " + physDirectory.getPath());
         }
 
-        physDirectoryPath = StringUtils.replaceLast(filesInPhysDirectory[0].toURI().getRawPath(),"/");
+        physDirectoryPath = StringUtils.replaceLast(filesInPhysDirectory[0].toURI().getRawPath(),File.separator);
 
         objectsLocalFilePath = relDirectoryPath + OBJECTLOCALNAME;
         objectsLocalPhysFilepath = physDirectoryPath + OBJECTLOCALNAME;

@@ -369,6 +369,7 @@ public class DmdStructure {
                     if (objectType.equals("Package")) {
                         Package pack = getPackage(seqName, objectID, objectType);
                         pack.setName(name);
+                        pack.setSchema(schema);
                         schema.getPackages().put(pack.getName(),pack);
                     }
                 }
@@ -439,6 +440,7 @@ public class DmdStructure {
             String sourceCode = nodes.item(0).getNodeValue();
             sourceCode = StringUtils.unzerializedHtml(sourceCode);
             dmdPackage.setSqlCode(sourceCode);
+            dmdPackage.setSqlCodeLoaded(true);
         }
         return dmdPackage;
     }

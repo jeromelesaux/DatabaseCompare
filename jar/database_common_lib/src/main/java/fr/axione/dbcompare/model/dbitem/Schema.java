@@ -248,7 +248,7 @@ public class Schema extends Report implements Serializable {
                 getErrors().add(report.fillWithInformations(objType,
                         key,
                         null,
-                        ReportItemDBType.Table,
+                        ReportItemDBType.View,
                         Direction.minus,
                         this.name,
                         objType + " : left schema as no view (null,"+key+")."));
@@ -256,7 +256,41 @@ public class Schema extends Report implements Serializable {
             }
         }
 
+        // package comparison
+        for (String key : this.getPackages().keySet()) {
+            if (rightSchema.getPackages().containsKey(key)) {
+                Package rightPackage = rightSchema.getPackages().get(key);
+                Package leftPackage = this.getPackages().get(key);
+                if (leftPackage.equals(rightPackage)) {
+                    // just to compare
+                }
+            }
+            else {
+                ReportItem report = new ReportItem();
+                getErrors().add(report.fillWithInformations(objType,
+                        null,
+                        key,
+                        ReportItemDBType.Package,
+                        Direction.plus,
+                        this.name,
+                        objType + " : right schema as no package (" + key +",null)."));
+                areEquals = false;
+            }
+        }
 
+        for (String key : rightSchema.getPackages().keySet()){
+            if (!this.getPackages().containsKey(key)) {
+                ReportItem report = new ReportItem();
+                getErrors().add(report.fillWithInformations(objType,
+                        key,
+                        null,
+                        ReportItemDBType.Package,
+                        Direction.minus,
+                        this.name,
+                        objType + " : left schema as no package (null,"+key+")."));
+                areEquals = false;
+            }
+        }
 
         // gathering all errors from all objects
 
@@ -279,6 +313,20 @@ public class Schema extends Report implements Serializable {
                 getErrors().addAll(column.getErrors());
             }
         }
+
+        for (String key : this.getPackages().keySet()) {
+            Package leftPackage = this.getPackages().get(key);
+            if (leftPackage != null ) {
+                getErrors().addAll(leftPackage.getErrors());
+            }
+        }
+        for (String key : rightSchema.getPackages().keySet()) {
+            Package rightPackage = this.getPackages().get(key);
+            if (rightPackage != null) {
+                getErrors().addAll(rightPackage.getErrors());
+            }
+        }
+
 
 
 
