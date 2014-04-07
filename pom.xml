@@ -5,7 +5,7 @@
     <groupId>fr.axione.DatabaseCompare</groupId>
     <artifactId>database-compare</artifactId>
     <name>DatabaseCompare</name>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <modules>

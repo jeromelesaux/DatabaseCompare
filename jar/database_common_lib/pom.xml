@@ -5,14 +5,14 @@
     <parent>
         <groupId>fr.axione.DatabaseCompare</groupId>
         <artifactId>database-compare</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <groupId>fr.axione.DatabaseCompare</groupId>
     <artifactId>database-common-lib</artifactId>
     <name>DatabaseCompare commom lib</name>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
