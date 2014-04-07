@@ -17,7 +17,6 @@
         <connection>scm:git:ssh://github.com/jeromelesaux/DatabaseCompare.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/jeromelesaux/DatabaseCompare.git</developerConnection>
         <url>https://github.com/jeromelesaux/DatabaseCompare</url>
-        <tag>1.0.0</tag>
     </scm>
 
     <build>
@@ -27,6 +26,9 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <releaseProfiles>release</releaseProfiles>
                     <arguments>-Dmaven.test.skip=true</arguments>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <preparationGoals>clean verify</preparationGoals>
