@@ -31,6 +31,9 @@
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <preparationGoals>clean verify</preparationGoals>
                     <goals>deploy</goals>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>**/*.iml</checkModificationExclude>
+                    </checkModificationExcludes>
                 </configuration>
             </plugin>
         </plugins>
